@@ -10,7 +10,7 @@ var CellScene = load("res://Actors/Cell/Cell.tscn")
 
 const row : int = 25
 const column : int = 15 
-const cellSize : int = 20
+const cellSize : int = 40
 
 const start_point = Vector2i(0, 0) 
 const end_point = Vector2i(row - 1, column - 1)
@@ -56,7 +56,31 @@ func on_cell_clicked(cell_instance):
 	elif cell_type == Cell.CellType.CT_WALL:
 		cell_instance.set_cell_type(Cell.CellType.CT_FREE)
 	 
+func draw_path(path):
+	# Создаем новый узел Line2D
+	var line = Path2D.new()
 	
+	# Устанавливаем цвет линии
+	line.draw_colored_polygon()# Желтый
+	
+	# Устанавливаем z_index, чтобы убедиться, что линия на переднем плане
+	line.z_index = 100
+	
+	# Добавляем линию к узлу сцены
+	add_child(line)
+	
+	# Добавляем точки линии
+	if path.size() >= 2:
+		for point in path:
+			# Печатаем точки для отладки
+			var cell = CellMap[point.x][point.y]
+			print(cell.position)
+			
+			# Добавляем точку в линию
+			line.points.append(cell.position)
+	else:
+		print("Путь должен содержать как минимум две точки для построения линии.")
+
 func find_path():
 	var VisitedPoints = []
 	var VisitQueue = PriorityQueue.new()
@@ -64,6 +88,7 @@ func find_path():
 	VisitQueue.push(start_point, 0)
 	
 	while not VisitQueue.is_empty():
+		var result = []
 		var currentPoint = VisitQueue.pop() # Берем первую точку из очереди 
 		var cell = CellMap[currentPoint.x][currentPoint.y] 
 		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING_CURRENT)
@@ -76,9 +101,12 @@ func find_path():
 		
 		if currentPoint == end_point: 
 			print("Можно построить путь")
-			
+			while(currentPoint in VisitorsDict):
+				result.push_front(currentPoint)
+				currentPoint = VisitorsDict[currentPoint]
+			draw_path(result)
 			emit_signal("finding_end")
-			return true
+			return result
 			
 		for x in range(-1, 2):
 			for y in range(-1, 2):
@@ -102,7 +130,7 @@ func find_path():
 	
 	emit_signal("finding_end")
 	print("Нельзя построить путь")
-	return false;	
+	return [];	
 		
 
 
