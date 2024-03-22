@@ -1,0 +1,119 @@
+class_name MapSpawner
+extends Node2D
+
+enum HeuristicCalculateType {HCT_Euclidean, HCT_Manhattan}
+
+
+signal finding_end()
+
+var CellScene = load("res://Actors/Cell/Cell.tscn")
+
+const row : int = 25
+const column : int = 15 
+const cellSize : int = 20
+
+const start_point = Vector2i(0, 0) 
+const end_point = Vector2i(row - 1, column - 1)
+
+var CellMap = []
+
+func _ready():
+	_spawn_cells()
+
+func _spawn_cells():
+	for i in range(row):
+		var CellArray = []
+		for j in range(column):
+			var cell = CellScene.instantiate()
+			add_child(cell)
+			cell.position = Vector2(i * cellSize, j * cellSize)
+			CellArray.append(cell)
+			
+			if Vector2i(i, j) == start_point:
+				cell.set_cell_type(Cell.CellType.CT_START)
+			elif Vector2i(i, j) == end_point:
+				cell.set_cell_type(Cell.CellType.CT_FINISH)
+			else:
+				cell.set_cell_type(Cell.CellType.CT_FREE) 
+				cell.connect("cell_clicked", Callable(self, "on_cell_clicked"))
+			cell.set_cell_pos(Vector2i(i, j))
+		CellMap.append(CellArray)
+		
+func _clear_field():
+	for i in range(0, CellMap.size()):
+		for j in range(0, CellMap[i].size()):
+			var cell = CellMap[i][j]
+			var cell_type : Cell.CellType = cell.get_cell_type()
+			if cell_type != Cell.CellType.CT_FINISH and cell_type != Cell.CellType.CT_START:
+				cell.set_cell_type(Cell.CellType.CT_FREE)
+			
+func on_cell_clicked(cell_instance):
+	var cell_pos : Vector2i = cell_instance.get_cell_pos()
+	var cell_type : Cell.CellType = cell_instance.get_cell_type()
+	
+	if cell_type == Cell.CellType.CT_FREE:
+		cell_instance.set_cell_type(Cell.CellType.CT_WALL)
+	elif cell_type == Cell.CellType.CT_WALL:
+		cell_instance.set_cell_type(Cell.CellType.CT_FREE)
+	 
+	
+func find_path():
+	var VisitedPoints = []
+	var VisitQueue = PriorityQueue.new()
+	var VisitorsDict = {}
+	VisitQueue.push(start_point, 0)
+	
+	while not VisitQueue.is_empty():
+		var currentPoint = VisitQueue.pop() # Берем первую точку из очереди 
+		var cell = CellMap[currentPoint.x][currentPoint.y] 
+		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING_CURRENT)
+		await get_tree().create_timer(0.005).timeout
+		
+		VisitedPoints.push_back(currentPoint)
+		
+		
+		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERED)
+		
+		if currentPoint == end_point: 
+			print("Можно построить путь")
+			
+			emit_signal("finding_end")
+			return true
+			
+		for x in range(-1, 2):
+			for y in range(-1, 2):
+				if abs(x) != abs(y):
+					var nextPoint = Vector2i(currentPoint.x  + x, currentPoint.y + y)
+					if (nextPoint.x >= 0 and nextPoint.x < CellMap.size()) && (nextPoint.y >= 0 and nextPoint.y < CellMap[nextPoint.x].size()):
+						var cellInstance = CellMap[nextPoint.x][nextPoint.y]
+						if not (Vector2i(nextPoint.x, nextPoint.y) in VisitedPoints):
+							var cellType : Cell.CellType = cellInstance.get_cell_type()
+							if cellType != Cell.CellType.CT_WALL:
+								cell = CellMap[nextPoint.x][nextPoint.y]
+								cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING)
+								
+								VisitQueue.push(nextPoint, heuristic_distance(nextPoint, end_point, HeuristicCalculateType.HCT_Euclidean))
+								
+								VisitorsDict[nextPoint] = currentPoint
+								
+								await get_tree().create_timer(0.001).timeout
+								
+								
+	
+	emit_signal("finding_end")
+	print("Нельзя построить путь")
+	return false;	
+		
+
+
+func heuristic_distance(start_point : Vector2i, target_point : Vector2i, heuristicCalculateType) -> float:
+	if heuristicCalculateType == HeuristicCalculateType.HCT_Euclidean:
+		return sqrt(pow(start_point.x - end_point.x, 2) + pow(start_point.y - end_point.y, 2))
+	elif heuristicCalculateType == HeuristicCalculateType.HCT_Manhattan:
+		return abs(start_point.x - target_point.x) + abs(start_point.y -target_point.y)
+	return 0.0
+	
+
+
+func _on_start_search_call():
+	find_path()

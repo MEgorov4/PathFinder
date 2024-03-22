@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://iui5nmu031cl"]
+
+[ext_resource type="PackedScene" uid="uid://br8i1wfbxvocn" path="res://Actors/Cell.tscn" id="1_08poi"]
+
+[node name="MainLevel" type="Node2D"]
+
+[node name="Cell" parent="." instance=ExtResource("1_08poi")]

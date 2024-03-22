@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://iui5nmu031cl"]
+
+[ext_resource type="PackedScene" uid="uid://dbgo6fvjjcbh" path="res://UI/ControlPanel.tscn" id="1_amsdb"]
+[ext_resource type="PackedScene" uid="uid://c5dgetyrdbjq3" path="res://Actors/Grid/MapSpawner.tscn" id="1_qrvd8"]
+
+[node name="MainLevel" type="Node2D"]
+
+[node name="MapSpawner" parent="." instance=ExtResource("1_qrvd8")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="ControlPanel" parent="." instance=ExtResource("1_amsdb")]
+offset_top = 300.0
+offset_right = 0.0
+offset_bottom = 300.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[connection signal="finding_end" from="MapSpawner" to="ControlPanel" method="_on_map_spawner_finding_end"]
+[connection signal="start_search_call" from="ControlPanel" to="MapSpawner" method="_on_start_search_call"]
