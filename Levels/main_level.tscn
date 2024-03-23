@@ -1,21 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://iui5nmu031cl"]
+[gd_scene load_steps=4 format=3 uid="uid://iui5nmu031cl"]
 
 [ext_resource type="PackedScene" uid="uid://dbgo6fvjjcbh" path="res://UI/ControlPanel.tscn" id="1_amsdb"]
+[ext_resource type="Script" path="res://Levels/GameController.gd" id="1_g82qw"]
 [ext_resource type="PackedScene" uid="uid://c5dgetyrdbjq3" path="res://Actors/Grid/MapSpawner.tscn" id="1_qrvd8"]
 
 [node name="MainLevel" type="Node2D"]
 
-[node name="MapSpawner" parent="." instance=ExtResource("1_qrvd8")]
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_g82qw")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="MapSpawner" parent="Node2D" instance=ExtResource("1_qrvd8")]
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
 anchor_mode = 0
 
-[node name="ControlPanel" parent="." instance=ExtResource("1_amsdb")]
+[node name="ControlPanel" parent="Node2D" instance=ExtResource("1_amsdb")]
 offset_top = 300.0
 offset_right = 0.0
 offset_bottom = 300.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[connection signal="finding_end" from="MapSpawner" to="ControlPanel" method="_on_map_spawner_finding_end"]
-[connection signal="start_search_call" from="ControlPanel" to="MapSpawner" method="_on_start_search_call"]
+[connection signal="finding_end" from="Node2D/MapSpawner" to="Node2D/ControlPanel" method="_on_map_spawner_finding_end"]
+[connection signal="start_search_call" from="Node2D/ControlPanel" to="Node2D/MapSpawner" method="_on_start_search_call"]

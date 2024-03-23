@@ -1,18 +1,52 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1711123869
+::res://::1711162398
 icon.svg::CompressedTexture2D::4664653336058567828::1711123797::1711123797::1::::<><>::
 ::res://Actors/::1711123797
-::res://Actors/Cell/::1711123797
-Cell.gd::GDScript::-1::1711123797::0::1::::Cell<>Node2D<>::
+::res://Actors/Cell/::1711161889
+Cell.gd::GDScript::-1::1711161843::0::1::::Cell<>Node2D<>::
 Cell.png::CompressedTexture2D::2077687333228164250::1711123797::1711123797::1::::<><>::
-Cell.tscn::PackedScene::3648288821322021249::1711123797::0::1::::<><>::res://Actors/Cell/Cell.gd<>uid://4uphbda3apgs::::res://Actors/Cell/Cell.png
-::res://Actors/Grid/::1711123797
-MapSpawner.gd::GDScript::-1::1711123797::0::1::::MapSpawner<>Node2D<>::
-MapSpawner.tscn::PackedScene::6885072290716991544::1711123797::0::1::::<><>::res://Actors/Grid/MapSpawner.gd
+Cell.tscn::PackedScene::3648288821322021249::1711161889::0::1::::<><>::res://Actors/Cell/Cell.gd<>uid://4uphbda3apgs::::res://Actors/Cell/Cell.png
+::res://Actors/Grid/::1711161889
+MapSpawner.gd::GDScript::-1::1711161852::0::1::::MapSpawner<>Node2D<>::
+MapSpawner.tscn::PackedScene::6885072290716991544::1711161889::0::1::::<><>::res://Actors/Grid/MapSpawner.gd
+::res://Assets/::1711162418
+::res://Assets/Sprout Lands - Sprites - Basic pack/::1711162418
+read_me.txt::TextFile::-1::1711162418::0::1::::<><>::
+::res://Assets/Sprout Lands - Sprites - Basic pack/Characters/::1711162418
+Basic Charakter Actions.png::CompressedTexture2D::3147122509155472533::1711162418::1711162420::1::::<><>::
+Basic Charakter Spritesheet.png::CompressedTexture2D::5137922243778814251::1711162418::1711162420::1::::<><>::
+Egg_And_Nest.png::CompressedTexture2D::6257222607689388829::1711162418::1711162420::1::::<><>::
+Free Chicken Sprites.png::CompressedTexture2D::6072427311917059965::1711162418::1711162420::1::::<><>::
+Free Cow Sprites.png::CompressedTexture2D::2804559430494254519::1711162418::1711162420::1::::<><>::
+Tools.png::CompressedTexture2D::5278163472480326809::1711162418::1711162420::1::::<><>::
+::res://Assets/Sprout Lands - Sprites - Basic pack/Objects/::1711162418
+Basic_Furniture.png::CompressedTexture2D::5613376600946010925::1711162418::1711162420::1::::<><>::
+Basic_Grass_Biom_things.png::CompressedTexture2D::6836709365789190217::1711162418::1711162420::1::::<><>::
+Basic_Plants.png::CompressedTexture2D::474541498739336956::1711162418::1711162420::1::::<><>::
+Basic_tools_and_meterials.png::CompressedTexture2D::5953822203778946121::1711162418::1711162420::1::::<><>::
+Chest.png::CompressedTexture2D::9128325577628513628::1711162418::1711162419::1::::<><>::
+Egg_item.png::CompressedTexture2D::7966909044419554698::1711162418::1711162419::1::::<><>::
+Free_Chicken_House.png::CompressedTexture2D::8150487010761138672::1711162418::1711162419::1::::<><>::
+Paths.png::CompressedTexture2D::8825247693488136218::1711162418::1711162419::1::::<><>::
+Simple_Milk_and_grass_item.png::CompressedTexture2D::219686122827046455::1711162418::1711162419::1::::<><>::
+Wood_Bridge.png::CompressedTexture2D::5879773938055733248::1711162418::1711162419::1::::<><>::
+::res://Assets/Sprout Lands - Sprites - Basic pack/Sprout Lands color pallet/::1711162418
+Sprout Lands defautlt palette snip.PNG::CompressedTexture2D::4773343918561577772::1711162418::1711162419::1::::<><>::
+Sprout Lands defautlt palette.png::CompressedTexture2D::5004448117141849496::1711162418::1711162419::1::::<><>::
+::res://Assets/Sprout Lands - Sprites - Basic pack/Tilesets/::1711162418
+Bitmask references 1.png::CompressedTexture2D::1541129379138506948::1711162418::1711162419::1::::<><>::
+Bitmask references 2.png::CompressedTexture2D::2741601136781139017::1711162418::1711162419::1::::<><>::
+Fences.png::CompressedTexture2D::3852619049447185865::1711162418::1711162419::1::::<><>::
+Grass.png::CompressedTexture2D::4508614669584788456::1711162418::1711162419::1::::<><>::
+Hills.png::CompressedTexture2D::2165615528105750663::1711162418::1711162419::1::::<><>::
+Tilled_Dirt.png::CompressedTexture2D::7081203228040594768::1711162418::1711162419::1::::<><>::
+Water.png::CompressedTexture2D::272479864744945034::1711162418::1711162419::1::::<><>::
+Wooden House.png::CompressedTexture2D::9216176440856295252::1711162418::1711162419::1::::<><>::
 ::res://CustomTypes/::1711123797
 PriorityQueue.gd::GDScript::-1::1711123797::0::1::::PriorityQueue<>RefCounted<>::
-::res://Levels/::1711123797
-main_level.tscn::PackedScene::603338316229185575::1711123797::0::1::::<><>::uid://dbgo6fvjjcbh::::res://UI/ControlPanel.tscn<>uid://c5dgetyrdbjq3::::res://Actors/Grid/MapSpawner.tscn
-::res://UI/::1711123797
+::res://Levels/::1711161888
+GameController.gd::GDScript::-1::1711161254::0::1::::<>Node2D<>::
+main_level.tscn::PackedScene::603338316229185575::1711161888::0::1::::<><>::uid://dbgo6fvjjcbh::::res://UI/ControlPanel.tscn<>res://Levels/GameController.gd<>uid://c5dgetyrdbjq3::::res://Actors/Grid/MapSpawner.tscn
+::res://UI/::1711161889
 ControlPanel.gd::GDScript::-1::1711123797::0::1::::<>Control<>::
-ControlPanel.tscn::PackedScene::213021848653827817::1711123797::0::1::::<><>::res://UI/ControlPanel.gd
+ControlPanel.tscn::PackedScene::213021848653827817::1711161889::0::1::::<><>::res://UI/ControlPanel.gd

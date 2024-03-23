@@ -5,7 +5,6 @@ enum CellType {CT_FREE = 0, CT_WALL = 1, CT_START = 2, CT_FINISH = 3}
 enum CellInteractionType {CIT_FREE = 0, CIT_CONSIDERING = 1, CIT_CONSIDERED = 2, CIT_CONSIDERING_CURRENT}
 signal cell_clicked(cell_instance)
 
-var bCanChange = false;
 var sprite : Sprite2D
 
 var cellType : CellType = CellType.CT_FREE

@@ -3,30 +3,30 @@ extends Node2D
 
 enum HeuristicCalculateType {HCT_Euclidean, HCT_Manhattan}
 
-
+signal finding_start()
 signal finding_end()
-
+signal cell_map_filled(cell_map)
 var CellScene = load("res://Actors/Cell/Cell.tscn")
 
-const row : int = 25
-const column : int = 15 
-const cellSize : int = 40
+const _row : int = 25
+const _column : int = 15 
+const _cellSize : int = 20
 
 const start_point = Vector2i(0, 0) 
-const end_point = Vector2i(row - 1, column - 1)
+const end_point = Vector2i(_row - 1, _column - 1)
 
 var CellMap = []
 
 func _ready():
 	_spawn_cells()
-
+"res://Assets/Sprout Lands - Sprites - Basic pack/Tilesets/Grass.png"
 func _spawn_cells():
-	for i in range(row):
+	for i in range(_row):
 		var CellArray = []
-		for j in range(column):
+		for j in range(_column):
 			var cell = CellScene.instantiate()
 			add_child(cell)
-			cell.position = Vector2(i * cellSize, j * cellSize)
+			cell.position = Vector2(i * _cellSize, j * _cellSize)
 			CellArray.append(cell)
 			
 			if Vector2i(i, j) == start_point:
@@ -44,7 +44,11 @@ func _clear_field():
 		for j in range(0, CellMap[i].size()):
 			var cell = CellMap[i][j]
 			var cell_type : Cell.CellType = cell.get_cell_type()
-			if cell_type != Cell.CellType.CT_FINISH and cell_type != Cell.CellType.CT_START:
+			if cell_type == Cell.CellType.CT_FINISH:
+				cell.set_cell_type(Cell.CellType.CT_FINISH)
+			if cell_type == Cell.CellType.CT_START:
+				cell.set_cell_type(Cell.CellType.CT_START)
+			else:
 				cell.set_cell_type(Cell.CellType.CT_FREE)
 			
 func on_cell_clicked(cell_instance):
@@ -57,29 +61,7 @@ func on_cell_clicked(cell_instance):
 		cell_instance.set_cell_type(Cell.CellType.CT_FREE)
 	 
 func draw_path(path):
-	# Создаем новый узел Line2D
-	var line = Path2D.new()
-	
-	# Устанавливаем цвет линии
-	line.draw_colored_polygon()# Желтый
-	
-	# Устанавливаем z_index, чтобы убедиться, что линия на переднем плане
-	line.z_index = 100
-	
-	# Добавляем линию к узлу сцены
-	add_child(line)
-	
-	# Добавляем точки линии
-	if path.size() >= 2:
-		for point in path:
-			# Печатаем точки для отладки
-			var cell = CellMap[point.x][point.y]
-			print(cell.position)
-			
-			# Добавляем точку в линию
-			line.points.append(cell.position)
-	else:
-		print("Путь должен содержать как минимум две точки для построения линии.")
+	pass
 
 func find_path():
 	var VisitedPoints = []
@@ -144,4 +126,5 @@ func heuristic_distance(start_point : Vector2i, target_point : Vector2i, heurist
 
 
 func _on_start_search_call():
+	_clear_field()
 	find_path()
