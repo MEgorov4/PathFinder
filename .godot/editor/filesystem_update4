@@ -1,7 +1,5 @@
 res://Levels/main_level.tscn
 res://Actors/Grid/MapSpawner.tscn
 res://Actors/Cell/Cell.tscn
-res://UI/ControlPanel.tscn
-res://UI/ControlPanel.gd
-res://Actors/Grid/MapSpawner.gd
 res://Actors/Wall/Wall.tscn
+res://Actors/Grid/MapSpawner.gd

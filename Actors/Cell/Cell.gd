@@ -54,7 +54,7 @@ func _update_cell_state():
 	
 func _update_cell_interaction_state():
 	if cellInteractionType == CellInteractionType.CIT_CONSIDERED:
-		sprite.modulate = Color.AQUAMARINE
+		sprite.modulate = Color.ANTIQUE_WHITE
 	elif cellInteractionType == CellInteractionType.CIT_CONSIDERING:
 		sprite.modulate = Color.SPRING_GREEN   
 	elif cellInteractionType == CellInteractionType.CIT_CONSIDERING_CURRENT:
