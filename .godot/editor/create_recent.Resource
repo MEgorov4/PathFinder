@@ -1,2 +1,4 @@
+AtlasTexture
 TileSet
+Texture2DRD
 ImageTexture

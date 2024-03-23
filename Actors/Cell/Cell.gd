@@ -5,6 +5,8 @@ enum CellType {CT_FREE = 0, CT_WALL = 1, CT_START = 2, CT_FINISH = 3}
 enum CellInteractionType {CIT_FREE = 0, CIT_CONSIDERING = 1, CIT_CONSIDERED = 2, CIT_CONSIDERING_CURRENT}
 signal cell_clicked(cell_instance)
 
+
+
 var sprite : Sprite2D
 
 var cellType : CellType = CellType.CT_FREE
@@ -20,6 +22,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
 
 func set_cell_interaction_type(cell_interaction_type : CellInteractionType):
 	cellInteractionType = cell_interaction_type

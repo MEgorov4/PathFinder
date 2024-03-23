@@ -8,9 +8,9 @@ signal finding_end()
 signal cell_map_filled(cell_map)
 var CellScene = load("res://Actors/Cell/Cell.tscn")
 
-const _row : int = 25
-const _column : int = 15 
-const _cellSize : int = 20
+const _row : int = 24
+const _column : int = 16 
+const _cellSize : int = 16
 
 const start_point = Vector2i(0, 0) 
 const end_point = Vector2i(_row - 1, _column - 1)
@@ -63,7 +63,7 @@ func on_cell_clicked(cell_instance):
 func draw_path(path):
 	pass
 
-func find_path():
+func find_path(bManhattan):
 	var VisitedPoints = []
 	var VisitQueue = PriorityQueue.new()
 	var VisitorsDict = {}
@@ -125,6 +125,5 @@ func heuristic_distance(start_point : Vector2i, target_point : Vector2i, heurist
 	
 
 
-func _on_start_search_call():
-	_clear_field()
-	find_path()
+func _on_control_panel_start_search_call(SearchSettings):
+	find_path(SearchSettings["manhattan"])

@@ -13,15 +13,17 @@ config_version=5
 config/name="PathFinder"
 run/main_scene="res://Levels/main_level.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=500
-window/size/viewport_height=500
-window/size/resizable=false
+window/size/viewport_width=1280
+window/size/viewport_height=640
+window/size/mode=2
+window/stretch/mode="viewport"
 
 [rendering]
 
+renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.6, 0.729412, 1, 1)
