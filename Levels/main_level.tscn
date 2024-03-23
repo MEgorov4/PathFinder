@@ -746,17 +746,17 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.0
-offset_left = 616.0
-offset_top = 8.0
-offset_right = 1200.0
+offset_left = 576.0
+offset_right = 1152.0
 offset_bottom = 504.0
 grow_horizontal = 2
 scale = Vector2(1, 1)
-size_flags_horizontal = 0
+size_flags_horizontal = 8
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dkspa")
 
 [connection signal="finding_end" from="MapSpawner" to="ControlPanel" method="_on_map_spawner_finding_end"]
-[connection signal="start_search_call" from="ControlPanel" to="MapSpawner" method="_on_start_search_call"]
+[connection signal="start_clear_walls" from="ControlPanel" to="MapSpawner" method="_on_control_panel_start_clear_walls"]
 [connection signal="start_search_call" from="ControlPanel" to="MapSpawner" method="_on_control_panel_start_search_call"]
+[connection signal="start_search_call" from="ControlPanel" to="MapSpawner" method="_on_start_search_call"]

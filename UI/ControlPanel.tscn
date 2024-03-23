@@ -4,6 +4,7 @@
 
 [node name="ControlPanel" type="Control"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -494.0
@@ -37,11 +38,21 @@ text = "Меню
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Start search"
 
+[node name="ClearButton" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Clear Walls
+"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -52,4 +63,5 @@ text = "Manhattan (if not checked euquilide be use) "
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_start_search_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]

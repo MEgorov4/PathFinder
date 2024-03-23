@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://upg8urbmwkvt"]
+
+[ext_resource type="Texture2D" uid="uid://cv28rj3v3aq46" path="res://Resources/Images/TX PropsShadow.png" id="1_p6r74"]
+[ext_resource type="Texture2D" uid="uid://3nmv0ik5hhua" path="res://Resources/Images/TX Props_.png" id="2_x3g82"]
+
+[node name="Wall" type="Node2D"]
+position = Vector2(8, 12)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.345098)
+position = Vector2(4, 4)
+texture = ExtResource("1_p6r74")
+region_enabled = true
+region_rect = Rect2(287, 316, 41, 36)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_x3g82")
+region_enabled = true
+region_rect = Rect2(288, 306, 32, 46)

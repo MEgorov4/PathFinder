@@ -2,8 +2,8 @@ extends Control
 
 
 signal start_search_call(SearchSettings)
-var ControlPanelInfo = {["manhattan"]: false}
-
+signal start_clear_walls()
+var ControlPanelInfo = {"manhattan": false}
 
 var search_button
 
@@ -31,3 +31,7 @@ func _on_map_spawner_finding_end():
 
 func _on_check_box_toggled(toggled_on):
 	ControlPanelInfo["manhattan"] = toggled_on
+
+
+func _on_clear_button_pressed():
+	emit_signal("start_clear_walls")

@@ -44,11 +44,7 @@ func _clear_field():
 		for j in range(0, CellMap[i].size()):
 			var cell = CellMap[i][j]
 			var cell_type : Cell.CellType = cell.get_cell_type()
-			if cell_type == Cell.CellType.CT_FINISH:
-				cell.set_cell_type(Cell.CellType.CT_FINISH)
-			if cell_type == Cell.CellType.CT_START:
-				cell.set_cell_type(Cell.CellType.CT_START)
-			else:
+			if cell_type == Cell.CellType.CT_WALL:
 				cell.set_cell_type(Cell.CellType.CT_FREE)
 			
 func on_cell_clicked(cell_instance):
@@ -102,7 +98,13 @@ func find_path(bManhattan):
 								cell = CellMap[nextPoint.x][nextPoint.y]
 								cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING)
 								
-								VisitQueue.push(nextPoint, heuristic_distance(nextPoint, end_point, HeuristicCalculateType.HCT_Euclidean))
+								var distance
+								if bManhattan:
+									distance = heuristic_distance(nextPoint, end_point, HeuristicCalculateType.HCT_Manhattan)
+								else:
+									distance = heuristic_distance(nextPoint, end_point, HeuristicCalculateType.HCT_Euclidean)
+									
+									VisitQueue.push(nextPoint, distance)
 								
 								VisitorsDict[nextPoint] = currentPoint
 								
@@ -120,10 +122,14 @@ func heuristic_distance(start_point : Vector2i, target_point : Vector2i, heurist
 	if heuristicCalculateType == HeuristicCalculateType.HCT_Euclidean:
 		return sqrt(pow(start_point.x - end_point.x, 2) + pow(start_point.y - end_point.y, 2))
 	elif heuristicCalculateType == HeuristicCalculateType.HCT_Manhattan:
-		return abs(start_point.x - target_point.x) + abs(start_point.y -target_point.y)
+		return abs(start_point.x - target_point.x) + abs(start_point.y - target_point.y)
 	return 0.0
 	
 
 
 func _on_control_panel_start_search_call(SearchSettings):
 	find_path(SearchSettings["manhattan"])
+
+
+func _on_control_panel_start_clear_walls():
+	_clear_field()

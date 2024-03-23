@@ -1,3 +1,4 @@
+Sprite2D
 Node2D
 Label
 HBoxContainer
@@ -5,7 +6,6 @@ CheckBox
 Tree
 ItemList
 Button
-Sprite2D
 WorldEnvironment
 PointLight2D
 DirectionalLight2D
