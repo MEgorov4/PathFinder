@@ -4,16 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://3nmv0ik5hhua" path="res://Resources/Images/TX Props_.png" id="2_x3g82"]
 
 [node name="Wall" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.345098)
+visibility_layer = 2
+z_index = 1
+y_sort_enabled = true
 position = Vector2(4, 4)
 texture = ExtResource("1_p6r74")
 region_enabled = true
 region_rect = Rect2(287, 316, 41, 36)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(0, 2)
 texture = ExtResource("2_x3g82")
 region_enabled = true
 region_rect = Rect2(288, 306, 32, 46)

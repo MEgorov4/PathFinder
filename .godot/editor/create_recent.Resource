@@ -1,4 +1,5 @@
 AtlasTexture
-TileSet
 Texture2DRD
+Image
+TileSet
 ImageTexture

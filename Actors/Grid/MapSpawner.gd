@@ -6,7 +6,13 @@ enum HeuristicCalculateType {HCT_Euclidean, HCT_Manhattan}
 signal finding_start()
 signal finding_end()
 signal cell_map_filled(cell_map)
-var CellScene = load("res://Actors/Cell/Cell.tscn")
+
+
+var audio_player : AudioStreamPlayer 
+var audio_player_max_pitch : float = 2
+
+
+var CellScene
 
 const _row : int = 24
 const _column : int = 16 
@@ -17,22 +23,23 @@ const end_point = Vector2i(_row - 1, _column - 1)
 
 var CellMap = []
 
+var path_line 
+
+var arrow_agent : ArrowAgent
 func _ready():
-	var num1 = 24
-	num1 = "24"
-	print(num1)
-	
+	audio_player = get_node("AudioStreamPlayer")
+	arrow_agent = get_node("ArrowSearchAgent")
+	CellScene = load("res://Actors/Cell/Cell.tscn")
 	_spawn_cells()
-"res://Assets/Sprout Lands - Sprites - Basic pack/Tilesets/Grass.png"
+	
 func _spawn_cells():
 	for i in range(_row):
 		var CellArray = []
 		for j in range(_column):
-			var cell = CellScene.instantiate()
+			var cell : Cell = CellScene.instantiate()
 			add_child(cell)
 			cell.position = Vector2(i * _cellSize, j * _cellSize)
 			CellArray.append(cell)
-			
 			if Vector2i(i, j) == start_point:
 				cell.set_cell_type(Cell.CellType.CT_START)
 			elif Vector2i(i, j) == end_point:
@@ -54,7 +61,20 @@ func _clear_field():
 				cell.set_cell_type(Cell.CellType.CT_START)
 			else:
 				cell.set_cell_type(Cell.CellType.CT_FREE)
-			
+func _clear_walls():
+	for i in range(0, CellMap.size()):
+		for j in range(0, CellMap[i].size()):
+			var cell = CellMap[i][j]
+			var cell_type : Cell.CellType = cell.get_cell_type()
+			if cell_type == Cell.CellType.CT_WALL:
+				cell.set_cell_type(Cell.CellType.CT_FREE)
+func _clear_path():
+	remove_child(path_line)
+	for i in range(0, CellMap.size()):
+		for j in range(0, CellMap[i].size()):
+			var cell : Cell = CellMap[i][j]
+			if cell.search_icon.enabled:
+				cell.search_icon.destroy_icon()
 func on_cell_clicked(cell_instance):
 	var cell_pos : Vector2i = cell_instance.get_cell_pos()
 	var cell_type : Cell.CellType = cell_instance.get_cell_type()
@@ -65,24 +85,32 @@ func on_cell_clicked(cell_instance):
 		cell_instance.set_cell_type(Cell.CellType.CT_FREE)
 	 
 func draw_path(path):
-	var line = Line2D.new()
+	
+	var pitch_step  = audio_player.pitch_scale / path.size() 
+	path_line = Line2D.new()
 	var paked_points = PackedVector2Array()
 	
-	var index = 0;
-	for point in path:
-		var cell = CellMap[point.x][point.y]
-		var position = Vector2(cell.position.x + 8, cell.position.y + 8)
-		paked_points.append(position)
-		
-		
-	line.width /= 5
-	line.points = paked_points
+	path_line.width /= 5
 	var ggg = Gradient.new()
 	ggg.set_color(0, Color.RED)
 	ggg.set_color(1, Color.GREEN)
-	line.gradient = ggg 
-	add_child(line)
-	print(line.get_point_count())
+	path_line.gradient = ggg 
+	add_child(path_line)
+	path_line.z_index = 100
+	var index = 0;
+	for point in path:
+		var cell = CellMap[point.x][point.y]
+		var cell_position = Vector2(cell.position.x + 8, cell.position.y + 8)
+		#paked_points.append(position)
+		
+		path_line.add_point(cell_position)
+		
+		audio_player.play()
+		await get_tree().create_timer(0.02).timeout
+		audio_player.pitch_scale += pitch_step
+		
+	audio_player.pitch_scale = audio_player_max_pitch
+	
 
 func find_path(bManhattan):
 	var VisitedPoints = []
@@ -95,13 +123,10 @@ func find_path(bManhattan):
 		var currentPoint = VisitQueue.pop() # Берем первую точку из очереди 
 		var cell = CellMap[currentPoint.x][currentPoint.y] 
 		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING_CURRENT)
-		await get_tree().create_timer(0.1).timeout
-		
-		
-		
-		
+		arrow_agent.set_target_position_point(cell.position)
+		await get_tree().create_timer(0.02).timeout
+
 		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERED)
-		
 		if currentPoint == end_point: 
 			print("Можно построить путь")
 			while(currentPoint != start_point):
@@ -122,12 +147,18 @@ func find_path(bManhattan):
 							if cellType != Cell.CellType.CT_WALL:
 								cell = CellMap[nextPoint.x][nextPoint.y]
 								cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING)
-								
-								VisitQueue.push(nextPoint, heuristic_distance(nextPoint, end_point, HeuristicCalculateType.HCT_Manhattan))
+								arrow_agent.set_target_look_point(cell.position)
+								var heuristic_distance
+								if bManhattan:
+									heuristic_distance = heuristic_distance(nextPoint, end_point, HeuristicCalculateType.HCT_Manhattan)
+								else:
+									heuristic_distance = heuristic_distance(nextPoint, end_point, HeuristicCalculateType.HCT_Euclidean)
+									
+								VisitQueue.push(nextPoint, heuristic_distance)
 								
 								VisitorsDict[nextPoint] = currentPoint
 								VisitedPoints.push_back(nextPoint)
-								await get_tree().create_timer(0.01).timeout
+								await get_tree().create_timer(0.02).timeout
 								
 								
 	
@@ -147,4 +178,9 @@ func heuristic_distance(start_point : Vector2i, target_point : Vector2i, heurist
 
 
 func _on_control_panel_start_search_call(SearchSettings):
+	_clear_path()
 	find_path(SearchSettings["manhattan"])
+
+
+func _on_control_panel_clear_walls():
+	_clear_walls()

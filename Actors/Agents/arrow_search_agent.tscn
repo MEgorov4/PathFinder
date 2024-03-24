@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw8ak41clbjv1"]
+
+[ext_resource type="Texture2D" uid="uid://d2bl4kxmp51b6" path="res://Resources/Images/icons/ArrowAgent.tres" id="1_t480l"]
+[ext_resource type="Script" path="res://Actors/Agents/arrow_search_agent.gd" id="1_xr2e0"]
+
+[node name="ArrowSearchAgent" type="Node2D"]
+position = Vector2(8, 8)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_xr2e0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_t480l")

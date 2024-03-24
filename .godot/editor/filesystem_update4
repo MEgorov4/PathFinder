@@ -1,5 +1,7 @@
+res://UI/ControlPanel.tscn
+res://Resources/Images/icons/SearchedPoint.tres
 res://Levels/main_level.tscn
 res://Actors/Grid/MapSpawner.tscn
+res://Actors/Agents/arrow_search_agent.tscn
 res://Actors/Cell/Cell.tscn
-res://Actors/Wall/Wall.tscn
 res://Actors/Grid/MapSpawner.gd
