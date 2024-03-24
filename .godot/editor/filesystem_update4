@@ -1,12 +1,4 @@
-res://Actors/Grid/MapSpawner.tscn
-res://Resources/Images/icons/SearchedPoint.tres
-res://Actors/Grid/MapSpawner.gd
-res://UI/ControlPanel.tscn
 res://Levels/main_level.tscn
-res://Actors/Agents/arrow_search_agent.tscn
-res://Actors/Cell/Cell.tscn
+res://Resources/Images/icons/SearchedPoint.tres
 res://Actors/Agent/ArrowAgent.tscn
-res://Actors/Agent/ArrowAgent.gd
-res://UI/ControlPanel.gd
-res://Resources/Images/icons/invisible.tres
-res://Actors/FindingStateIcon/Icon.gd
+res://Actors/Grid/MapSpawner.gd

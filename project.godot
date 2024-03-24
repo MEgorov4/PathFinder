@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [display]
 
-window/size/viewport_width=1280
+window/size/viewport_width=1264
 window/size/viewport_height=640
 window/stretch/mode="viewport"
 
@@ -25,4 +25,4 @@ window/stretch/mode="viewport"
 renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.6, 0.729412, 1, 1)
+environment/defaults/default_clear_color=Color(0.309804, 0.294118, 0.270588, 1)

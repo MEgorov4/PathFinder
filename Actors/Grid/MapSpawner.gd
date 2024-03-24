@@ -13,8 +13,8 @@ var audio_player_max_pitch : float = 2
 
 var CellScene = load("res://Actors/Cell/Cell.tscn")
 
-const _row : int = 24
-const _column : int = 16 
+const _row : int = 25
+const _column : int = 17 
 const _cellSize : int = 16
 
 const start_point = Vector2i(0, 0) 
