@@ -13,7 +13,7 @@ var speed_slider : HSlider
 func _ready():
 	search_button = get_node("MarginContainer/VBoxContainer/Button")
 	speed_slider = get_node("MarginContainer/VBoxContainer/HBoxContainer2/HSlider")
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

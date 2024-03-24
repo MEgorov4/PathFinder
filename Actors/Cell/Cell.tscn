@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://br8i1wfbxvocn"]
 
-[ext_resource type="Script" path="res://Actors/Agents/arrow_search_agent.gd" id="1_p2s6o"]
+[ext_resource type="Script" path="res://Actors/Cell/Cell.gd" id="1_rluoc"]
 [ext_resource type="Texture2D" uid="uid://b7me6kiynnn8y" path="res://Resources/Images/TX Tileset Grass.png" id="2_bqjot"]
 [ext_resource type="Script" path="res://Actors/Cell/CellSprite.gd" id="3_awsvv"]
 [ext_resource type="Texture2D" uid="uid://cbhkodapc24e" path="res://Resources/ImageUtils/SelectBorder.png" id="4_sgwi3"]
@@ -73,7 +73,7 @@ _data = {
 
 [node name="Cell" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_p2s6o")
+script = ExtResource("1_rluoc")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -102,7 +102,7 @@ texture = ExtResource("4_sgwi3")
 
 [node name="SearchIcon" parent="." instance=ExtResource("5_b6e6p")]
 z_index = 1
-position = Vector2(8, 8)
+position = Vector2(8, 7)
 scale = Vector2(0.5, 0.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

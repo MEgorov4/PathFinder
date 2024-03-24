@@ -2,7 +2,7 @@ class_name Icon
 extends Node2D
 
 var enabled : bool
-var icon_types = {"considering" : preload("res://Resources/Images/icons/Question.tres"), "considered" : preload("res://Resources/Images/icons/SearchedPoint.tres"), "current_consider": preload("res://Resources/Images/icons/ArrowAgent.tres")}
+var icon_types = {"considering" : preload("res://Resources/Images/icons/Question.tres"), "considered" : preload("res://Resources/Images/icons/SearchedPoint.tres"), "current_consider": preload("res://Resources/Images/icons/invisible.tres")}
 var icon_sprite : Sprite2D
 var animation_player : AnimationPlayer 
 func _ready():

@@ -11,8 +11,7 @@ signal cell_map_filled(cell_map)
 var audio_player : AudioStreamPlayer 
 var audio_player_max_pitch : float = 2
 
-
-var CellScene
+var CellScene = load("res://Actors/Cell/Cell.tscn")
 
 const _row : int = 24
 const _column : int = 16 
@@ -25,11 +24,11 @@ var CellMap = []
 
 var path_line 
 
-var arrow_agent : ArrowAgent
+var arrow_agent 
+
 func _ready():
 	audio_player = get_node("AudioStreamPlayer")
-	arrow_agent = get_node("ArrowSearchAgent")
-	CellScene = load("res://Actors/Cell/Cell.tscn")
+	arrow_agent = get_node ("ArrowAgent")
 	_spawn_cells()
 	
 func _spawn_cells():
@@ -123,9 +122,8 @@ func find_path(bManhattan):
 		var currentPoint = VisitQueue.pop() # Берем первую точку из очереди 
 		var cell = CellMap[currentPoint.x][currentPoint.y] 
 		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING_CURRENT)
-		arrow_agent.set_target_position_point(cell.position)
-		await get_tree().create_timer(0.02).timeout
-
+		arrow_agent.set_target_position(cell.position)
+		await get_tree().create_timer(0.1).timeout
 		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERED)
 		if currentPoint == end_point: 
 			print("Можно построить путь")
@@ -147,7 +145,7 @@ func find_path(bManhattan):
 							if cellType != Cell.CellType.CT_WALL:
 								cell = CellMap[nextPoint.x][nextPoint.y]
 								cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING)
-								arrow_agent.set_target_look_point(cell.position)
+								arrow_agent.set_target_rotation(cell.position)
 								var heuristic_distance
 								if bManhattan:
 									heuristic_distance = heuristic_distance(nextPoint, end_point, HeuristicCalculateType.HCT_Manhattan)
@@ -158,7 +156,7 @@ func find_path(bManhattan):
 								
 								VisitorsDict[nextPoint] = currentPoint
 								VisitedPoints.push_back(nextPoint)
-								await get_tree().create_timer(0.02).timeout
+								await get_tree().create_timer(0.1).timeout
 								
 								
 	
@@ -168,18 +166,103 @@ func find_path(bManhattan):
 		
 
 
+func breadth_search(bManhattan):
+	var VisitedPoints = []
+	var VisitQueue = []
+	var VisitorsDict = {}
+	VisitQueue.push_back(start_point)
+	
+	while not VisitQueue.is_empty():
+		var result = []
+		var currentPoint = VisitQueue.pop_front()
+		var cell = CellMap[currentPoint.x][currentPoint.y] 
+		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING_CURRENT)
+		arrow_agent.set_target_position(cell.position)
+		await get_tree().create_timer(0.1).timeout
+		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERED)
+		if currentPoint == end_point: 
+			print("Можно построить путь")
+			while(currentPoint != start_point):
+				result.push_front(currentPoint)
+				currentPoint = VisitorsDict[currentPoint]
+			draw_path(result)
+			emit_signal("finding_end")
+			return result
+			
+		for x in range(-1, 2):
+			for y in range(-1, 2):
+				if abs(x) != abs(y):
+					var nextPoint = Vector2i(currentPoint.x  + x, currentPoint.y + y)
+					if (nextPoint.x >= 0 and nextPoint.x < CellMap.size()) && (nextPoint.y >= 0 and nextPoint.y < CellMap[nextPoint.x].size()):
+						var cellInstance = CellMap[nextPoint.x][nextPoint.y]
+						if not (Vector2i(nextPoint.x, nextPoint.y) in VisitedPoints):
+							var cellType : Cell.CellType = cellInstance.get_cell_type()
+							if cellType != Cell.CellType.CT_WALL:
+								cell = CellMap[nextPoint.x][nextPoint.y]
+								cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING)
+								arrow_agent.set_target_rotation(cell.position)
+								
+								VisitQueue.push_back(nextPoint)
+								
+								VisitorsDict[nextPoint] = currentPoint
+								VisitedPoints.push_back(nextPoint)
+								await get_tree().create_timer(0.1).timeout
+	
+func deep_search(bManhattan):
+	var VisitedPoints = []
+	var VisitQueue = []
+	var VisitorsDict = {}
+	VisitQueue.push_front(start_point)
+	
+	while not VisitQueue.is_empty():
+		var result = []
+		var currentPoint = VisitQueue.pop_front()
+		var cell = CellMap[currentPoint.x][currentPoint.y] 
+		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING_CURRENT)
+		arrow_agent.set_target_position(cell.position)
+		await get_tree().create_timer(0.1).timeout
+		cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERED)
+		if currentPoint == end_point: 
+			print("Можно построить путь")
+			while(currentPoint != start_point):
+				result.push_front(currentPoint)
+				currentPoint = VisitorsDict[currentPoint]
+			draw_path(result)
+			emit_signal("finding_end")
+			return result
+			
+		for x in range(-1, 2):
+			for y in range(-1, 2):
+				if abs(x) != abs(y):
+					var nextPoint = Vector2i(currentPoint.x  + x, currentPoint.y + y)
+					if (nextPoint.x >= 0 and nextPoint.x < CellMap.size()) && (nextPoint.y >= 0 and nextPoint.y < CellMap[nextPoint.x].size()):
+						var cellInstance = CellMap[nextPoint.x][nextPoint.y]
+						if not (Vector2i(nextPoint.x, nextPoint.y) in VisitedPoints):
+							var cellType : Cell.CellType = cellInstance.get_cell_type()
+							if cellType != Cell.CellType.CT_WALL:
+								cell = CellMap[nextPoint.x][nextPoint.y]
+								cell.set_cell_interaction_type(Cell.CellInteractionType.CIT_CONSIDERING)
+								arrow_agent.set_target_rotation(cell.position)
+								
+								VisitQueue.push_front(nextPoint)
+								
+								VisitorsDict[nextPoint] = currentPoint
+								VisitedPoints.push_back(nextPoint)
+								await get_tree().create_timer(0.1).timeout
+
 func heuristic_distance(start_point : Vector2i, target_point : Vector2i, heuristicCalculateType) -> float:
 	if heuristicCalculateType == HeuristicCalculateType.HCT_Euclidean:
 		return sqrt(pow(start_point.x - end_point.x, 2) + pow(start_point.y - end_point.y, 2))
 	elif heuristicCalculateType == HeuristicCalculateType.HCT_Manhattan:
-		return abs(start_point.x - target_point.x) + abs(start_point.y -target_point.y)
+		return abs(start_point.x - target_point.x) + abs(start_point.y - target_point.y)
 	return 0.0
 	
 
 
 func _on_control_panel_start_search_call(SearchSettings):
 	_clear_path()
-	find_path(SearchSettings["manhattan"])
+	#find_path(SearchSettings["manhattan"])
+	deep_search(SearchSettings["manhattan"])
 
 
 func _on_control_panel_clear_walls():

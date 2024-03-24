@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bibkgqp5jew8v"]
+
+[ext_resource type="Texture2D" uid="uid://d2bl4kxmp51b6" path="res://Resources/Images/icons/ArrowAgent.tres" id="1_nd2b6"]
+[ext_resource type="Script" path="res://Actors/Agent/ArrowAgent.gd" id="1_oqeob"]
+
+[node name="ArrowAgent" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_oqeob")
+
+[node name="ArrowSprite" type="Sprite2D" parent="."]
+texture_filter = 5
+texture = ExtResource("1_nd2b6")

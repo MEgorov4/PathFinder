@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5dgetyrdbjq3"]
+
+[ext_resource type="Script" path="res://Actors/Grid/MapSpawner.gd" id="1_ntsvl"]
+[ext_resource type="AudioStream" uid="uid://d4miio41pktj8" path="res://Resources/Sounds/PathWallk.wav" id="2_kouyy"]
+
+[node name="MapSpawner" type="Node2D"]
+script = ExtResource("1_ntsvl")
+metadata/_edit_horizontal_guides_ = [-246.0]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kouyy")
+volume_db = -17.421
+pitch_scale = 2.0
