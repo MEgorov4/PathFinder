@@ -8,3 +8,7 @@ script = ExtResource("1_ntsvl")
 metadata/_edit_horizontal_guides_ = [-246.0]
 
 [node name="PathDrawer" parent="." instance=ExtResource("2_qa3qx")]
+path_width = null
+path_add_point_timeout = null
+max_audio_pitch = null
+b_play_draw_sound = null

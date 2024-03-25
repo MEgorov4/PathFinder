@@ -5,27 +5,28 @@ extends Node2D
 signal drawing_path_complited()
 signal draw_segment_complited()
 
-
 # Settings
-@export var path_width : float = 0.2
-@export var path_add_point_timeout : float = 0.1
+@export var path_width : float = 2
+@export var path_add_point_timeout : float = 0.005
 @export var path_gradient_start_color : Gradient
 @export var max_audio_pitch : float = 2
 @export var b_play_draw_sound : bool = true
 
 # Components
 var path_line : Line2D
-var path_audio_player : AudioStreamPlayer
+var path_audio_player : AudioStreamPlayer2D
 
 func _ready():
 	path_line = get_node("PathLine")
+	path_audio_player = get_node("Audio")
 	path_line.gradient = path_gradient_start_color
+	path_line.width = path_width
 
 func _process(delta):
 	pass
 
 # Метод для плавного построения пути 
-func draw_path(Cells):
+func draw_path(Cells, offset = Vector2(0, 0)):
 	_reset_all_components()
 	
 	if path_line != null && Cells.size() > 1:
@@ -33,7 +34,7 @@ func draw_path(Cells):
 		path_audio_player.pitch_scale = max_audio_pitch / Cells.size()
 		for cell in Cells:
 			# Добавляем новый сегмент
-			path_line.add_point(cell.position)
+			path_line.add_point(cell.position + offset)
 			
 			if b_play_draw_sound:
 				# Воспроизводим звук построения сегмента и сдвигаем частоту

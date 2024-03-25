@@ -1,8 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://iui5nmu031cl"]
+[gd_scene load_steps=25 format=3 uid="uid://iui5nmu031cl"]
 
 [ext_resource type="PackedScene" uid="uid://dbgo6fvjjcbh" path="res://UI/ControlPanel.tscn" id="1_amsdb"]
 [ext_resource type="PackedScene" uid="uid://c5dgetyrdbjq3" path="res://Actors/Grid/MapSpawner.tscn" id="1_qrvd8"]
-[ext_resource type="Script" path="res://Actors/Core/GameController.gd" id="1_rl6j8"]
 [ext_resource type="Texture2D" uid="uid://3c7qes1fh825" path="res://Resources/Images/TX Plant.png" id="3_6ygg0"]
 [ext_resource type="Texture2D" uid="uid://rfa0x18m62sy" path="res://Resources/Images/TX Tileset Wall.png" id="3_dnrqd"]
 [ext_resource type="Texture2D" uid="uid://berp5hrfd0vva" path="res://Resources/Images/TX Shadow Plant.png" id="3_f16hp"]
@@ -10,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cv28rj3v3aq46" path="res://Resources/Images/TX PropsShadow.png" id="6_s8s2f"]
 [ext_resource type="PackedScene" uid="uid://bibkgqp5jew8v" path="res://Actors/Agent/ArrowAgent.tscn" id="7_kfyi8"]
 [ext_resource type="Texture2D" uid="uid://3nmv0ik5hhua" path="res://Resources/Images/TX Props_.png" id="7_lls2d"]
-[ext_resource type="PackedScene" uid="uid://cd2312tbu2bxs" path="res://Actors/Utils/path_drawer.tscn" id="9_o83y4"]
+[ext_resource type="PackedScene" uid="uid://cd2312tbu2bxs" path="res://path_drawer.tscn" id="9_o83y4"]
 
 [sub_resource type="Shader" id="Shader_dq5rs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's CanvasItemMaterial.
@@ -623,31 +622,28 @@ adjustment_contrast = 1.51
 material = SubResource("ShaderMaterial_xq5da")
 position = Vector2(64, 64)
 
-[node name="GameController" type="Node2D" parent="."]
-script = ExtResource("1_rl6j8")
-
-[node name="Base" type="Node2D" parent="GameController"]
+[node name="Base" type="Node2D" parent="."]
 position = Vector2(-8, 0)
 
-[node name="BackGround" type="Node2D" parent="GameController/Base"]
+[node name="BackGround" type="Node2D" parent="Base"]
 
-[node name="BackGroundTail" type="TileMap" parent="GameController/Base/BackGround"]
+[node name="BackGroundTail" type="TileMap" parent="Base/BackGround"]
 texture_filter = 1
 position = Vector2(8, 8)
 tile_set = SubResource("TileSet_2cr4o")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 0, 1, 131072, 131072, 2, 262144, 65536, 3, 393216, 65536, 2, 524288, 131072, 3, 655360, 196608, 0, 786432, 0, 0, 917504, 65536, 3, 1048576, 0, 2, 1179648, 196608, 1, 1310720, 0, 1, 1441792, 131072, 1, 1572864, 131072, 0, 1703936, 196608, 1, 1835008, 0, 3, 1966080, 0, 0, 1966082, 65536, 3, 1966084, 196608, 3, 1966086, 131072, 3, 1966088, 131072, 3, 1966090, 196608, 2, 1966092, 0, 0, 851968, 65536, 2, 1966094, 131072, 0, 1966096, 196608, 0, 1966098, 131072, 2, 1966100, 131072, 0, 1966102, 131072, 1, 1966104, 196608, 3, 1966106, 131072, 3, 1966108, 65536, 3, 1966110, 65536, 0, 1966111, 65536, 2, 1835039, 131072, 0, 1703967, 0, 2, 1572895, 65536, 3, 1441823, 0, 2, 1310751, 196608, 1, 1179679, 131072, 0, 1048607, 131072, 0, 917535, 0, 1, 786463, 65536, 2, 655391, 0, 1, 524319, 0, 0, 393247, 131072, 0, 262175, 131072, 0, 131103, 65536, 0, 31, 131072, 1, 29, 196608, 3, 27, 0, 2, 25, 196608, 2, 23, 65536, 3, 21, 196608, 3, 19, 0, 2, 17, 0, 0, 15, 131072, 0, 13, 131072, 0, 11, 65536, 3, 9, 196608, 0, 7, 65536, 3, 5, 196608, 1, 3, 0, 1, 2, 65536, 0, 131074, 0, 6, 131076, 65536, 6, 131078, 0, 5, 131080, 0, 5, 131082, 0, 6, 131084, 65536, 6, 131086, 65536, 5, 131088, 0, 6, 131090, 0, 6, 131092, 0, 4, 131094, 0, 5, 131096, 0, 6, 131098, 0, 6, 131100, 65536, 5, 131102, 0, 4, 262173, 131072, 5, 393245, 131072, 4, 524317, 131072, 4, 655389, 131072, 5, 786461, 131072, 5, 917533, 131072, 4, 1048605, 131072, 5, 1179677, 131072, 6, 1310749, 131072, 4, 1441821, 131072, 4, 1572893, 262144, 7, 1703965, 131072, 3, 1835037, 65536, 4, 1835035, 65536, 6, 1835033, 65536, 4, 1835031, 0, 4, 1835029, 0, 4, 1835027, 65536, 4, 1835025, 0, 6, 1835023, 0, 6, 1835021, 65536, 6, 1835019, 0, 4, 1835017, 65536, 4, 1835015, 65536, 5, 1835013, 65536, 4, 1835011, 0, 6, 1835010, 65536, 5, 1703938, 65536, 5, 1572866, 327680, 7, 1441794, 65536, 4, 1310722, 0, 6, 1179650, 65536, 5, 1048578, 0, 5, 917506, 0, 5, 786434, 65536, 6, 655362, 0, 6, 524290, 0, 5, 393218, 0, 5, 262146, 65536, 6, 1572868, 262144, 4, 1572870, 327680, 4, 1572872, 458752, 4, 1572874, 262144, 4, 1572876, 393216, 4, 1572878, 327680, 4, 1572880, 262144, 4, 1572882, 393216, 4, 1572884, 327680, 4, 1572886, 327680, 4, 1572888, 393216, 4, 1572890, 262144, 4, 1572892, 327680, 4, 1703940, 327680, 2, 1703942, 262144, 0, 1703944, 327680, 3, 1703946, 393216, 3, 1703948, 393216, 1, 1703950, 393216, 0, 1703952, 458752, 1, 1703954, 393216, 3, 1703956, 262144, 2, 1703958, 458752, 2, 1703960, 327680, 2, 1703962, 262144, 2, 1703963, 458752, 2, 1507332, 196608, 0, 1507331, 65536, 2, 1441795, 65536, 1, 1376259, 196608, 3, 1310723, 196608, 1, 1245187, 196608, 3, 1179651, 131072, 1, 1114115, 0, 2, 1048579, 65536, 2, 983043, 196608, 2, 917507, 0, 2, 851971, 196608, 0, 786435, 65536, 3, 720899, 65536, 0, 655363, 65536, 0, 589827, 65536, 2, 524291, 65536, 0, 458755, 0, 3, 393219, 65536, 0, 327683, 0, 0, 262147, 0, 0, 1507356, 131072, 2, 1441820, 0, 2, 1376284, 131072, 1, 1310748, 131072, 3, 1245212, 131072, 3, 1376285, 131072, 5, 1245213, 131072, 5, 1114141, 131072, 6, 983069, 131072, 5, 851997, 131072, 6, 720925, 131072, 6, 589853, 131072, 6, 458781, 131072, 5, 327709, 131072, 5, 1900546, 131072, 3, 1900547, 131072, 3, 1900548, 131072, 3, 1900549, 131072, 3, 1966085, 131072, 3, 1966087, 131072, 3, 1900552, 131072, 3, 1900553, 131072, 3, 1900554, 131072, 3, 1900555, 131072, 3, 1900556, 131072, 3, 1900557, 131072, 3, 1900558, 131072, 3, 1900559, 131072, 3, 1900560, 131072, 3, 1900561, 131072, 3, 1900562, 131072, 3, 1900563, 131072, 3, 1900564, 131072, 3, 1900565, 131072, 3, 1900566, 131072, 3, 1900567, 131072, 3, 1900568, 131072, 3, 1900569, 131072, 3, 1900570, 131072, 3, 1900571, 131072, 3, 1900572, 131072, 3, 1900573, 131072, 3, 1900574, 131072, 3, 1900550, 131072, 3, 1900551, 131072, 3, 1703939, 131072, 3, 1703964, 131072, 3, 1703966, 196608, 4, 1179676, 131072, 3, 1114140, 131072, 3, 1114139, 131072, 3, 1048603, 131072, 3, 983067, 131072, 3, 917531, 131072, 3, 851995, 131072, 3, 786459, 131072, 1, 720923, 196608, 2, 1376283, 327680, 1, 1310747, 327680, 1, 1245211, 131072, 0, 1245210, 458752, 3, 1179674, 393216, 0, 1114138, 327680, 2, 1114137, 458752, 2, 1048601, 393216, 0, 983065, 458752, 1, 917529, 327680, 2, 851993, 0, 0, 786457, 393216, 1, 720921, 131072, 1, 655385, 0, 1, 589849, 131072, 3, 524313, 327680, 1, 655384, 0, 2, 720920, 131072, 0, 786455, 196608, 3, 851991, 458752, 0, 917527, 0, 3, 983063, 458752, 0, 1048598, 65536, 0, 1114134, 0, 0, 1179670, 65536, 3, 1114135, 131072, 0, 1048599, 327680, 2, 786456, 131072, 1, 524314, 458752, 2, 589850, 393216, 0, 655386, 65536, 1, 720922, 458752, 3, 655387, 65536, 1, 589851, 0, 2, 458778, 327680, 0, 393242, 196608, 0, 393243, 262144, 3, 327707, 262144, 3, 327706, 0, 3, 327705, 65536, 1, 327704, 262144, 1, 327703, 196608, 0, 327702, 393216, 2, 327701, 65536, 0, 327700, 65536, 1, 327699, 131072, 1, 327698, 65536, 1, 327697, 196608, 1, 327696, 0, 0, 327695, 0, 0, 327694, 262144, 1, 262161, 262144, 1, 262162, 458752, 2, 262163, 393216, 2, 262164, 327680, 0, 262165, 393216, 2, 262166, 0, 3, 262167, 65536, 1, 262168, 131072, 1, 262169, 327680, 3, 262170, 327680, 3, 262171, 458752, 2, 262160, 65536, 1, 262159, 327680, 3, 262158, 458752, 2, 262157, 0, 3, 262156, 458752, 3, 262155, 327680, 0, 262154, 327680, 0, 262153, 65536, 2, 262152, 327680, 0, 262151, 262144, 3, 262150, 458752, 2, 262149, 131072, 3, 262148, 327680, 3, 327684, 458752, 3, 393220, 131072, 1, 458756, 65536, 2, 524292, 65536, 0, 589828, 0, 0, 655364, 393216, 3, 655365, 65536, 0, 720901, 262144, 2, 786437, 196608, 0, 851973, 65536, 2, 917509, 458752, 3, 983045, 196608, 3, 1048581, 196608, 2, 1048580, 327680, 2, 1114116, 327680, 3, 1179652, 393216, 1, 1245188, 262144, 2, 1245189, 262144, 1, 1310725, 0, 3, 1376261, 65536, 2, 1376262, 458752, 1, 1376263, 458752, 3, 1376264, 131072, 2, 1310728, 262144, 3, 1245192, 65536, 1, 1179655, 393216, 2, 1114119, 262144, 0, 1048583, 65536, 1, 983046, 65536, 0, 917510, 131072, 0, 851974, 327680, 3, 786438, 0, 1, 720902, 196608, 2, 655366, 0, 2, 589830, 0, 1, 524294, 196608, 2, 458758, 0, 0, 393222, 393216, 1, 327686, 131072, 0, 327687, 262144, 3, 327688, 262144, 3, 327689, 262144, 1, 327690, 262144, 1, 327691, 196608, 2, 327692, 393216, 2, 327693, 393216, 2, 393231, 0, 0, 393230, 458752, 1, 393229, 196608, 1, 393228, 65536, 2, 393227, 262144, 3, 393226, 262144, 1, 393225, 65536, 0, 393224, 65536, 3, 458760, 0, 0, 458759, 65536, 2, 524295, 131072, 2, 589831, 262144, 1, 655367, 0, 1, 720903, 262144, 0, 720904, 393216, 0, 786440, 196608, 0, 851976, 458752, 2, 917512, 458752, 3, 983048, 131072, 3, 1048584, 458752, 0, 1114120, 393216, 1, 1179656, 0, 0, 1245191, 0, 2, 1245190, 262144, 3, 1179654, 327680, 0, 1310727, 0, 2, 1376265, 131072, 1, 1376266, 0, 3, 1376267, 0, 3, 1376268, 262144, 2, 1376269, 131072, 2, 1376270, 0, 2, 1376271, 131072, 0, 1376272, 262144, 1, 1376273, 262144, 2, 1376274, 327680, 2, 1376275, 131072, 1, 1376276, 65536, 3, 1376277, 393216, 3, 1376278, 262144, 1, 1376279, 393216, 3, 1376280, 65536, 3, 1376281, 458752, 3, 1376282, 65536, 3, 1310746, 196608, 1, 1245209, 196608, 3, 1245208, 65536, 0, 1245207, 327680, 2, 1310743, 262144, 0, 1310742, 196608, 2, 1310741, 393216, 2, 1310740, 131072, 1, 1310739, 262144, 3, 1245203, 393216, 3, 1179667, 65536, 3, 1179668, 327680, 1, 1179669, 458752, 0, 1245206, 262144, 0, 1245205, 196608, 0, 1310733, 458752, 0, 1310732, 327680, 0, 1245196, 393216, 0, 1179660, 262144, 1, 1179661, 0, 0, 1179662, 458752, 1, 1179663, 327680, 3, 1179664, 196608, 2, 1245201, 458752, 0, 1245202, 196608, 1, 1310738, 0, 0, 1310737, 0, 1, 1310731, 458752, 3, 1310734, 131072, 2, 1310735, 393216, 2, 1310736, 0, 0, 1245200, 131072, 0, 1310730, 0, 3, 1310729, 393216, 3, 1245193, 327680, 0, 1179657, 0, 2, 1179658, 458752, 2, 1114122, 131072, 0, 1048587, 327680, 1, 1048588, 0, 2, 1048589, 131072, 1, 1114126, 262144, 3, 1114127, 327680, 3, 1114128, 458752, 3, 1114129, 196608, 2, 1114130, 262144, 0, 1114131, 458752, 1, 1114132, 131072, 0, 1114133, 131072, 1, 1048597, 458752, 3, 1048596, 327680, 0, 1048595, 131072, 1, 1048594, 327680, 0, 1048593, 327680, 0, 1048592, 327680, 0, 1048591, 131072, 0, 1048590, 458752, 1, 983051, 196608, 1, 983052, 262144, 1, 983053, 393216, 2, 983054, 327680, 2, 983055, 458752, 2, 983056, 196608, 0, 983057, 196608, 1, 983058, 262144, 2, 1048586, 131072, 2, 1048585, 65536, 1, 983049, 458752, 1, 1441796, 196608, 1, 1441797, 65536, 2, 1441798, 393216, 1, 1441799, 393216, 3, 1441800, 0, 1, 1441801, 0, 1, 1441802, 131072, 2, 1441803, 196608, 1, 1441804, 458752, 1, 1441805, 65536, 0, 1441806, 262144, 2, 1441807, 458752, 2, 1441808, 0, 2, 1441809, 458752, 2, 1441810, 0, 1, 1441811, 65536, 3, 1441812, 393216, 3, 1441813, 393216, 3, 1441814, 393216, 1, 1441815, 196608, 0, 1441816, 65536, 2, 524315, 131072, 3, 524316, 131072, 0, 393241, 65536, 1, 393240, 65536, 2, 458776, 327680, 0, 458775, 262144, 1, 458774, 131072, 3, 458773, 458752, 1, 393236, 131072, 3, 393235, 262144, 1, 393234, 393216, 2, 393233, 0, 0, 393232, 458752, 1, 458769, 131072, 3, 458770, 458752, 1, 458771, 131072, 0, 458772, 196608, 0, 458768, 131072, 2, 458767, 0, 1, 458766, 458752, 1, 458765, 196608, 1, 458764, 196608, 0, 458763, 196608, 2, 458762, 196608, 3, 458761, 0, 1, 524297, 131072, 3, 524296, 327680, 3, 589833, 131072, 1, 589834, 65536, 1, 589835, 327680, 0, 589836, 327680, 3, 589837, 262144, 1, 589838, 393216, 1, 589839, 196608, 3, 589840, 327680, 1, 589841, 262144, 0, 589842, 65536, 1, 589843, 0, 2, 589844, 327680, 0, 589845, 131072, 3, 524310, 131072, 1, 524311, 131072, 1, 589847, 196608, 3, 589846, 0, 2, 655382, 131072, 1, 655381, 262144, 2, 655380, 262144, 0, 655379, 0, 2, 655378, 196608, 2, 655377, 458752, 3, 655376, 196608, 2, 655375, 393216, 0, 720911, 262144, 3, 720910, 327680, 3, 720909, 131072, 1, 655373, 458752, 2, 655372, 131072, 0, 655371, 131072, 1, 655370, 327680, 2, 720906, 65536, 2, 786442, 393216, 0, 786443, 262144, 3, 786444, 327680, 1, 786445, 262144, 3, 786446, 327680, 3, 786447, 131072, 3, 786448, 196608, 1, 851984, 196608, 2, 851985, 393216, 2, 851986, 262144, 0, 851987, 196608, 0, 786451, 0, 2, 786452, 393216, 2, 851988, 65536, 2, 851989, 262144, 3, 917525, 196608, 0, 917524, 131072, 3, 786453, 393216, 0, 786450, 458752, 0, 786449, 65536, 2, 851983, 65536, 3, 851982, 262144, 2, 851981, 65536, 1, 851980, 393216, 1, 851979, 458752, 3, 851978, 327680, 3)
 
-[node name="BackGroundBorders" type="TileMap" parent="GameController/Base/BackGround"]
+[node name="BackGroundBorders" type="TileMap" parent="Base/BackGround"]
 texture_filter = 1
 tile_set = SubResource("TileSet_uojvh")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 131072, 2, 65536, 131072, 3, 1, 1769472, 2, 2, 1638400, 4, 3, 196608, 2, 4, 196608, 2, 5, 1769472, 2, 6, 1638400, 2, 7, 1703936, 2, 8, 1572864, 2, 9, 1638400, 4, 10, 1835008, 2, 11, 327680, 2, 12, 262144, 2, 13, 327680, 2, 14, 393216, 2, 15, 1703936, 2, 16, 327680, 2, 17, 1638400, 2, 18, 1835008, 2, 19, 1769472, 2, 20, 327680, 2, 21, 1900544, 2, 22, 262144, 2, 23, 196608, 2, 24, 1900544, 2, 25, 262144, 2, 26, 196608, 2, 27, 1638400, 2, 28, 1900544, 2, 29, 327680, 2, 30, 262144, 2, 2031645, 1769472, 805306370, 2031646, 1703936, 805306370, 2031644, 1835008, 805306370, 2031643, 1769472, 805306370, 2031642, 1769472, 805306370, 2031641, 1835008, 805306370, 2031640, 1835008, 805306370, 2031639, 1572864, 805306370, 2031638, 1900544, 805306370, 2031637, 1900544, 805306370, 2031636, 1900544, 805306370, 2031635, 1835008, 805306370, 2031634, 1769472, 805306370, 2031633, 1572864, 805306370, 2031632, 1900544, 805306370, 2031631, 1769472, 805306370, 2031630, 1900544, 805306370, 2031629, 1703936, 805306370, 2031628, 1572864, 805306370, 2031627, 1572864, 805306370, 2031626, 1572864, 805306370, 2031625, 1835008, 805306370, 2031624, 1769472, 805306370, 2031623, 1703936, 805306370, 2031622, 1769472, 805306370, 2031621, 1638400, 805306370, 2031620, 1835008, 805306370, 2031619, 1769472, 805306370, 2031618, 1900544, 805306370, 2031617, 1572864, 805306370, 2031616, 458752, 805306370, 1900544, 131072, 3, 1835008, 131072, 4, 1769472, 131072, 4, 1703936, 131072, 4, 1638400, 131072, 3, 1572864, 131072, 5, 1507328, 131072, 4, 1441792, 131072, 4, 1376256, 131072, 3, 1310720, 131072, 4, 1245184, 131072, 4, 1179648, 131072, 3, 1114112, 131072, 3, 1048576, 131072, 3, 983040, 131072, 3, 917504, 131072, 3, 851968, 131072, 4, 786432, 131072, 4, 720896, 131072, 3, 655360, 131072, 3, 589824, 131072, 4, 524288, 131072, 4, 458752, 131072, 4, 393216, 131072, 5, 327680, 131072, 3, 262144, 131072, 4, 196608, 131072, 5, 131072, 131072, 4, 1966080, 1179648, 4, 65568, 1376256, 3, 131104, 1376256, 6, 196640, 458752, 3, 262176, 1376256, 5, 327712, 1376256, 3, 393248, 458752, 4, 458784, 1376256, 7, 524320, 458752, 4, 589856, 1376256, 4, 655392, 458752, 3, 720928, 1376256, 5, 786464, 1376256, 7, 852000, 1376256, 7, 917536, 1376256, 7, 983072, 458752, 4, 1048608, 1376256, 4, 1114144, 458752, 4, 1179680, 1376256, 5, 1245216, 458752, 3, 1310752, 1376256, 7, 1376288, 1376256, 7, 1441824, 1376256, 2, 1507360, 1376256, 6, 1572896, 1376256, 6, 1638432, 1376256, 2, 1703968, 1376256, 3, 1769504, 1376256, 5, 1835040, 458752, 3, 1900576, 1376256, 2, 1966112, 1376256, 6, 2031648, 458752, 1342177282, 2031647, 393216, 805306370, 31, 393216, 2, 32, 458752, 2)
 
-[node name="MainShadow" type="Node2D" parent="GameController/Base/BackGround"]
+[node name="MainShadow" type="Node2D" parent="Base/BackGround"]
 position = Vector2(16, 8)
 
-[node name="Shadow3" type="Sprite2D" parent="GameController/Base/BackGround/MainShadow"]
+[node name="Shadow3" type="Sprite2D" parent="Base/BackGround/MainShadow"]
 modulate = Color(0.556863, 0.521569, 0.462745, 0.203922)
 self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
@@ -658,7 +654,7 @@ texture = SubResource("CanvasTexture_ivxwo")
 region_enabled = true
 region_rect = Rect2(288, 95, 67, 25)
 
-[node name="Shadow4" type="Sprite2D" parent="GameController/Base/BackGround/MainShadow"]
+[node name="Shadow4" type="Sprite2D" parent="Base/BackGround/MainShadow"]
 modulate = Color(0.556863, 0.521569, 0.462745, 0.203922)
 self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
@@ -669,7 +665,7 @@ texture = SubResource("CanvasTexture_ivxwo")
 region_enabled = true
 region_rect = Rect2(288, 95, 67, 25)
 
-[node name="Shadow5" type="Sprite2D" parent="GameController/Base/BackGround/MainShadow"]
+[node name="Shadow5" type="Sprite2D" parent="Base/BackGround/MainShadow"]
 modulate = Color(0.556863, 0.521569, 0.462745, 0.203922)
 self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
@@ -680,7 +676,7 @@ texture = SubResource("CanvasTexture_ivxwo")
 region_enabled = true
 region_rect = Rect2(288, 95, 67, 25)
 
-[node name="Shadow6" type="Sprite2D" parent="GameController/Base/BackGround/MainShadow"]
+[node name="Shadow6" type="Sprite2D" parent="Base/BackGround/MainShadow"]
 modulate = Color(0.556863, 0.521569, 0.462745, 0.203922)
 self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
@@ -691,13 +687,13 @@ texture = SubResource("CanvasTexture_ivxwo")
 region_enabled = true
 region_rect = Rect2(288, 95, 67, 25)
 
-[node name="TreeForward" type="Node2D" parent="GameController/Base"]
+[node name="TreeForward" type="Node2D" parent="Base"]
 z_index = -2
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(451, 15)
 
-[node name="Sprite2D3" type="Sprite2D" parent="GameController/Base/TreeForward"]
+[node name="Sprite2D3" type="Sprite2D" parent="Base/TreeForward"]
 modulate = Color(1, 1, 1, 0.47451)
 z_index = 4
 y_sort_enabled = true
@@ -706,7 +702,7 @@ texture = ExtResource("3_f16hp")
 region_enabled = true
 region_rect = Rect2(23, 14, 117, 145)
 
-[node name="Sprite2D4" type="Sprite2D" parent="GameController/Base/TreeForward"]
+[node name="Sprite2D4" type="Sprite2D" parent="Base/TreeForward"]
 z_index = 4
 y_sort_enabled = true
 texture_filter = 1
@@ -715,10 +711,10 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(23, 14, 117, 145)
 
-[node name="NodeBackward" type="Node2D" parent="GameController/Base"]
+[node name="NodeBackward" type="Node2D" parent="Base"]
 position = Vector2(-8, 8)
 
-[node name="Sprite2D2" type="Sprite2D" parent="GameController/Base/NodeBackward"]
+[node name="Sprite2D2" type="Sprite2D" parent="Base/NodeBackward"]
 modulate = Color(1, 1, 1, 0.47451)
 z_index = 1
 y_sort_enabled = true
@@ -728,7 +724,7 @@ texture = ExtResource("3_f16hp")
 region_enabled = true
 region_rect = Rect2(23, 14, 117, 145)
 
-[node name="Sprite2D" type="Sprite2D" parent="GameController/Base/NodeBackward"]
+[node name="Sprite2D" type="Sprite2D" parent="Base/NodeBackward"]
 z_index = 1
 y_sort_enabled = true
 texture_filter = 1
@@ -737,10 +733,10 @@ texture = ExtResource("3_6ygg0")
 region_enabled = true
 region_rect = Rect2(23, 14, 117, 145)
 
-[node name="PlayGround" type="Node2D" parent="GameController/Base"]
+[node name="PlayGround" type="Node2D" parent="Base"]
 z_index = 2
 
-[node name="UpLeftRightBorder" type="TileMap" parent="GameController/Base/PlayGround"]
+[node name="UpLeftRightBorder" type="TileMap" parent="Base/PlayGround"]
 texture_filter = 1
 position = Vector2(64, 64)
 tile_set = SubResource("TileSet_3lo5o")
@@ -748,55 +744,59 @@ rendering_quadrant_size = 32
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 65536, 1, 2, 786432, 1, 4, 131072, 1, 6, 851968, 1, 8, 131072, 1, 10, 131072, 1, 12, 131072, 1, 14, 131072, 1, 16, 131072, 1, 18, 131072, 1, 20, 786432, 1, 22, 131072, 1, 851968, 65536, 2, 786432, 589824, 2, 720896, 65536, 2, 655360, 589824, 3, 589824, 589824, 3, 524288, 589824, 3, 458752, 589824, 2, 393216, 589824, 1, 327680, 589824, 2, 262144, 589824, 1, 196608, 589824, 2, 131072, 65536, 2, 917504, 65536, 2, 24, 196608, 1, 131096, 655360, 3, 196632, 655360, 3, 262168, 655360, 2, 327704, 655360, 2, 393240, 655360, 2, 458776, 655360, 2, 524312, 655360, 1, 589848, 655360, 3, 655384, 655360, 3, 720920, 655360, 3, 786456, 655360, 2, 917528, 655360, 2, 1048600, 655360, 3)
 
-[node name="UnderBorder" type="TileMap" parent="GameController/Base/PlayGround"]
+[node name="UnderBorder" type="TileMap" parent="Base/PlayGround"]
 texture_filter = 1
 position = Vector2(0, 16)
 tile_set = SubResource("TileSet_vh13f")
 format = 2
 layer_0/tile_data = PackedInt32Array(1310724, 65536, 3, 1245188, 65536, 2, 1179652, 65536, 2, 1310726, 131072, 3, 1310728, 131072, 3, 1310730, 131072, 3, 1310732, 131072, 3, 1310734, 131072, 3, 1310736, 131072, 3, 1310738, 131072, 3, 1310740, 131072, 3, 1310742, 131072, 3, 1441796, 65536, 4, 1441798, 131072, 4, 1441800, 131072, 4, 1441801, 131072, 4, 1441802, 131072, 4, 1441803, 131072, 4, 1441804, 131072, 4, 1441806, 131072, 4, 1441807, 131072, 4, 1441808, 131072, 4, 1441809, 131072, 4, 1441810, 131072, 4, 1441812, 131072, 4, 1441813, 131072, 4, 1441814, 131072, 4, 1441815, 131072, 4, 1441816, 131072, 4, 1441817, 131072, 4, 1441818, 131072, 4, 1310746, 131072, 3, 1310744, 131072, 3, 1310748, 196608, 3, 1441820, 196608, 4)
 
-[node name="UnderBorderTail" type="TileMap" parent="GameController/Base/PlayGround"]
+[node name="UnderBorderTail" type="TileMap" parent="Base/PlayGround"]
 texture_filter = 1
 position = Vector2(0, 16)
 tile_set = SubResource("TileSet_gjhvf")
 format = 2
 layer_0/tile_data = PackedInt32Array(1376260, 65537, 15, 1376262, 131073, 15, 1376263, 131073, 15, 1376264, 131073, 15, 1376265, 131073, 15, 1376266, 131073, 15, 1376267, 131073, 15, 1376268, 131073, 15, 1376269, 131073, 15, 1376270, 131073, 15, 1376271, 131073, 15, 1376272, 131073, 15, 1376273, 131073, 15, 1376274, 131073, 15, 1376275, 131073, 15, 1376276, 131073, 15, 1376277, 131073, 15, 1376278, 131073, 15, 1376279, 131073, 15, 1376280, 131073, 15, 1376281, 131073, 15, 1376282, 131073, 15, 1376283, 196609, 15, 1507332, 65537, 19, 1507334, 131073, 19, 1507335, 131073, 19, 1507336, 131073, 19, 1507337, 131073, 19, 1507338, 131073, 19, 1507339, 131073, 19, 1507340, 131073, 19, 1507341, 131073, 19, 1507342, 131073, 19, 1507343, 131073, 19, 1507344, 131073, 19, 1507345, 131073, 19, 1507346, 131073, 19, 1507347, 131073, 19, 1507348, 131073, 19, 1507349, 131073, 19, 1507350, 131073, 19, 1507351, 131073, 19, 1507352, 131073, 19, 1507353, 131073, 19, 1507354, 131073, 19, 1507355, 196609, 19, 1507356, 196609, 19, 1376284, 196609, 15)
 
-[node name="State" type="Node2D" parent="GameController/Base"]
+[node name="State" type="Node2D" parent="Base"]
 z_index = 4
 y_sort_enabled = true
 position = Vector2(267, 398)
 
-[node name="TxPropsShadow" type="Sprite2D" parent="GameController/Base/State"]
+[node name="TxPropsShadow" type="Sprite2D" parent="Base/State"]
 modulate = Color(1, 1, 1, 0.478431)
 texture_filter = 1
 texture = ExtResource("6_s8s2f")
 region_enabled = true
 region_rect = Rect2(446, 0, 38, 93)
 
-[node name="TxProps" type="Sprite2D" parent="GameController/Base/State"]
+[node name="TxProps" type="Sprite2D" parent="Base/State"]
 texture_filter = 1
 position = Vector2(-2, 11)
 texture = ExtResource("7_lls2d")
 region_enabled = true
 region_rect = Rect2(445, 21, 37, 73)
 
-[node name="MapSpawner" parent="GameController/Base" instance=ExtResource("1_qrvd8")]
+[node name="MapSpawner" parent="Base" instance=ExtResource("1_qrvd8")]
 z_index = 3
 y_sort_enabled = true
 position = Vector2(64, 64)
 
-[node name="ArrowAgent" parent="GameController/Base/MapSpawner" instance=ExtResource("7_kfyi8")]
+[node name="ArrowAgent" parent="Base/MapSpawner" instance=ExtResource("7_kfyi8")]
 z_index = 110
 position = Vector2(-152, 0)
 
-[node name="PathDrawer2" parent="GameController/Base/MapSpawner" instance=ExtResource("9_o83y4")]
+[node name="PathDrawer" parent="Base/MapSpawner" instance=ExtResource("9_o83y4")]
+path_width = null
+path_add_point_timeout = null
+max_audio_pitch = null
+b_play_draw_sound = null
 
-[node name="Camera2D" type="Camera2D" parent="GameController"]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-64, -64)
 anchor_mode = 0
 
-[node name="ControlPanel" parent="GameController" instance=ExtResource("1_amsdb")]
+[node name="ControlPanel" parent="." instance=ExtResource("1_amsdb")]
 clip_contents = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -809,17 +809,17 @@ grow_vertical = 1
 scale = Vector2(1, 1)
 size_flags_horizontal = 0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="GameController"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dkspa")
 
-[node name="AudioListener2D" type="AudioListener2D" parent="GameController"]
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
 position = Vector2(460, 205)
 current = true
 
-[node name="AudioListener2D2" type="AudioListener2D" parent="GameController"]
+[node name="AudioListener2D2" type="AudioListener2D" parent="."]
 position = Vector2(61, 205)
 current = true
 
-[connection signal="clear_walls" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_clear_walls"]
-[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_start_search_call"]
-[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
+[connection signal="clear_walls" from="ControlPanel" to="Base/MapSpawner" method="_on_control_panel_clear_walls"]
+[connection signal="start_search_call" from="ControlPanel" to="Base/MapSpawner" method="_on_control_panel_start_search_call"]
+[connection signal="start_search_call" from="ControlPanel" to="Base/MapSpawner" method="_on_start_search_call"]

@@ -1,5 +1,5 @@
 class_name CellAudioStreamPlayer
-extends AudioStreamPlayer
+extends AudioStreamPlayer2D
 
 var sounds = {}
 # Called when the node enters the scene tree for the first time.

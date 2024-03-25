@@ -1,8 +1,6 @@
 class_name Cell
 extends Node2D
 
-enum CellType {CT_FREE = 0, CT_WALL = 1, CT_START = 2, CT_FINISH = 3}
-enum CellInteractionType {CIT_FREE = 0, CIT_CONSIDERING = 1, CIT_CONSIDERED = 2, CIT_CONSIDERING_CURRENT}
 signal cell_clicked(cell_instance)
 
 
@@ -13,11 +11,11 @@ var audio_player : CellAudioStreamPlayer
 var sprite : Sprite2D
 var search_icon : Icon
 
-var cellType : CellType = CellType.CT_FREE
+var cellType : GameTypes.CellType = GameTypes.CellType.CT_FREE
 
 var cellPos : Vector2i
 
-var cellInteractionType : CellInteractionType
+var cellInteractionType : GameTypes.CellInteractionType
 
 var wall_instance = null 
 var wall_class = preload("res://Actors/Wall/Wall.tscn")
@@ -39,17 +37,17 @@ func _process(delta):
 	pass
 
 
-func set_cell_interaction_type(cell_interaction_type : CellInteractionType):
-	if cellType != Cell.CellType.CT_START and cellType != Cell.CellType.CT_FINISH:
+func set_cell_interaction_type(cell_interaction_type : GameTypes.CellInteractionType):
+	if cellType != GameTypes.CellType.CT_START and cellType != GameTypes.CellType.CT_FINISH:
 		cellInteractionType = cell_interaction_type
 	_update_cell_interaction_state()
 	
 
-func set_cell_type(cell_type : CellType):
+func set_cell_type(cell_type : GameTypes.CellType):
 	cellType = cell_type
 	_update_cell_state()
 	
-func get_cell_type() -> CellType:
+func get_cell_type() -> GameTypes.CellType:
 	return cellType
 
 func set_cell_pos(cell_pos : Vector2i):
@@ -59,7 +57,7 @@ func get_cell_pos() -> Vector2i:
 	return cellPos
 
 func _update_cell_state():
-	if cellType == CellType.CT_FREE:
+	if cellType == GameTypes.CellType.CT_FREE:
 		if (not wall_instance == null):
 			remove_child(wall_instance)
 			wall_instance = null 
@@ -67,7 +65,7 @@ func _update_cell_state():
 		sprite.modulate = Color.GHOST_WHITE
 		if(search_icon.enabled):
 			search_icon.destroy_icon()
-	elif cellType == CellType.CT_WALL:
+	elif cellType == GameTypes.CellType.CT_WALL:
 		if wall_instance == null:
 			wall_instance = wall_class.instantiate()
 			wall_instance.position = Vector2(8,4)
@@ -77,20 +75,20 @@ func _update_cell_state():
 			if(search_icon.enabled):
 				search_icon.destroy_icon()
 			
-	elif cellType == CellType.CT_START:
+	elif cellType == GameTypes.CellType.CT_START:
 		sprite.modulate = Color.RED
-	elif cellType == CellType.CT_FINISH:
+	elif cellType == GameTypes.CellType.CT_FINISH:
 		sprite.modulate = Color.GREEN
 	
 func _update_cell_interaction_state():
 	if wall_instance == null:
-		if cellInteractionType == CellInteractionType.CIT_CONSIDERED:
+		if cellInteractionType == GameTypes.CellInteractionType.CIT_CONSIDERED:
 			search_icon.show_icon("considered")
-		elif cellInteractionType == CellInteractionType.CIT_CONSIDERING:
+		elif cellInteractionType == GameTypes.CellInteractionType.CIT_CONSIDERING:
 			search_icon.show_icon("considering")
-		elif cellInteractionType == CellInteractionType.CIT_CONSIDERING_CURRENT:
+		elif cellInteractionType == GameTypes.CellInteractionType.CIT_CONSIDERING_CURRENT:
 			search_icon.show_icon("current_consider")
-		elif cellInteractionType == CellInteractionType.CIT_FREE:
+		elif cellInteractionType == GameTypes.CellInteractionType.CIT_FREE:
 			search_icon.destroy_icon()
 
 func _on_area_2d_input_event(viewport, event, shape_idx):

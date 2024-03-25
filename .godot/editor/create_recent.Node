@@ -1,8 +1,9 @@
+Node2D
 AudioStreamPlayer2D
+AudioListener2D
 Line2D
 ArrowAgent
 Sprite2D
-Node2D
 AnimationPlayer
 Button
 HSeparator
@@ -11,5 +12,3 @@ VisibleOnScreenEnabler2D
 HSlider
 AudioStreamPlayer
 CPUParticles2D
-AnimationTree
-HBoxContainer

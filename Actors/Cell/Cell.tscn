@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Actors/Cell/CellSprite.gd" id="3_awsvv"]
 [ext_resource type="Texture2D" uid="uid://cbhkodapc24e" path="res://Resources/ImageUtils/SelectBorder.png" id="4_sgwi3"]
 [ext_resource type="PackedScene" uid="uid://8wgvhtujaect" path="res://Actors/FindingStateIcon/SearchStateIcon.tscn" id="5_b6e6p"]
-[ext_resource type="AudioStream" uid="uid://bytdwn3mx5vb4" path="res://Resources/Sounds/PlaceWall.wav" id="5_mqxit"]
+[ext_resource type="AudioStream" uid="uid://d4miio41pktj8" path="res://Resources/Sounds/PathWallk.wav" id="6_cnvck"]
 [ext_resource type="Script" path="res://Actors/Cell/CellSoundsPlayer.gd" id="6_tkcaj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c6qpx"]
@@ -110,13 +110,6 @@ libraries = {
 "": SubResource("AnimationLibrary_gl6e6")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_mqxit")
-volume_db = -13.198
-pitch_scale = 0.85
-mix_target = 1
-script = ExtResource("6_tkcaj")
-
 [node name="PlaceExplosure" type="CPUParticles2D" parent="."]
 z_index = 1
 y_sort_enabled = true
@@ -138,6 +131,10 @@ initial_velocity_max = 200.0
 angular_velocity_min = 62.27
 angular_velocity_max = 373.62
 color = Color(0.223529, 0.0941176, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_cnvck")
+script = ExtResource("6_tkcaj")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

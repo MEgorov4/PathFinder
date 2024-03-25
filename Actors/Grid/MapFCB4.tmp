@@ -1,10 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5dgetyrdbjq3"]
 
 [ext_resource type="Script" path="res://Actors/Grid/MapSpawner.gd" id="1_ntsvl"]
-[ext_resource type="PackedScene" uid="uid://cd2312tbu2bxs" path="res://Actors/Utils/path_drawer.tscn" id="2_qa3qx"]
+[ext_resource type="PackedScene" uid="uid://cd2312tbu2bxs" path="res://path_drawer.tscn" id="2_qa3qx"]
 
 [node name="MapSpawner" type="Node2D"]
 script = ExtResource("1_ntsvl")
 metadata/_edit_horizontal_guides_ = [-246.0]
 
 [node name="PathDrawer" parent="." instance=ExtResource("2_qa3qx")]
+path_width = null
+path_add_point_timeout = null
+max_audio_pitch = null
+b_play_draw_sound = null
