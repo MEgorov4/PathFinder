@@ -806,5 +806,5 @@ size_flags_horizontal = 0
 environment = SubResource("Environment_dkspa")
 
 [connection signal="clear_walls" from="ControlPanel" to="Base/MapSpawner" method="_on_control_panel_clear_walls"]
-[connection signal="start_search_call" from="ControlPanel" to="Base/MapSpawner" method="_on_control_panel_start_search_call"]
 [connection signal="start_search_call" from="ControlPanel" to="Base/MapSpawner" method="_on_start_search_call"]
+[connection signal="start_search_call" from="ControlPanel" to="Base/MapSpawner" method="_on_control_panel_start_search_call"]

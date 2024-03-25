@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd2312tbu2bxs"]
+
+[ext_resource type="Script" path="res://PathDrawer.gd" id="1_j8eiu"]
+[ext_resource type="AudioStream" uid="uid://d4miio41pktj8" path="res://Resources/Sounds/PathWallk.wav" id="2_fxl3i"]
+
+[sub_resource type="Gradient" id="Gradient_8f286"]
+offsets = PackedFloat32Array(0, 0.988506, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.266667, 1, 0, 1, 0.236897, 0.561023, 1.92523e-07, 1)
+
+[node name="PathDrawer" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_j8eiu")
+path_gradient_start_color = SubResource("Gradient_8f286")
+
+[node name="PathLine" type="Line2D" parent="."]
+y_sort_enabled = true
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fxl3i")

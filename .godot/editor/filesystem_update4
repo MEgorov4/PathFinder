@@ -1,4 +1,6 @@
 res://Levels/main_level.tscn
 res://Resources/Images/icons/SearchedPoint.tres
 res://Actors/Agent/ArrowAgent.tscn
-res://Actors/Grid/MapSpawner.gd
+res://path_drawer.tscn
+res://Actors/Grid/MapSpawner.tscn
+res://PathDrawer.gd

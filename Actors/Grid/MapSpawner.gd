@@ -86,6 +86,7 @@ func on_cell_clicked(cell_instance):
 func draw_path(path):
 	
 	var pitch_step  = audio_player.pitch_scale / path.size() 
+	
 	path_line = Line2D.new()
 	var paked_points = PackedVector2Array()
 	
@@ -262,7 +263,7 @@ func heuristic_distance(start_point : Vector2i, target_point : Vector2i, heurist
 func _on_control_panel_start_search_call(SearchSettings):
 	_clear_path()
 	#find_path(SearchSettings["manhattan"])
-	deep_search(SearchSettings["manhattan"])
+	find_path(SearchSettings["manhattan"])
 
 
 func _on_control_panel_clear_walls():
