@@ -16,7 +16,7 @@ const end_point = Vector2i(_row - 1, _column - 1)
 
 var CellMap = []
 
-var path_drawer
+var path_drawer : PathDrawer
 
 var arrow_agent 
 
@@ -78,167 +78,16 @@ func on_cell_clicked(cell_instance):
 	elif cell_type == GameTypes.CellType.CT_WALL:
 		cell_instance.set_cell_type(GameTypes.CellType.CT_FREE)
 	 
-func draw_path(path):
-	var path_through_cells = []
-	for point in path:
-		path_through_cells.push_back(CellMap[point.x][point.y])
-	path_drawer.draw_path(path_through_cells, Vector2(8, 8))
-		
-func find_path(bManhattan):
-	var VisitedPoints = []
-	var VisitQueue = PriorityQueue.new()
-	var VisitorsDict = {}
-	VisitQueue.push(start_point, 0)
-	
-	while not VisitQueue.is_empty():
-		var result = []
-		var currentPoint = VisitQueue.pop() # Берем первую точку из очереди 
-		var cell = CellMap[currentPoint.x][currentPoint.y] 
-		cell.set_cell_interaction_type(GameTypes.CellInteractionType.CIT_CONSIDERING_CURRENT)
-		arrow_agent.set_target_position(cell.position)
-		await get_tree().create_timer(0.01).timeout
-		cell.set_cell_interaction_type(GameTypes.CellInteractionType.CIT_CONSIDERED)
-		if currentPoint == end_point: 
-			print("Можно построить путь")
-			while(currentPoint != start_point):
-				result.push_front(currentPoint)
-				currentPoint = VisitorsDict[currentPoint]
-			result.push_front(currentPoint)
-			draw_path(result)
-			emit_signal("finding_end")
-			return result
-			
-		for x in range(-1, 2):
-			for y in range(-1, 2):
-				if abs(x) != abs(y):
-					var nextPoint = Vector2i(currentPoint.x  + x, currentPoint.y + y)
-					if (nextPoint.x >= 0 and nextPoint.x < CellMap.size()) && (nextPoint.y >= 0 and nextPoint.y < CellMap[nextPoint.x].size()):
-						var cellInstance = CellMap[nextPoint.x][nextPoint.y]
-						if not (Vector2i(nextPoint.x, nextPoint.y) in VisitedPoints):
-							var cellType : GameTypes.CellType = cellInstance.get_cell_type()
-							if cellType != GameTypes.CellType.CT_WALL:
-								cell = CellMap[nextPoint.x][nextPoint.y]
-								cell.set_cell_interaction_type(GameTypes.CellInteractionType.CIT_CONSIDERING)
-								arrow_agent.set_target_rotation(cell.position)
-								var heuristic_distance
-								if bManhattan:
-									heuristic_distance = heuristic_distance(nextPoint, end_point, GameTypes.HeuristicFunctionType.HCT_Manhattan)
-								else:
-									heuristic_distance = heuristic_distance(nextPoint, end_point, GameTypes.HeuristicFunctionType.HCT_Euclidean)
-									
-								VisitQueue.push(nextPoint, heuristic_distance)
-								
-								VisitorsDict[nextPoint] = currentPoint
-								VisitedPoints.push_back(nextPoint)
-								await get_tree().create_timer(0.01).timeout
-								
-								
-	
-	emit_signal("finding_end")
-	print("Нельзя построить путь")
-	return [];	
-		
-
-
-func breadth_search(bManhattan):
-	var VisitedPoints = []
-	var VisitQueue = []
-	var VisitorsDict = {}
-	VisitQueue.push_back(start_point)
-	
-	while not VisitQueue.is_empty():
-		var result = []
-		var currentPoint = VisitQueue.pop_front()
-		var cell = CellMap[currentPoint.x][currentPoint.y] 
-		cell.set_cell_interaction_type(GameTypes.CellInteractionType.CIT_CONSIDERING_CURRENT)
-		arrow_agent.set_target_position(cell.position)
-		await get_tree().create_timer(0.1).timeout
-		cell.set_cell_interaction_type(GameTypes.CellInteractionType.CIT_CONSIDERED)
-		if currentPoint == end_point: 
-			print("Можно построить путь")
-			while(currentPoint != start_point):
-				result.push_front(currentPoint)
-				currentPoint = VisitorsDict[currentPoint]
-			result.push_front(start_point)
-			draw_path(result)
-			emit_signal("finding_end")
-			return result
-			
-		for x in range(-1, 2):
-			for y in range(-1, 2):
-				if abs(x) != abs(y):
-					var nextPoint = Vector2i(currentPoint.x  + x, currentPoint.y + y)
-					if (nextPoint.x >= 0 and nextPoint.x < CellMap.size()) && (nextPoint.y >= 0 and nextPoint.y < CellMap[nextPoint.x].size()):
-						var cellInstance = CellMap[nextPoint.x][nextPoint.y]
-						if not (Vector2i(nextPoint.x, nextPoint.y) in VisitedPoints):
-							var cellType : GameTypes.CellType = cellInstance.get_cell_type()
-							if cellType != GameTypes.CellType.CT_WALL:
-								cell = CellMap[nextPoint.x][nextPoint.y]
-								cell.set_cell_interaction_type(GameTypes.CellInteractionType.CIT_CONSIDERING)
-								arrow_agent.set_target_rotation(cell.position)
-								
-								VisitQueue.push_back(nextPoint)
-								
-								VisitorsDict[nextPoint] = currentPoint
-								VisitedPoints.push_back(nextPoint)
-								await get_tree().create_timer(0.1).timeout
-	
-func deep_search(bManhattan):
-	var VisitedPoints = []
-	var VisitQueue = []
-	var VisitorsDict = {}
-	VisitQueue.push_front(start_point)
-	
-	while not VisitQueue.is_empty():
-		var result = []
-		var currentPoint = VisitQueue.pop_front()
-		var cell = CellMap[currentPoint.x][currentPoint.y] 
-		cell.set_cell_interaction_type(GameTypes.CellInteractionType.CIT_CONSIDERING_CURRENT)
-		arrow_agent.set_target_position(cell.position)
-		await get_tree().create_timer(0.1).timeout
-		cell.set_cell_interaction_type(GameTypes.CellInteractionType.CIT_CONSIDERED)
-		if currentPoint == end_point: 
-			print("Можно построить путь")
-			while(currentPoint != start_point):
-				result.push_front(currentPoint)
-				currentPoint = VisitorsDict[currentPoint]
-			draw_path(result)
-			emit_signal("finding_end")
-			return result
-			
-		for x in range(-1, 2):
-			for y in range(-1, 2):
-				if abs(x) != abs(y):
-					var nextPoint = Vector2i(currentPoint.x  + x, currentPoint.y + y)
-					if (nextPoint.x >= 0 and nextPoint.x < CellMap.size()) && (nextPoint.y >= 0 and nextPoint.y < CellMap[nextPoint.x].size()):
-						var cellInstance = CellMap[nextPoint.x][nextPoint.y]
-						if not (Vector2i(nextPoint.x, nextPoint.y) in VisitedPoints):
-							var cellType : GameTypes.CellType = cellInstance.get_cell_type()
-							if cellType != GameTypes.CellType.CT_WALL:
-								cell = CellMap[nextPoint.x][nextPoint.y]
-								cell.set_cell_interaction_type(GameTypes.CellInteractionType.CIT_CONSIDERING)
-								arrow_agent.set_target_rotation(cell.position)
-								
-								VisitQueue.push_front(nextPoint)
-								
-								VisitorsDict[nextPoint] = currentPoint
-								VisitedPoints.push_back(nextPoint)
-								await get_tree().create_timer(0.1).timeout
-
-func heuristic_distance(start_point : Vector2i, target_point : Vector2i, HeuristicFunctionType) -> float:
-	if HeuristicFunctionType == GameTypes.HeuristicFunctionType.HCT_Euclidean:
-		return sqrt(pow(start_point.x - end_point.x, 2) + pow(start_point.y - end_point.y, 2))
-	elif HeuristicFunctionType == GameTypes.HeuristicFunctionType.HCT_Manhattan:
-		return abs(start_point.x - target_point.x) + abs(start_point.y - target_point.y)
-	return 0.0
-	
 
 
 func _on_control_panel_start_search_call(SearchSettings):
 	_clear_path()
-	#find_path(SearchSettings["manhattan"])
-	find_path(SearchSettings["manhattan"])
-
+	
+	var find_request = {"algorithm_type" : GameTypes.SearchAlgorithmType.SAT_A_STAR, "heuristic_function_type": GameTypes.HeuristicFunctionType.HCT_Manhattan,"cell_map" : CellMap, "start_point" : start_point, "end_point" : end_point}
+	var find_response = PathFinder.find_path(find_request)
+	print(find_response["search_sequence"])
+	path_drawer.path_add_point_timeout = 0.01
+	path_drawer.draw_path(find_response["path"], Vector2(8,8))
 
 func _on_control_panel_clear_walls():
 	_clear_walls()

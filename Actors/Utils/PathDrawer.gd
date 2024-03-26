@@ -7,7 +7,7 @@ signal draw_segment_complited()
 
 # Settings
 @export var path_width : float = 2
-@export var path_add_point_timeout : float = 0.005
+@export var path_add_point_timeout : float = 0
 @export var path_gradient_start_color : Gradient
 @export var max_audio_pitch : float = 2
 @export var b_play_draw_sound : bool = true
