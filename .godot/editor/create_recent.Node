@@ -1,14 +1,14 @@
-Node2D
+CPUParticles2D
 AudioStreamPlayer2D
+AnimationPlayer
+Node2D
 AudioListener2D
 Line2D
 ArrowAgent
 Sprite2D
-AnimationPlayer
 Button
 HSeparator
 Label
 VisibleOnScreenEnabler2D
 HSlider
 AudioStreamPlayer
-CPUParticles2D

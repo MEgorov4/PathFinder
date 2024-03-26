@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://iui5nmu031cl"]
+[gd_scene load_steps=25 format=3 uid="uid://iui5nmu031cl"]
 
 [ext_resource type="PackedScene" uid="uid://dbgo6fvjjcbh" path="res://UI/ControlPanel.tscn" id="1_amsdb"]
 [ext_resource type="PackedScene" uid="uid://c5dgetyrdbjq3" path="res://Actors/Grid/MapSpawner.tscn" id="1_qrvd8"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://berp5hrfd0vva" path="res://Resources/Images/TX Shadow Plant.png" id="3_f16hp"]
 [ext_resource type="Texture2D" uid="uid://b7me6kiynnn8y" path="res://Resources/Images/TX Tileset Grass.png" id="3_fmqpx"]
 [ext_resource type="Texture2D" uid="uid://cv28rj3v3aq46" path="res://Resources/Images/TX PropsShadow.png" id="6_s8s2f"]
-[ext_resource type="PackedScene" uid="uid://bibkgqp5jew8v" path="res://Actors/Agent/ArrowAgent.tscn" id="7_kfyi8"]
 [ext_resource type="Texture2D" uid="uid://3nmv0ik5hhua" path="res://Resources/Images/TX Props_.png" id="7_lls2d"]
 [ext_resource type="PackedScene" uid="uid://cd2312tbu2bxs" path="res://Actors/Utils/path_drawer.tscn" id="9_o83y4"]
 
@@ -786,12 +785,6 @@ z_index = 3
 y_sort_enabled = true
 position = Vector2(64, 64)
 
-[node name="ArrowAgent" parent="GameController/Base/MapSpawner" instance=ExtResource("7_kfyi8")]
-z_index = 110
-position = Vector2(-152, 0)
-
-[node name="PathDrawer2" parent="GameController/Base/MapSpawner" instance=ExtResource("9_o83y4")]
-
 [node name="Camera2D" type="Camera2D" parent="GameController"]
 position = Vector2(-64, -64)
 anchor_mode = 0
@@ -812,14 +805,12 @@ size_flags_horizontal = 0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GameController"]
 environment = SubResource("Environment_dkspa")
 
-[node name="AudioListener2D" type="AudioListener2D" parent="GameController"]
-position = Vector2(460, 205)
-current = true
+[node name="PathDrawer" parent="GameController" instance=ExtResource("9_o83y4")]
+position = Vector2(56, 64)
 
-[node name="AudioListener2D2" type="AudioListener2D" parent="GameController"]
-position = Vector2(61, 205)
-current = true
-
+[connection signal="search_completed" from="GameController" to="GameController/ControlPanel" method="_on_game_controller_search_completed"]
+[connection signal="clear_walls" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_clear_walls"]
 [connection signal="clear_walls" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_clear_walls"]
+[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_start_search_call"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_start_search_call"]

@@ -30,8 +30,6 @@ func _ready():
 	particle_system = get_node("PlaceExplosure")
 	audio_player = get_node("AudioStreamPlayer")
 	
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -70,8 +68,6 @@ func _update_cell_state():
 			wall_instance = wall_class.instantiate()
 			wall_instance.position = Vector2(8,4)
 			add_child(wall_instance)
-			particle_system.emitting = true
-			audio_player.play_sound_by_name("place_wall")
 			if(search_icon.enabled):
 				search_icon.destroy_icon()
 			
@@ -95,8 +91,6 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		emit_signal("cell_clicked", self)
 		
-
-
 func _on_area_2d_mouse_entered():
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):

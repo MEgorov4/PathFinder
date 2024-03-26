@@ -45,8 +45,7 @@ func draw_path(Cells, offset = Vector2(0, 0)):
 			
 			await get_tree().create_timer(path_add_point_timeout).timeout
 			
-		emit_signal("drawing_path_complited")
-		
+	emit_signal("drawing_path_complited")
 func clear_path():
 	_reset_all_components()
 	

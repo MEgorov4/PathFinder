@@ -1,8 +1,8 @@
 extends Control
 
-
 signal start_search_call(SearchSettings)
 signal clear_walls()
+
 var ControlPanelInfo = {"manhattan": false, "visualisation_frequency" : 0.1}
 
 
@@ -19,17 +19,10 @@ func _ready():
 func _process(delta):
 	pass
 
-
-
 func _on_start_search_button_pressed():
 	ControlPanelInfo["visualisation_frequency"] = speed_slider.value
 	emit_signal("start_search_call",  ControlPanelInfo)
 	search_button.disabled = true
-
-
-func _on_map_spawner_finding_end():
-	search_button.disabled = false 	
-
 
 func _on_check_box_toggled(toggled_on):
 	ControlPanelInfo["manhattan"] = toggled_on
@@ -37,3 +30,7 @@ func _on_check_box_toggled(toggled_on):
 
 func _on_button_2_pressed():
 	emit_signal("clear_walls")
+
+
+func _on_game_controller_search_completed():
+	search_button.disabled = false 	
