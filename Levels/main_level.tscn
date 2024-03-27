@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://iui5nmu031cl"]
+[gd_scene load_steps=26 format=3 uid="uid://iui5nmu031cl"]
 
 [ext_resource type="PackedScene" uid="uid://dbgo6fvjjcbh" path="res://UI/ControlPanel.tscn" id="1_amsdb"]
 [ext_resource type="PackedScene" uid="uid://c5dgetyrdbjq3" path="res://Actors/Grid/MapSpawner.tscn" id="1_qrvd8"]
 [ext_resource type="Script" path="res://Actors/Core/GameController.gd" id="1_rl6j8"]
+[ext_resource type="Script" path="res://Actors/Core/MapInteractionController.gd" id="2_pa3sf"]
 [ext_resource type="Texture2D" uid="uid://3c7qes1fh825" path="res://Resources/Images/TX Plant.png" id="3_6ygg0"]
 [ext_resource type="Texture2D" uid="uid://rfa0x18m62sy" path="res://Resources/Images/TX Tileset Wall.png" id="3_dnrqd"]
 [ext_resource type="Texture2D" uid="uid://berp5hrfd0vva" path="res://Resources/Images/TX Shadow Plant.png" id="3_f16hp"]
@@ -313,7 +314,8 @@ texture = ExtResource("3_dnrqd")
 [sub_resource type="TileSet" id="TileSet_uojvh"]
 sources/0 = SubResource("TileSetAtlasSource_di5ue")
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_ivxwo"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_blu6o"]
+polygon = PackedVector2Array(477, 347, 475, 347, 475, 350, 473, 350, 473, 353, 471, 353, 471, 355, 470, 355, 471.328, 80.5078, 472.508, 80.5, 472.508, 78.5, 473.5, 78.5, 473.5, 79.5078, 476.516, 79.497)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhrpl"]
 texture = ExtResource("3_dnrqd")
@@ -625,6 +627,9 @@ position = Vector2(64, 64)
 [node name="GameController" type="Node2D" parent="."]
 script = ExtResource("1_rl6j8")
 
+[node name="MapInteractionController" type="Node2D" parent="GameController"]
+script = ExtResource("2_pa3sf")
+
 [node name="Base" type="Node2D" parent="GameController"]
 position = Vector2(-8, 0)
 
@@ -643,52 +648,9 @@ tile_set = SubResource("TileSet_uojvh")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 131072, 2, 65536, 131072, 3, 1, 1769472, 2, 2, 1638400, 4, 3, 196608, 2, 4, 196608, 2, 5, 1769472, 2, 6, 1638400, 2, 7, 1703936, 2, 8, 1572864, 2, 9, 1638400, 4, 10, 1835008, 2, 11, 327680, 2, 12, 262144, 2, 13, 327680, 2, 14, 393216, 2, 15, 1703936, 2, 16, 327680, 2, 17, 1638400, 2, 18, 1835008, 2, 19, 1769472, 2, 20, 327680, 2, 21, 1900544, 2, 22, 262144, 2, 23, 196608, 2, 24, 1900544, 2, 25, 262144, 2, 26, 196608, 2, 27, 1638400, 2, 28, 1900544, 2, 29, 327680, 2, 30, 262144, 2, 2031645, 1769472, 805306370, 2031646, 1703936, 805306370, 2031644, 1835008, 805306370, 2031643, 1769472, 805306370, 2031642, 1769472, 805306370, 2031641, 1835008, 805306370, 2031640, 1835008, 805306370, 2031639, 1572864, 805306370, 2031638, 1900544, 805306370, 2031637, 1900544, 805306370, 2031636, 1900544, 805306370, 2031635, 1835008, 805306370, 2031634, 1769472, 805306370, 2031633, 1572864, 805306370, 2031632, 1900544, 805306370, 2031631, 1769472, 805306370, 2031630, 1900544, 805306370, 2031629, 1703936, 805306370, 2031628, 1572864, 805306370, 2031627, 1572864, 805306370, 2031626, 1572864, 805306370, 2031625, 1835008, 805306370, 2031624, 1769472, 805306370, 2031623, 1703936, 805306370, 2031622, 1769472, 805306370, 2031621, 1638400, 805306370, 2031620, 1835008, 805306370, 2031619, 1769472, 805306370, 2031618, 1900544, 805306370, 2031617, 1572864, 805306370, 2031616, 458752, 805306370, 1900544, 131072, 3, 1835008, 131072, 4, 1769472, 131072, 4, 1703936, 131072, 4, 1638400, 131072, 3, 1572864, 131072, 5, 1507328, 131072, 4, 1441792, 131072, 4, 1376256, 131072, 3, 1310720, 131072, 4, 1245184, 131072, 4, 1179648, 131072, 3, 1114112, 131072, 3, 1048576, 131072, 3, 983040, 131072, 3, 917504, 131072, 3, 851968, 131072, 4, 786432, 131072, 4, 720896, 131072, 3, 655360, 131072, 3, 589824, 131072, 4, 524288, 131072, 4, 458752, 131072, 4, 393216, 131072, 5, 327680, 131072, 3, 262144, 131072, 4, 196608, 131072, 5, 131072, 131072, 4, 1966080, 1179648, 4, 65568, 1376256, 3, 131104, 1376256, 6, 196640, 458752, 3, 262176, 1376256, 5, 327712, 1376256, 3, 393248, 458752, 4, 458784, 1376256, 7, 524320, 458752, 4, 589856, 1376256, 4, 655392, 458752, 3, 720928, 1376256, 5, 786464, 1376256, 7, 852000, 1376256, 7, 917536, 1376256, 7, 983072, 458752, 4, 1048608, 1376256, 4, 1114144, 458752, 4, 1179680, 1376256, 5, 1245216, 458752, 3, 1310752, 1376256, 7, 1376288, 1376256, 7, 1441824, 1376256, 2, 1507360, 1376256, 6, 1572896, 1376256, 6, 1638432, 1376256, 2, 1703968, 1376256, 3, 1769504, 1376256, 5, 1835040, 458752, 3, 1900576, 1376256, 2, 1966112, 1376256, 6, 2031648, 458752, 1342177282, 2031647, 393216, 805306370, 31, 393216, 2, 32, 458752, 2)
 
-[node name="MainShadow" type="Node2D" parent="GameController/Base/BackGround"]
-position = Vector2(16, 8)
-
-[node name="Shadow3" type="Sprite2D" parent="GameController/Base/BackGround/MainShadow"]
-modulate = Color(0.556863, 0.521569, 0.462745, 0.203922)
-self_modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-position = Vector2(451.769, 219.502)
-rotation = 1.5708
-scale = Vector2(4.17066, 0.293396)
-texture = SubResource("CanvasTexture_ivxwo")
-region_enabled = true
-region_rect = Rect2(288, 95, 67, 25)
-
-[node name="Shadow4" type="Sprite2D" parent="GameController/Base/BackGround/MainShadow"]
-modulate = Color(0.556863, 0.521569, 0.462745, 0.203922)
-self_modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-position = Vector2(456.403, 207.274)
-rotation = 1.57079
-scale = Vector2(4.43889, 0.077351)
-texture = SubResource("CanvasTexture_ivxwo")
-region_enabled = true
-region_rect = Rect2(288, 95, 67, 25)
-
-[node name="Shadow5" type="Sprite2D" parent="GameController/Base/BackGround/MainShadow"]
-modulate = Color(0.556863, 0.521569, 0.462745, 0.203922)
-self_modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-position = Vector2(458.2, 206.19)
-rotation = 1.5708
-scale = Vector2(4.37992, 0.0664201)
-texture = SubResource("CanvasTexture_ivxwo")
-region_enabled = true
-region_rect = Rect2(288, 95, 67, 25)
-
-[node name="Shadow6" type="Sprite2D" parent="GameController/Base/BackGround/MainShadow"]
-modulate = Color(0.556863, 0.521569, 0.462745, 0.203922)
-self_modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-position = Vector2(459.769, 205.412)
-rotation = 1.5708
-scale = Vector2(4.32016, 0.060093)
-texture = SubResource("CanvasTexture_ivxwo")
-region_enabled = true
-region_rect = Rect2(288, 95, 67, 25)
+[node name="LightOccluder2D" type="LightOccluder2D" parent="GameController/Base"]
+modulate = Color(0.317647, 0.258824, 0, 0.466667)
+occluder = SubResource("OccluderPolygon2D_blu6o")
 
 [node name="TreeForward" type="Node2D" parent="GameController/Base"]
 z_index = -2
@@ -697,7 +659,7 @@ y_sort_enabled = true
 position = Vector2(451, 15)
 
 [node name="Sprite2D3" type="Sprite2D" parent="GameController/Base/TreeForward"]
-modulate = Color(1, 1, 1, 0.47451)
+modulate = Color(1, 1, 1, 0.313726)
 z_index = 4
 y_sort_enabled = true
 texture_filter = 1
@@ -761,6 +723,10 @@ tile_set = SubResource("TileSet_gjhvf")
 format = 2
 layer_0/tile_data = PackedInt32Array(1376260, 65537, 15, 1376262, 131073, 15, 1376263, 131073, 15, 1376264, 131073, 15, 1376265, 131073, 15, 1376266, 131073, 15, 1376267, 131073, 15, 1376268, 131073, 15, 1376269, 131073, 15, 1376270, 131073, 15, 1376271, 131073, 15, 1376272, 131073, 15, 1376273, 131073, 15, 1376274, 131073, 15, 1376275, 131073, 15, 1376276, 131073, 15, 1376277, 131073, 15, 1376278, 131073, 15, 1376279, 131073, 15, 1376280, 131073, 15, 1376281, 131073, 15, 1376282, 131073, 15, 1376283, 196609, 15, 1507332, 65537, 19, 1507334, 131073, 19, 1507335, 131073, 19, 1507336, 131073, 19, 1507337, 131073, 19, 1507338, 131073, 19, 1507339, 131073, 19, 1507340, 131073, 19, 1507341, 131073, 19, 1507342, 131073, 19, 1507343, 131073, 19, 1507344, 131073, 19, 1507345, 131073, 19, 1507346, 131073, 19, 1507347, 131073, 19, 1507348, 131073, 19, 1507349, 131073, 19, 1507350, 131073, 19, 1507351, 131073, 19, 1507352, 131073, 19, 1507353, 131073, 19, 1507354, 131073, 19, 1507355, 196609, 19, 1507356, 196609, 19, 1376284, 196609, 15)
 
+[node name="AudioListener2D" type="AudioListener2D" parent="GameController/Base"]
+position = Vector2(267, 195)
+current = true
+
 [node name="State" type="Node2D" parent="GameController/Base"]
 z_index = 4
 y_sort_enabled = true
@@ -809,6 +775,7 @@ environment = SubResource("Environment_dkspa")
 position = Vector2(56, 64)
 
 [connection signal="search_completed" from="GameController" to="GameController/ControlPanel" method="_on_game_controller_search_completed"]
+[connection signal="map_enviroment_changed" from="GameController/MapInteractionController" to="GameController" method="_on_map_interaction_controller_map_enviroment_changed"]
 [connection signal="clear_walls" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_clear_walls"]
 [connection signal="clear_walls" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_clear_walls"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_start_search_call"]

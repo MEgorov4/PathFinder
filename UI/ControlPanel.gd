@@ -15,9 +15,7 @@ func _ready():
 	speed_slider = get_node("MarginContainer/VBoxContainer/HBoxContainer2/HSlider")
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
 
 func _on_start_search_button_pressed():
 	ControlPanelInfo["visualisation_frequency"] = speed_slider.value

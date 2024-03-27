@@ -1,8 +1,10 @@
 CPUParticles2D
-AudioStreamPlayer2D
-AnimationPlayer
 Node2D
 AudioListener2D
+PointLight2D
+LightOccluder2D
+AudioStreamPlayer2D
+AnimationPlayer
 Line2D
 ArrowAgent
 Sprite2D
@@ -10,5 +12,3 @@ Button
 HSeparator
 Label
 VisibleOnScreenEnabler2D
-HSlider
-AudioStreamPlayer

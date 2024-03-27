@@ -7,6 +7,7 @@ signal search_completed()
 #Components
 var map_generator : MapGenerator
 var path_drawer : PathDrawer
+var map_interaction_controller : MapInteractionController
 
 #Variables
 var cell_map
@@ -15,22 +16,31 @@ var cell_map
 func _ready():
 	map_generator = get_node("Base/MapSpawner")
 	cell_map = map_generator.get_map_cells()
+		
+	map_interaction_controller = get_node("MapInteractionController")
+	map_interaction_controller.setup_controller(map_generator.get_map_cells())
 	
 	path_drawer = get_node("PathDrawer")
 	path_drawer.z_index = 100
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _on_control_panel_start_search_call(SearchSettings):
-	var find_path_request = {"algorithm_type": GameTypes.SearchAlgorithmType.SAT_A_STAR, "heuristic_function_type": GameTypes.HeuristicFunctionType.HCT_Euclidean, "cell_map": cell_map, "start_point": map_generator.start_point , "end_point": map_generator.end_point}
+	_search()
 	
+
+	
+func _on_control_panel_clear_walls():
+	map_generator.clear_walls()
+
+
+func _search():
+	var find_path_request = {"algorithm_type": GameTypes.SearchAlgorithmType.SAT_A_STAR, "heuristic_function_type": GameTypes.HeuristicFunctionType.HCT_Manhattan, "cell_map": cell_map, "start_point": map_generator.start_point , "end_point": map_generator.end_point}
 	var find_path_result = PathFinder.find_path(find_path_request)
 	
 	path_drawer.draw_path(find_path_result["path"], Vector2(8, 8))
 	
-	emit_signal("search_complited")
-
-func _on_control_panel_clear_walls():
-	map_generator.clear_walls()
+	emit_signal("search_completed")
+	
+func _on_map_interaction_controller_map_enviroment_changed():
+	await path_drawer.clear_path()
+	await _search()
+	

@@ -2,7 +2,7 @@ class_name MapGenerator
 extends Node2D
 
 # Resources
-var CellScene = load("res://Actors/Cell/Cell.tscn")
+var CellScene = preload("res://Actors/Cell/Cell.tscn")
 
 # Parameters
 var _row : int = 25
@@ -49,12 +49,3 @@ func clear_walls():
 func get_map_cells():
 	return _cell_map
 
-####################################### TO REMOVE
-func on_cell_clicked(cell_instance):
-	var cell_pos : Vector2i = cell_instance.get_cell_pos()
-	var cell_type : GameTypes.CellType = cell_instance.get_cell_type()
-	
-	if cell_type == GameTypes.CellType.CT_FREE:
-		cell_instance.set_cell_type(GameTypes.CellType.CT_WALL)
-	elif cell_type == GameTypes.CellType.CT_WALL:
-		cell_instance.set_cell_type(GameTypes.CellType.CT_FREE)

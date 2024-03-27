@@ -26,6 +26,15 @@ static func _heuristic_function(first_point : Vector2i, second_point : Vector2i,
 	elif heuristic_function_type == GameTypes.HeuristicFunctionType.HCT_Manhattan:
 		return abs(first_point.x - second_point.x) + abs(first_point.y - second_point.y)
 	
+static func _get_count_steps_before(start_point, current_point, point_link_map):
+	var counter = 0
+	while start_point != current_point:
+		current_point = point_link_map[current_point]
+		counter += 1
+	print(counter)
+	return counter
+	
+	
 static func _a_star_search(cell_map, start_point : Vector2i, end_point : Vector2i, heuristic_function_type : GameTypes.HeuristicFunctionType):
 	###########################################
 	var find_path_data_result = {"is_success": false, "path" : [], "search_sequence" : [{}]}
@@ -72,12 +81,14 @@ static func _a_star_search(cell_map, start_point : Vector2i, end_point : Vector2
 								search_point_dict[current_cell_instance].push_back(next_cell_instance)
 								############################
 								
-								var heuristic_distance = _heuristic_function(current_point, end_point, heuristic_function_type) 
-									
-								to_visit_priority_queue.push(next_point, heuristic_distance)
-								
 								visitors_dict[next_point] = current_point
 								visited.push_back(next_point)
+								var distance = _heuristic_function(current_point, end_point, heuristic_function_type)  + _get_count_steps_before(start_point, next_point , visitors_dict) 
+									
+								to_visit_priority_queue.push(next_point, distance)
+								
+								
+								
 		search_sequence.push_back(search_point_dict)
 		
 	return find_path_data_result

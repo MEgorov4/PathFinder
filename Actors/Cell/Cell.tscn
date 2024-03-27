@@ -1,18 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://br8i1wfbxvocn"]
+[gd_scene load_steps=9 format=3 uid="uid://br8i1wfbxvocn"]
 
 [ext_resource type="Script" path="res://Actors/Cell/Cell.gd" id="1_rluoc"]
 [ext_resource type="Texture2D" uid="uid://b7me6kiynnn8y" path="res://Resources/Images/TX Tileset Grass.png" id="2_bqjot"]
 [ext_resource type="Script" path="res://Actors/Cell/CellSprite.gd" id="3_awsvv"]
 [ext_resource type="Texture2D" uid="uid://cbhkodapc24e" path="res://Resources/ImageUtils/SelectBorder.png" id="4_sgwi3"]
-[ext_resource type="PackedScene" uid="uid://8wgvhtujaect" path="res://Actors/FindingStateIcon/SearchStateIcon.tscn" id="5_b6e6p"]
-[ext_resource type="AudioStream" uid="uid://d4miio41pktj8" path="res://Resources/Sounds/PathWallk.wav" id="6_cnvck"]
-[ext_resource type="Script" path="res://Actors/Cell/CellSoundsPlayer.gd" id="6_tkcaj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c6qpx"]
 size = Vector2(16, 16)
 
 [sub_resource type="Animation" id="Animation_shtc2"]
 resource_name = "BorderAnimation"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -21,9 +19,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
-"values": [Vector2(1.5, 1.5), Vector2(1.25, 1.25)]
+"values": [Vector2(1.25, 1.25), Vector2(1.1, 1.1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -33,13 +31,14 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_toohu"]
 resource_name = "BorderAnimation_existed"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -48,7 +47,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0001, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"transitions": PackedFloat32Array(1, 0.5, 2),
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1, 1)]
 }
@@ -60,7 +59,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
@@ -92,49 +91,17 @@ region_rect = Rect2(0, 0, 16, 16)
 script = ExtResource("3_awsvv")
 
 [node name="Sprite2D" type="Sprite2D" parent="CellSprite"]
-modulate = Color(1, 1, 1, 0)
 self_modulate = Color(0.247059, 0.741176, 0, 1)
 z_index = 1
 y_sort_enabled = true
 texture_filter = 1
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("4_sgwi3")
-
-[node name="SearchIcon" parent="." instance=ExtResource("5_b6e6p")]
-z_index = 1
-position = Vector2(8, 7)
-scale = Vector2(0.5, 0.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gl6e6")
 }
-
-[node name="PlaceExplosure" type="CPUParticles2D" parent="."]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(8, 8)
-emitting = false
-amount = 100
-lifetime = 0.2
-one_shot = true
-explosiveness = 1.0
-lifetime_randomness = 0.46
-fract_delta = false
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector2(1, 1)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
-angular_velocity_min = 62.27
-angular_velocity_max = 373.62
-color = Color(0.223529, 0.0941176, 0, 1)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_cnvck")
-script = ExtResource("6_tkcaj")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

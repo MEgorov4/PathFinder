@@ -1,16 +1,16 @@
 class_name Cell
 extends Node2D
 
+
+#Signals
 signal cell_clicked(cell_instance)
+signal cell_mouse_entired(cell_instance)
 
+#Components
+var cell_sprite : Sprite2D
+var cell_border_animator : AnimationPlayer
 
-
-var animation_player : AnimationPlayer
-var particle_system : CPUParticles2D
-var audio_player : CellAudioStreamPlayer
-var sprite : Sprite2D
-var search_icon : Icon
-
+#Variables 
 var cellType : GameTypes.CellType = GameTypes.CellType.CT_FREE
 
 var cellPos : Vector2i
@@ -21,14 +21,9 @@ var wall_instance = null
 var wall_class = preload("res://Actors/Wall/Wall.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite = get_node("CellSprite");
-	search_icon = get_node("SearchIcon")
+	cell_sprite = get_node("CellSprite");
+	cell_border_animator = get_node("AnimationPlayer")
 	
-	search_icon.z_index = 99
-	
-	animation_player = get_node("AnimationPlayer")
-	particle_system = get_node("PlaceExplosure")
-	audio_player = get_node("AudioStreamPlayer")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -38,9 +33,7 @@ func _process(delta):
 func set_cell_interaction_type(cell_interaction_type : GameTypes.CellInteractionType):
 	if cellType != GameTypes.CellType.CT_START and cellType != GameTypes.CellType.CT_FINISH:
 		cellInteractionType = cell_interaction_type
-	_update_cell_interaction_state()
 	
-
 func set_cell_type(cell_type : GameTypes.CellType):
 	cellType = cell_type
 	_update_cell_state()
@@ -59,46 +52,28 @@ func _update_cell_state():
 		if (not wall_instance == null):
 			remove_child(wall_instance)
 			wall_instance = null 
-			audio_player.play_sound_by_name("delete_wall")
-		sprite.modulate = Color.GHOST_WHITE
-		if(search_icon.enabled):
-			search_icon.destroy_icon()
 	elif cellType == GameTypes.CellType.CT_WALL:
 		if wall_instance == null:
 			wall_instance = wall_class.instantiate()
 			wall_instance.position = Vector2(8,4)
 			add_child(wall_instance)
-			if(search_icon.enabled):
-				search_icon.destroy_icon()
 			
 	elif cellType == GameTypes.CellType.CT_START:
-		sprite.modulate = Color.RED
+		cell_sprite.modulate = Color.RED
 	elif cellType == GameTypes.CellType.CT_FINISH:
-		sprite.modulate = Color.GREEN
+		cell_sprite.modulate = Color.GREEN
 	
-func _update_cell_interaction_state():
-	if wall_instance == null:
-		if cellInteractionType == GameTypes.CellInteractionType.CIT_CONSIDERED:
-			search_icon.show_icon("considered")
-		elif cellInteractionType == GameTypes.CellInteractionType.CIT_CONSIDERING:
-			search_icon.show_icon("considering")
-		elif cellInteractionType == GameTypes.CellInteractionType.CIT_CONSIDERING_CURRENT:
-			search_icon.show_icon("current_consider")
-		elif cellInteractionType == GameTypes.CellInteractionType.CIT_FREE:
-			search_icon.destroy_icon()
-
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		emit_signal("cell_clicked", self)
 		
 func _on_area_2d_mouse_entered():
-	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		emit_signal("cell_clicked", self)
+		emit_signal("cell_mouse_entired", self)
 	else:
-		animation_player.play("BorderAnimation")
+		cell_border_animator.play("BorderAnimation")
 	
 
 
 func _on_area_2d_mouse_exited():
-	animation_player.play("BorderAnimation_existed")
+	cell_border_animator.play("BorderAnimation_existed")

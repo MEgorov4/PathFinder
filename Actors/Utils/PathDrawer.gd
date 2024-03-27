@@ -15,10 +15,11 @@ signal draw_segment_complited()
 # Components
 var path_line : Line2D
 var path_audio_player : AudioStreamPlayer2D
-
+var path_particles : CPUParticles2D
 func _ready():
 	path_line = get_node("PathLine")
 	path_audio_player = get_node("Audio")
+	path_particles = get_node("SparkExplosue")
 	path_line.gradient = path_gradient_start_color
 	path_line.width = path_width
 
@@ -29,6 +30,8 @@ func _process(delta):
 func draw_path(Cells, offset = Vector2(0, 0)):
 	_reset_all_components()
 	
+	path_particles.emitting = true
+	
 	if path_line != null && Cells.size() > 1:
 		# Устанавливаем изначальную частоту звука 
 		path_audio_player.pitch_scale = max_audio_pitch / Cells.size()
@@ -36,15 +39,21 @@ func draw_path(Cells, offset = Vector2(0, 0)):
 			# Добавляем новый сегмент
 			path_line.add_point(cell.position + offset)
 			
+			path_particles.position = cell.position + offset
+			
+			
 			if b_play_draw_sound:
 				# Воспроизводим звук построения сегмента и сдвигаем частоту
+				path_audio_player.position = cell.position + offset
 				path_audio_player.play()
 			path_audio_player.pitch_scale += max_audio_pitch / Cells.size()
+			
 			
 			emit_signal("draw_segment_complited")
 			
 			await get_tree().create_timer(path_add_point_timeout).timeout
 			
+	path_particles.emitting = false
 	emit_signal("drawing_path_complited")
 func clear_path():
 	_reset_all_components()
@@ -52,3 +61,5 @@ func clear_path():
 func _reset_all_components():
 	path_audio_player.pitch_scale = max_audio_pitch
 	path_line.clear_points()
+	path_particles.emitting = false
+	

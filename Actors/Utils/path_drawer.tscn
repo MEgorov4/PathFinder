@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd2312tbu2bxs"]
+[gd_scene load_steps=5 format=3 uid="uid://cd2312tbu2bxs"]
 
 [ext_resource type="Script" path="res://Actors/Utils/PathDrawer.gd" id="1_j8eiu"]
 [ext_resource type="AudioStream" uid="uid://d4miio41pktj8" path="res://Resources/Sounds/PathWallk.wav" id="2_4bnan"]
@@ -8,6 +8,11 @@ interpolation_mode = 2
 interpolation_color_space = 2
 offsets = PackedFloat32Array(0, 0.988506, 1)
 colors = PackedColorArray(1, 0, 0, 1, 0.266667, 1, 0, 1, 0.236897, 0.561023, 1.92523e-07, 1)
+
+[sub_resource type="Gradient" id="Gradient_oqgki"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.90106, 1)
+colors = PackedColorArray(0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1)
 
 [node name="PathDrawer" type="Node2D"]
 y_sort_enabled = true
@@ -19,3 +24,17 @@ y_sort_enabled = true
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_4bnan")
+
+[node name="SparkExplosue" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 500
+lifetime = 2.0
+speed_scale = 2.0
+lifetime_randomness = 0.5
+fixed_fps = 60
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+color_ramp = SubResource("Gradient_oqgki")
