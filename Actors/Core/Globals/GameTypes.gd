@@ -18,12 +18,14 @@ enum CellInteractionType
 enum HeuristicFunctionType 
 {
 	HCT_Euclidean, 
-	HCT_Manhattan
+	HCT_Manhattan,
+	HCT_Chebyshev
 }
 
 enum SearchAlgorithmType
 {
 	SAT_A_STAR,
 	SAT_BREADTH_FIRST_SEARCH,
-	SAT_DEEP_FIRST_SEARCH
+	SAT_DEEP_FIRST_SEARCH,
+	SAT_DIJKSTRA
 }

@@ -20,6 +20,10 @@ window/size/viewport_width=1264
 window/size/viewport_height=640
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/fps=144
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

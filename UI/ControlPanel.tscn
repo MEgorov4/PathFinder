@@ -1,17 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbgo6fvjjcbh"]
+[gd_scene load_steps=6 format=3 uid="uid://dbgo6fvjjcbh"]
 
 [ext_resource type="Script" path="res://UI/ControlPanel.gd" id="1_c5qfs"]
 [ext_resource type="Script" path="res://UI/SpeedSliderLabel.gd" id="2_1srts"]
+[ext_resource type="Script" path="res://UI/AlgorithmSelector.gd" id="3_1gov2"]
+[ext_resource type="Script" path="res://UI/HeuristicFunctionSelector.gd" id="4_lqrvh"]
 
 [sub_resource type="Theme" id="Theme_2axw1"]
 
 [node name="ControlPanel" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -494.0
-offset_bottom = -248.0
+offset_right = 304.0
+offset_bottom = 392.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.00757, 1)
@@ -21,8 +20,7 @@ script = ExtResource("1_c5qfs")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_right = 484.0
-offset_bottom = 640.0
+offset_bottom = 259.0
 grow_horizontal = 2
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
@@ -36,10 +34,10 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 texture_filter = 3
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 32
 text = "Меню
 "
+horizontal_alignment = 1
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
@@ -48,33 +46,59 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme = SubResource("Theme_2axw1")
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="StartSearchButton" type="Button" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Start search"
+text = "Начать поиск"
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="ClearWallsButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Clear Walls
+size_flags_horizontal = 4
+text = "Убрать стены
 "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ClearPathButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+text = "Очистить путь
+"
 
-[node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HAlgorithm" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HAlgorithm"]
 layout_mode = 2
-text = "Manhattan (if not checked euquilide be use) "
+text = "Алгоритм:
+"
+script = ExtResource("2_1srts")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="AlgorithmSelector" type="OptionButton" parent="MarginContainer/VBoxContainer/HAlgorithm"]
 layout_mode = 2
+script = ExtResource("3_1gov2")
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="HEuristicFunction" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HEuristicFunction"]
+layout_mode = 2
+text = "Эвристическая функция:
+"
+script = ExtResource("2_1srts")
+
+[node name="EuristicFunctionSelector" type="OptionButton" parent="MarginContainer/VBoxContainer/HEuristicFunction"]
+layout_mode = 2
+script = ExtResource("4_lqrvh")
+
+[node name="HVisualisationSpeed" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HVisualisationSpeed"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -83,14 +107,19 @@ max_value = 0.1
 step = 0.001
 value = 0.001
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HVisualisationSpeed"]
 layout_mode = 2
 text = "0.001
 "
 script = ExtResource("2_1srts")
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_start_search_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/HSlider" to="MarginContainer/VBoxContainer/HBoxContainer2/Label2" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartSearchButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartSearchButton" to="." method="_on_start_search_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ClearWallsButton" to="." method="_on_clear_walls_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ClearWallsButton" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ClearPathButton" to="." method="_on_clear_path_button_pressed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HAlgorithm/AlgorithmSelector" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HAlgorithm/AlgorithmSelector" to="." method="_on_algorithm_selector_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HAlgorithm/AlgorithmSelector" to="MarginContainer/VBoxContainer/HEuristicFunction/EuristicFunctionSelector" method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HEuristicFunction/EuristicFunctionSelector" to="." method="_on_euristic_function_selector_item_selected"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HVisualisationSpeed/HSlider" to="MarginContainer/VBoxContainer/HVisualisationSpeed/Label2" method="_on_h_slider_value_changed"]

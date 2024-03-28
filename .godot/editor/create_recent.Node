@@ -1,3 +1,5 @@
+OptionButton
+MenuButton
 ArrowAgent
 CPUParticles2D
 Node2D
@@ -11,4 +13,3 @@ Sprite2D
 Button
 HSeparator
 Label
-VisibleOnScreenEnabler2D

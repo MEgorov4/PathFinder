@@ -766,7 +766,6 @@ clip_contents = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.0
 offset_left = 576.0
 offset_right = 1152.0
 offset_bottom = 512.0
@@ -780,10 +779,10 @@ environment = SubResource("Environment_dkspa")
 [node name="PathDrawer" parent="GameController" instance=ExtResource("9_o83y4")]
 position = Vector2(56, 64)
 
+[connection signal="search_completed" from="GameController" to="GameController/MapInteractionController" method="_on_game_controller_search_completed"]
 [connection signal="search_completed" from="GameController" to="GameController/ControlPanel" method="_on_game_controller_search_completed"]
+[connection signal="search_started" from="GameController" to="GameController/MapInteractionController" method="_on_game_controller_search_started"]
 [connection signal="map_enviroment_changed" from="GameController/MapInteractionController" to="GameController" method="_on_map_interaction_controller_map_enviroment_changed"]
-[connection signal="clear_walls" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_clear_walls"]
-[connection signal="clear_walls" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_clear_walls"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_start_search_call"]
-[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_start_search_call"]
+[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
