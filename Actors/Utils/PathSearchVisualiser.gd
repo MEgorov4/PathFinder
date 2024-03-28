@@ -9,7 +9,7 @@ var arrow_agent : ArrowAgent
 
 #Variables
 var cell_map = [[]]
-var icons_instances = []
+var icons_instances = {}
 
 
 func setup_cells(cell_map):
@@ -19,24 +19,31 @@ func setup_cells(cell_map):
 	
 func visualise_search(search_sequence):
 	for search_point in search_sequence:
-		for search_key : Cell in search_point:
-			arrow_agent.set_target_position(search_key.position)
+		for search_key : Cell in search_point.keys():
+			if search_key.get_cell_pos() in icons_instances:
+				icons_instances[search_key.get_cell_pos()].destroy_icon()
+				icons_instances.erase(search_key)
+			arrow_agent.set_target_position(search_key.position + Vector2(-8, -8))
 			var search_neibours = search_point[search_key]
 			
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.5).timeout
 			
 			for neibour : Cell in search_neibours:
-				var icon_instance : Icon = icon_scene.instantiate()
-				icons_instances.push_back(icon_instance);
+				var icon_instance = icon_scene.instantiate()  
+				add_child(icon_instance)  
+				icons_instances[neibour.get_cell_pos()] = icon_instance
+				var icon_instance_script = icon_instance as Icon  
 				
-				icon_instance.show_icon("considering")
-				icon_instance.position = neibour.position + Vector2(8, 4)
+				
+				icon_instance_script.show_icon("considering")
+				icon_instance_script.position = neibour.position
 				
 				arrow_agent.set_target_rotation(neibour.position)
 				
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.5).timeout
 				
 func clear_visualizer():
-	icons_instances.clear()
+	for key in icons_instances:
+		remove_child(icons_instances[key])
 
 

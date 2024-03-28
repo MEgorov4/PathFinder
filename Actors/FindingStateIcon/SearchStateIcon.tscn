@@ -1,14 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://8wgvhtujaect"]
+[gd_scene load_steps=5 format=3 uid="uid://8wgvhtujaect"]
 
 [ext_resource type="Script" path="res://Actors/FindingStateIcon/Icon.gd" id="1_ljdku"]
-[ext_resource type="Texture2D" uid="uid://cn30ku4j6vhxf" path="res://Resources/Images/icons/Question.tres" id="2_5ypft"]
 
 [sub_resource type="Animation" id="Animation_i30lm"]
 resource_name = "icon_destroy_animation"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:position")
+tracks/0/path = NodePath("IconSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -20,7 +19,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:modulate")
+tracks/1/path = NodePath("IconSprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +34,7 @@ resource_name = "icon_spawn_animation"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:position")
+tracks/0/path = NodePath("IconSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +46,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:modulate")
+tracks/1/path = NodePath("IconSprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -67,12 +66,12 @@ _data = {
 y_sort_enabled = true
 script = ExtResource("1_ljdku")
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="IconSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(0, -8)
-texture = ExtResource("2_5ypft")
+scale = Vector2(0.5, 0.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -13,7 +13,7 @@ func _process(delta):
 
 
 func set_target_rotation(target_rotation : Vector2):
-	var target_vector = Vector2(target_rotation.x + 8, target_rotation.y + 8)
+	var target_vector = Vector2(target_rotation.x, target_rotation.y)
 	rotation_degrees = rad_to_deg(position.angle_to_point(target_vector)) + 90
 func set_target_position(target_position : Vector2):
 	position = Vector2(target_position.x + 8, target_position.y + 8)

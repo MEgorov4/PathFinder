@@ -43,6 +43,9 @@ func _search():
 	await path_search_visualiser.visualise_search(find_path_result["search_sequence"])
 	await path_drawer.draw_path(find_path_result["path"], Vector2(8, 8))
 	
+	await path_search_visualiser.clear_visualizer()
+	await get_tree().create_timer(0.4).timeout
+	
 	emit_signal("search_completed")
 	
 func _on_map_interaction_controller_map_enviroment_changed():
