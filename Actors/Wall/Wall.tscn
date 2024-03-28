@@ -7,6 +7,7 @@
 
 [sub_resource type="Animation" id="Animation_rxbhs"]
 resource_name = "Destroy"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -22,62 +23,38 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DestroyParticles:emitting")
+tracks/1/path = NodePath("Sprite2D2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"transitions": PackedFloat32Array(22.6274, 22.6274),
+"update": 0,
+"values": [Color(0.470076, 0.470076, 0.470076, 0.478431), Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D2:modulate")
+tracks/2/path = NodePath("Sprite2D:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(147.033, 1e-05),
 "update": 0,
-"values": [Color(1, 1, 1, 0.345098), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/path = NodePath("DestroyExplosure:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("DestroyExplosure:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("DestroyParticles:amount")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(0.5, -0.5, 2),
-"update": 1,
-"values": [10, 20, 10]
 }
 
 [sub_resource type="Animation" id="Animation_nmyqb"]
@@ -118,6 +95,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0235294), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.313726)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gl8rg"]
 _data = {
@@ -128,12 +129,12 @@ _data = {
 [node name="Wall" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
-position = Vector2(8, 4)
+position = Vector2(8, -12)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_451sq")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.345098)
+modulate = Color(1, 1, 1, 0)
 visibility_layer = 2
 z_index = 1
 y_sort_enabled = true
@@ -143,6 +144,7 @@ region_enabled = true
 region_rect = Rect2(287, 316, 41, 36)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0235294)
 z_index = 2
 y_sort_enabled = true
 position = Vector2(0, 2)
@@ -188,35 +190,20 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(2, 8)
 emitting = false
-amount = 100
-lifetime = 0.2
+amount = 60
+lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-lifetime_randomness = 0.46
 fract_delta = false
 emission_shape = 1
 emission_sphere_radius = 1.0
 direction = Vector2(1, 1)
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
 angular_velocity_min = 62.27
 angular_velocity_max = 373.62
+scale_amount_min = 3.0
+scale_amount_max = 3.0
 color = Color(0.160784, 0.156863, 0.156863, 0.85098)
-
-[node name="DestroyParticles" type="CPUParticles2D" parent="."]
-z_index = 3
-y_sort_enabled = true
-emitting = false
-amount = 10
-lifetime = 0.5
-speed_scale = 1.97
-fract_delta = false
-direction = Vector2(0, -1)
-spread = 15.0
-initial_velocity_min = 492.42
-initial_velocity_max = 696.97
-scale_amount_min = 10.0
-scale_amount_max = 10.0
-color = Color(0.2484, 0.2484, 0.2484, 0.478431)

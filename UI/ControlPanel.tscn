@@ -89,8 +89,8 @@ text = "0.001
 "
 script = ExtResource("2_1srts")
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_start_search_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/HSlider" to="MarginContainer/VBoxContainer/HBoxContainer2/Label2" method="_on_h_slider_value_changed"]

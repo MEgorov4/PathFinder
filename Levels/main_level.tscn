@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://iui5nmu031cl"]
+[gd_scene load_steps=27 format=3 uid="uid://iui5nmu031cl"]
 
 [ext_resource type="PackedScene" uid="uid://dbgo6fvjjcbh" path="res://UI/ControlPanel.tscn" id="1_amsdb"]
 [ext_resource type="PackedScene" uid="uid://c5dgetyrdbjq3" path="res://Actors/Grid/MapSpawner.tscn" id="1_qrvd8"]
 [ext_resource type="Script" path="res://Actors/Core/GameController.gd" id="1_rl6j8"]
 [ext_resource type="Script" path="res://Actors/Core/MapInteractionController.gd" id="2_pa3sf"]
 [ext_resource type="Texture2D" uid="uid://3c7qes1fh825" path="res://Resources/Images/TX Plant.png" id="3_6ygg0"]
+[ext_resource type="PackedScene" uid="uid://dbv6r3u2k5hvo" path="res://Actors/Utils/PathSearchVisaliser.tscn" id="3_8ou6y"]
 [ext_resource type="Texture2D" uid="uid://rfa0x18m62sy" path="res://Resources/Images/TX Tileset Wall.png" id="3_dnrqd"]
 [ext_resource type="Texture2D" uid="uid://berp5hrfd0vva" path="res://Resources/Images/TX Shadow Plant.png" id="3_f16hp"]
 [ext_resource type="Texture2D" uid="uid://b7me6kiynnn8y" path="res://Resources/Images/TX Tileset Grass.png" id="3_fmqpx"]
@@ -630,6 +631,9 @@ script = ExtResource("1_rl6j8")
 [node name="MapInteractionController" type="Node2D" parent="GameController"]
 script = ExtResource("2_pa3sf")
 
+[node name="PathSearchVisaliser" parent="GameController" instance=ExtResource("3_8ou6y")]
+position = Vector2(-54.2546, -37.9013)
+
 [node name="Base" type="Node2D" parent="GameController"]
 position = Vector2(-8, 0)
 
@@ -779,5 +783,5 @@ position = Vector2(56, 64)
 [connection signal="clear_walls" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_clear_walls"]
 [connection signal="clear_walls" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_clear_walls"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_start_search_call"]
-[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_start_search_call"]
+[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]

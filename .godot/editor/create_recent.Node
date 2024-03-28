@@ -1,3 +1,4 @@
+ArrowAgent
 CPUParticles2D
 Node2D
 AudioListener2D
@@ -6,7 +7,6 @@ LightOccluder2D
 AudioStreamPlayer2D
 AnimationPlayer
 Line2D
-ArrowAgent
 Sprite2D
 Button
 HSeparator

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbv6r3u2k5hvo"]
+
+[ext_resource type="Script" path="res://Actors/Utils/PathSearchVisualiser.gd" id="1_pa3ij"]
+[ext_resource type="PackedScene" uid="uid://bibkgqp5jew8v" path="res://Actors/Agent/ArrowAgent.tscn" id="1_vq5ag"]
+
+[node name="PathSearchVisaliser" type="Node2D"]
+script = ExtResource("1_pa3ij")
+
+[node name="ArrowAgent" parent="." instance=ExtResource("1_vq5ag")]

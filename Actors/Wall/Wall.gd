@@ -23,6 +23,8 @@ func _ready():
 	sound_player.pitch_scale *= randf_range(0.75, 1)
 	animation_player.play("Wall_Fall")
 	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 		shadow_sprite.position = Vector2(position.y * sun_vector.y * shadow_offset * -1 + 8, position.y * sun_vector.y * shadow_offset + 4)
+	
