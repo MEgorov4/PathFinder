@@ -11,7 +11,7 @@ var clear_path : Button
 var speed_slider : HSlider
 
 #Variables
-var ControlPanelInfo = {"manhattan": false, "visualisation_frequency" : 0.1}
+var ControlPanelInfo = {"manhattan": false, "visualisation_frequency" : 0.1, "algorithm_type": GameTypes.SearchAlgorithmType.SAT_A_STAR, "heuristic_function_type": GameTypes.HeuristicFunctionType.HCT_Manhattan}
 
 func _ready():
 	search_button = get_node("MarginContainer/VBoxContainer/StartSearchButton")
@@ -27,6 +27,8 @@ func _on_game_controller_search_completed():
 func _on_algorithm_selector_item_selected(index):
 	if index == 0:
 		ControlPanelInfo["algorithm_type"] = GameTypes.SearchAlgorithmType.SAT_A_STAR
+	elif index == 1:
+		ControlPanelInfo["algorithm_type"] = GameTypes.SearchAlgorithmType.SAT_DIJKSTRA
 	elif index == 2: 
 		ControlPanelInfo["algorithm_type"] = GameTypes.SearchAlgorithmType.SAT_BREADTH_FIRST_SEARCH
 	elif index == 3: 
@@ -37,6 +39,8 @@ func _on_euristic_function_selector_item_selected(index):
 		ControlPanelInfo["heuristic_function_type"] = GameTypes.HeuristicFunctionType.HCT_Manhattan
 	elif index == 1:
 		ControlPanelInfo["heuristic_function_type"] = GameTypes.HeuristicFunctionType.HCT_Manhattan
+	elif index == 2:
+		ControlPanelInfo["heuristic_function_type"] = GameTypes.HeuristicFunctionType.HCT_Chebyshev
 
 func _on_clear_path_button_pressed():
 	emit_signal("path_clear_call")

@@ -95,7 +95,6 @@ static func _a_star_search(cell_map, start_point : Vector2i, end_point : Vector2
 	return find_path_data_result
 	
 	
-
 static func _dijkstra(cell_map, start_point : Vector2i, end_point : Vector2i):
 	###########################################
 	var find_path_data_result = {"is_success": false, "path" : [], "search_sequence" : [{}]}
@@ -172,11 +171,10 @@ static func _breadth_first_search(cell_map, start_point : Vector2, end_point : V
 		#######################################
 		
 		if current_point == end_point: 
-			
 			while(current_point != start_point):
-				path.push_front(current_point)
+				path.push_front(cell_map[current_point.x][current_point.y])
 				current_point = VisitorsDict[current_point]
-			path.push_front(start_point)
+			path.push_front(cell_map[current_point.x][current_point.y])
 			
 			
 			####################################
@@ -184,14 +182,14 @@ static func _breadth_first_search(cell_map, start_point : Vector2, end_point : V
 			find_path_data_result["path"] = path
 			find_path_data_result["search_sequence"] = search_sequence
 			####################################
-			return path
+			return find_path_data_result
 			
 		for x in range(-1, 2):
 			for y in range(-1, 2):
 				if abs(x) != abs(y):
-					var next_point = Vector2i(current_point.x  + x, current_point.y + y)
+					var next_point = Vector2(current_point.x  + x, current_point.y + y)
 					if (next_point.x >= 0 and next_point.x < cell_map.size()) && (next_point.y >= 0 and next_point.y < cell_map[next_point.x].size()):
-						if not (Vector2i(next_point.x, next_point.y) in VisitedPoints):
+						if not (Vector2(next_point.x, next_point.y) in VisitedPoints):
 							var next_cell_instance = cell_map[next_point.x][next_point.y]
 							if next_cell_instance.get_cell_type() != GameTypes.CellType.CT_WALL:
 								
@@ -202,7 +200,7 @@ static func _breadth_first_search(cell_map, start_point : Vector2, end_point : V
 								VisitQueue.push_back(next_point)
 								VisitorsDict[next_point] = current_point
 								VisitedPoints.push_back(next_point)
-								
+		search_sequence.push_back(search_point_dict)
 	return find_path_data_result
 								
 static func _deep_fist_search(cell_map, start_point : Vector2, end_point : Vector2):
@@ -227,23 +225,23 @@ static func _deep_fist_search(cell_map, start_point : Vector2, end_point : Vecto
 
 		if current_point == end_point: 
 			while(current_point != start_point):
-				path.push_front(current_point)
+				path.push_front(cell_map[current_point.x][current_point.y])
 				current_point = VisitorsDict[current_point]
-			path.push_back(start_point)
+			path.push_front(cell_map[current_point.x][current_point.y])
 			####################################
 			find_path_data_result["is_success"] = true
 			find_path_data_result["path"] = path
 			find_path_data_result["search_sequence"] = search_sequence
 			####################################
-			return path
+			return find_path_data_result
 			
 		for x in range(-1, 2):
 			for y in range(-1, 2):
 				if abs(x) != abs(y):
-					var next_point = Vector2i(current_point.x  + x, current_point.y + y)
+					var next_point = Vector2(current_point.x  + x, current_point.y + y)
 					if (next_point.x >= 0 and next_point.x < cell_map.size()) && (next_point.y >= 0 and next_point.y < cell_map[next_point.x].size()):
 						
-						if not (Vector2i(next_point.x, next_point.y) in VisitedPoints):
+						if not (Vector2(next_point.x, next_point.y) in VisitedPoints):
 							var next_cell_instance = cell_map[next_point.x][next_point.y]
 							if next_cell_instance.get_cell_type() != GameTypes.CellType.CT_WALL:
 								
@@ -254,4 +252,5 @@ static func _deep_fist_search(cell_map, start_point : Vector2, end_point : Vecto
 								VisitQueue.push_front(next_point)
 								VisitorsDict[next_point] = current_point
 								VisitedPoints.push_back(next_point)
+		search_sequence.push_back(search_point_dict)
 	return find_path_data_result

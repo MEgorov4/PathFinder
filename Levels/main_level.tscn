@@ -783,6 +783,8 @@ position = Vector2(56, 64)
 [connection signal="search_completed" from="GameController" to="GameController/ControlPanel" method="_on_game_controller_search_completed"]
 [connection signal="search_started" from="GameController" to="GameController/MapInteractionController" method="_on_game_controller_search_started"]
 [connection signal="map_enviroment_changed" from="GameController/MapInteractionController" to="GameController" method="_on_map_interaction_controller_map_enviroment_changed"]
+[connection signal="clear_walls_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_clear_walls_call"]
+[connection signal="path_clear_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_path_clear_call"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_start_search_call"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_start_search_call"]
 [connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
