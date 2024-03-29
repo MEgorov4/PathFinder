@@ -1,4 +1,15 @@
-[gd_scene format=3 uid="uid://844kbrl6np76"]
+[gd_scene load_steps=5 format=3 uid="uid://844kbrl6np76"]
+
+[ext_resource type="Texture2D" uid="uid://3nmv0ik5hhua" path="res://Resources/Images/TX Props_.png" id="1_kdxrb"]
+[ext_resource type="Texture2D" uid="uid://c7rwmnxoci7kb" path="res://Resources/Images/icons/remove(1).png" id="2_ysx8g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm3t3"]
+atlas = ExtResource("1_kdxrb")
+region = Rect2(68, 487, 24, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kq6f"]
+atlas = ExtResource("1_kdxrb")
+region = Rect2(288, 306, 32, 46)
 
 [node name="ObjectPalette" type="Control"]
 layout_mode = 3
@@ -9,10 +20,21 @@ size_flags_horizontal = 0
 
 [node name="ItemList" type="ItemList" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
-layout_mode = 0
-offset_right = 208.0
-offset_bottom = 101.0
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 132.0
+offset_bottom = 131.0
+allow_reselect = true
+allow_search = false
+auto_height = true
+text_overrun_behavior = 0
+item_count = 3
+max_columns = 3
+same_column_width = true
+fixed_column_width = 241
+item_0/text = "- Преграда"
+item_0/icon = SubResource("AtlasTexture_sm3t3")
+item_1/text = "- Стена"
+item_1/icon = SubResource("AtlasTexture_6kq6f")
+item_2/text = "- Удаление"
+item_2/icon = ExtResource("2_ysx8g")
