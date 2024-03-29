@@ -22,30 +22,36 @@ func _setup_callbacks(cell_map):
 
 func cell_clicked(cell : Cell):
 	if can_modify_map:
-		if cell.get_cell_type() == GameTypes.CellType.CT_FREE:
-			interaction_type = GameTypes.MapMouseInteractionType.IT_PLACING_WALL
-			cell.set_cell_type(GameTypes.CellType.CT_WALL)
-			emit_signal("map_enviroment_changed")
-		elif cell.get_cell_type() == GameTypes.CellType.CT_WALL:
-			interaction_type = GameTypes.MapMouseInteractionType.IT_CLEARING
-			cell.set_cell_type(GameTypes.CellType.CT_FREE)
-			emit_signal("map_enviroment_changed")
-
-
-func cell_mouse_entired(cell : Cell):
-	if can_modify_map:
 		if interaction_type == GameTypes.MapMouseInteractionType.IT_CLEARING:
-			if cell.get_cell_type() == GameTypes.CellType.CT_WALL:
+			if cell.get_cell_type() == GameTypes.CellType.CT_WALL or cell.get_cell_type() == GameTypes.CellType.CT_WEIGHT:
 				cell.set_cell_type(GameTypes.CellType.CT_FREE)
 				emit_signal("map_enviroment_changed")
 		elif interaction_type == GameTypes.MapMouseInteractionType.IT_PLACING_WALL:
 			if cell.get_cell_type() == GameTypes.CellType.CT_FREE:
 				cell.set_cell_type(GameTypes.CellType.CT_WALL)
 				emit_signal("map_enviroment_changed")
+		elif interaction_type == GameTypes.MapMouseInteractionType.IT_PLACING_WEIGHT:
+			if cell.get_cell_type() == GameTypes.CellType.CT_FREE:
+				cell.set_cell_type(GameTypes.CellType.CT_WEIGHT)
+				emit_signal("map_enviroment_changed")
 
-	
-func set_map_interaction_type(map_interaction_type : GameTypes.MapMouseInteractionType):
-	pass
+
+func cell_mouse_entired(cell : Cell):
+	if can_modify_map:
+		if interaction_type == GameTypes.MapMouseInteractionType.IT_CLEARING:
+			if cell.get_cell_type() == GameTypes.CellType.CT_WALL or cell.get_cell_type() == GameTypes.CellType.CT_WEIGHT:
+				cell.set_cell_type(GameTypes.CellType.CT_FREE)
+				emit_signal("map_enviroment_changed")
+		elif interaction_type == GameTypes.MapMouseInteractionType.IT_PLACING_WALL:
+			if cell.get_cell_type() == GameTypes.CellType.CT_FREE:
+				cell.set_cell_type(GameTypes.CellType.CT_WALL)
+				emit_signal("map_enviroment_changed")
+		elif interaction_type == GameTypes.MapMouseInteractionType.IT_PLACING_WEIGHT:
+			if cell.get_cell_type() == GameTypes.CellType.CT_FREE:
+				cell.set_cell_type(GameTypes.CellType.CT_WEIGHT)
+				emit_signal("map_enviroment_changed")
+
+
 
 func _on_game_controller_search_completed():
 	can_modify_map = true
@@ -53,3 +59,7 @@ func _on_game_controller_search_completed():
 
 func _on_game_controller_search_started():
 	can_modify_map = false
+
+
+func _on_control_panel_set_map_interaction_type_call(interaction_type):
+	self.interaction_type = interaction_type

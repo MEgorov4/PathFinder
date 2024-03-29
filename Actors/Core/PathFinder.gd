@@ -89,6 +89,9 @@ static func _a_star_search(cell_map, start_point : Vector2i, end_point : Vector2
 								visited.push_back(next_point)
 								var distance = _heuristic_function(current_point, end_point, heuristic_function_type)  + _get_count_steps_before(start_point, next_point , visitors_dict) 
 									
+								if next_cell_instance.get_cell_type() == GameTypes.CellType.CT_WEIGHT:
+									distance += 70
+									
 								to_visit_priority_queue.push(next_point, distance)
 		search_sequence.push_back(search_point_dict)
 		
@@ -144,6 +147,9 @@ static func _dijkstra(cell_map, start_point : Vector2i, end_point : Vector2i):
 								visitors_dict[next_point] = current_point
 								visited.push_back(next_point)
 								var distance = _get_count_steps_before(start_point, next_point , visitors_dict) 
+									
+								if next_cell_instance.get_cell_type() == GameTypes.CellType.CT_WEIGHT:
+									distance += 70
 									
 								to_visit_priority_queue.push(next_point, distance)
 		search_sequence.push_back(search_point_dict)

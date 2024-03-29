@@ -6,7 +6,8 @@ signal cell_clicked(cell_instance)
 signal cell_mouse_entired(cell_instance)
 
 #Resources
-var wall_class = preload("res://Actors/Wall/Wall.tscn")
+var wall_class = preload("res://Actors/Placeable/Wall/Wall.tscn")
+var weight_class = preload("res://Actors/Placeable/Weight/Weight.tscn")
 
 #Components
 var cell_sprite : Sprite2D
@@ -18,7 +19,7 @@ var cell_position : Vector2i
 var cell_interaction_type : GameTypes.CellInteractionType
 
 #Objects
-var wall_instance = null 
+var object_instance = null 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	cell_sprite = get_node("CellSprite");
@@ -49,14 +50,19 @@ func get_cell_pos() -> Vector2i:
 
 func _update_cell_state():
 	if cell_type == GameTypes.CellType.CT_FREE:
-		if (not wall_instance == null):
-			remove_child(wall_instance)
-			wall_instance = null 
+		if (not object_instance == null):
+			remove_child(object_instance)
+			object_instance = null 
 	elif cell_type == GameTypes.CellType.CT_WALL:
-		if wall_instance == null:
-			wall_instance = wall_class.instantiate()
-			wall_instance.position = Vector2(8,4)
-			add_child(wall_instance)
+		if object_instance == null:
+			object_instance = wall_class.instantiate()
+			object_instance.position = Vector2(8,4)
+			add_child(object_instance)
+	elif cell_type == GameTypes.CellType.CT_WEIGHT:
+		if object_instance == null:
+			object_instance = weight_class.instantiate()
+			object_instance.position = Vector2(8,4)
+			add_child(object_instance)
 	elif cell_type == GameTypes.CellType.CT_START:
 		cell_sprite.modulate = Color.RED
 	elif cell_type == GameTypes.CellType.CT_FINISH:

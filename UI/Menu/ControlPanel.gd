@@ -1,5 +1,6 @@
 extends Control
 
+#Signals
 signal start_search_call(SearchSettings)
 signal path_clear_call()
 signal clear_walls_call()
@@ -50,4 +51,13 @@ func _on_clear_walls_button_pressed():
 	emit_signal("clear_walls_call")
 
 func _on_object_palette_item_selected(index):
-	emit_signal("set_map_interaction_type_call", GameTypes.MapMouseInteractionType[index])
+	var mouse_interaction_type : GameTypes.MapMouseInteractionType
+	
+	if index == 0:
+		mouse_interaction_type = GameTypes.MapMouseInteractionType.IT_PLACING_WALL
+	elif index == 1:
+		mouse_interaction_type = GameTypes.MapMouseInteractionType.IT_PLACING_WEIGHT
+	elif index ==2:
+		mouse_interaction_type = GameTypes.MapMouseInteractionType.IT_CLEARING
+	
+	emit_signal("set_map_interaction_type_call", mouse_interaction_type)

@@ -5,8 +5,9 @@ enum CellType
 {
 	CT_FREE = 0,
  	CT_WALL = 1,
- 	CT_START = 2,
- 	CT_FINISH = 3
+	CT_WEIGHT = 2,
+ 	CT_START = 3,
+ 	CT_FINISH = 4
 }
 
 enum CellInteractionType 
