@@ -625,6 +625,22 @@ adjustment_contrast = 1.51
 material = SubResource("ShaderMaterial_xq5da")
 position = Vector2(64, 64)
 
+[node name="ControlPanel" parent="." instance=ExtResource("11_3oh3x")]
+z_as_relative = false
+clip_contents = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 792.0
+offset_top = -65.0
+offset_right = 1200.0
+offset_bottom = 575.0
+grow_horizontal = 0
+grow_vertical = 1
+scale = Vector2(1, 1)
+size_flags_horizontal = 0
+
 [node name="GameController" type="Node2D" parent="."]
 script = ExtResource("1_x5oa7")
 
@@ -761,33 +777,18 @@ position = Vector2(64, 72)
 position = Vector2(-64, -64)
 anchor_mode = 0
 
-[node name="ControlPanel" parent="GameController" instance=ExtResource("11_3oh3x")]
-clip_contents = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 1200.0
-offset_bottom = 576.0
-grow_horizontal = 2
-grow_vertical = 1
-scale = Vector2(1, 1)
-size_flags_horizontal = 0
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GameController"]
 environment = SubResource("Environment_dkspa")
 
 [node name="PathDrawer" parent="GameController" instance=ExtResource("12_178b3")]
 position = Vector2(56, 64)
 
+[connection signal="clear_walls_call" from="ControlPanel" to="GameController" method="_on_control_panel_clear_walls_call"]
+[connection signal="path_clear_call" from="ControlPanel" to="GameController" method="_on_control_panel_path_clear_call"]
+[connection signal="start_search_call" from="ControlPanel" to="GameController" method="_on_control_panel_start_search_call"]
+[connection signal="start_search_call" from="ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
+[connection signal="start_search_call" from="ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_start_search_call"]
+[connection signal="search_completed" from="GameController" to="ControlPanel" method="_on_game_controller_search_completed"]
 [connection signal="search_completed" from="GameController" to="GameController/MapInteractionController" method="_on_game_controller_search_completed"]
-[connection signal="search_completed" from="GameController" to="GameController/ControlPanel" method="_on_game_controller_search_completed"]
 [connection signal="search_started" from="GameController" to="GameController/MapInteractionController" method="_on_game_controller_search_started"]
 [connection signal="map_enviroment_changed" from="GameController/MapInteractionController" to="GameController" method="_on_map_interaction_controller_map_enviroment_changed"]
-[connection signal="clear_walls_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_clear_walls_call"]
-[connection signal="path_clear_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_path_clear_call"]
-[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController" method="_on_control_panel_start_search_call"]
-[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_start_search_call"]
-[connection signal="start_search_call" from="GameController/ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]

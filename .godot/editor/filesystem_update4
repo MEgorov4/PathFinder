@@ -4,5 +4,7 @@ res://UI/Menu/ControlPanel.tscn
 res://Actors/FindingStateIcon/SearchStateIcon.tscn
 res://Actors/Wall/Wall.tscn
 res://Actors/Wall/PlaceableObject.tscn
-res://UI/PlaceableObjectPalette/ObjectPalette.tscn
-res://Actors/Wall/Wall.gd
+res://Actors/Core/GameController.gd
+res://Actors/Core/MapInteractionController.gd
+res://UI/Menu/ControlPanel.gd
+res://Actors/Core/Globals/GameTypes.gd

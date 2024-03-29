@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1711695952
+::res://::1711697354
 ::res://Actors/::1711689409
 ::res://Actors/Agent/::1711692920
 ArrowAgent.gd::GDScript::-1::1711689409::0::1::::ArrowAgent<>Node2D<>::
@@ -17,23 +17,23 @@ MapInteractionController.gd::GDScript::-1::1711689409::0::1::::MapInteractionCon
 PathFinder.gd::GDScript::-1::1711689409::0::1::::PathFinder<>RefCounted<>::
 ::res://Actors/Core/Globals/::1711689409
 GameTypes.gd::GDScript::-1::1711689409::0::1::::GameTypes<>RefCounted<>::
-::res://Actors/FindingStateIcon/::1711695401
+::res://Actors/FindingStateIcon/::1711696698
 Icon.gd::GDScript::-1::1711689409::0::1::::Icon<>Node2D<>::
-SearchStateIcon.tscn::PackedScene::2362050352208460471::1711695401::0::1::::<><>::res://Actors/FindingStateIcon/Icon.gd
+SearchStateIcon.tscn::PackedScene::2362050352208460471::1711696698::0::1::::<><>::res://Actors/FindingStateIcon/Icon.gd
 ::res://Actors/Grid/::1711691752
 MapSpawner.gd::GDScript::-1::1711689409::0::1::::MapGenerator<>Node2D<>::
 MapSpawner.tscn::PackedScene::6885072290716991544::1711689409::0::1::::<><>::res://Actors/Grid/MapSpawner.gd<>uid://cd2312tbu2bxs::::res://Actors/Utils/path_drawer.tscn
-::res://Actors/Grid/Levels/::1711695401
-main_level.tscn::PackedScene::603338316229185575::1711695401::0::1::::<><>::res://Actors/Core/GameController.gd<>res://Actors/Core/MapInteractionController.gd<>uid://b7me6kiynnn8y::::res://Resources/Images/TX Tileset Grass.png<>uid://rfa0x18m62sy::::res://Resources/Images/TX Tileset Wall.png<>uid://berp5hrfd0vva::::res://Resources/Images/TX Shadow Plant.png<>uid://3c7qes1fh825::::res://Resources/Images/TX Plant.png<>uid://cv28rj3v3aq46::::res://Resources/Images/TX PropsShadow.png<>uid://3nmv0ik5hhua::::res://Resources/Images/TX Props_.png<>uid://c5dgetyrdbjq3::::res://Actors/Grid/MapSpawner.tscn<>uid://dbv6r3u2k5hvo::::res://Actors/Utils/PathSearchVisaliser.tscn<>uid://dbgo6fvjjcbh::::res://UI/Menu/ControlPanel.tscn<>uid://cd2312tbu2bxs::::res://Actors/Utils/path_drawer.tscn<>uid://844kbrl6np76::::res://UI/PlaceableObjectPalette/ObjectPalette.tscn
+::res://Actors/Grid/Levels/::1711696698
+main_level.tscn::PackedScene::603338316229185575::1711696698::0::1::::<><>::res://Actors/Core/GameController.gd<>res://Actors/Core/MapInteractionController.gd<>uid://b7me6kiynnn8y::::res://Resources/Images/TX Tileset Grass.png<>uid://rfa0x18m62sy::::res://Resources/Images/TX Tileset Wall.png<>uid://berp5hrfd0vva::::res://Resources/Images/TX Shadow Plant.png<>uid://3c7qes1fh825::::res://Resources/Images/TX Plant.png<>uid://cv28rj3v3aq46::::res://Resources/Images/TX PropsShadow.png<>uid://3nmv0ik5hhua::::res://Resources/Images/TX Props_.png<>uid://c5dgetyrdbjq3::::res://Actors/Grid/MapSpawner.tscn<>uid://dbv6r3u2k5hvo::::res://Actors/Utils/PathSearchVisaliser.tscn<>uid://dbgo6fvjjcbh::::res://UI/Menu/ControlPanel.tscn<>uid://cd2312tbu2bxs::::res://Actors/Utils/path_drawer.tscn
 ::res://Actors/Utils/::1711691329
 PathDrawer.gd::GDScript::-1::1711691329::0::1::::PathDrawer<>Node2D<>::
 PathSearchVisaliser.tscn::PackedScene::7274716915615934564::1711689616::0::1::::<><>::res://Actors/Utils/PathSearchVisualiser.gd<>uid://bibkgqp5jew8v::::res://Actors/Agent/ArrowAgent.tscn
 PathSearchVisualiser.gd::GDScript::-1::1711691284::0::1::::SearchVisualiser<>Node<>::
 path_drawer.tscn::PackedScene::5040894051653864604::1711689409::0::1::::<><>::res://Actors/Utils/PathDrawer.gd<>uid://d4miio41pktj8::::res://Resources/Sounds/PathWallk.wav
-::res://Actors/Wall/::1711695401
-PlaceableObject.tscn::PackedScene::4867145172172641818::1711695401::0::1::::<><>::
+::res://Actors/Wall/::1711696698
+PlaceableObject.tscn::PackedScene::4867145172172641818::1711696698::0::1::::<><>::
 Wall.gd::GDScript::-1::1711695400::0::1::::<>Node2D<>::
-Wall.tscn::PackedScene::1435166849018031061::1711695401::0::1::::<><>::res://Actors/Wall/Wall.gd<>uid://cv28rj3v3aq46::::res://Resources/Images/TX PropsShadow.png<>uid://3nmv0ik5hhua::::res://Resources/Images/TX Props_.png<>uid://bytdwn3mx5vb4::::res://Resources/Sounds/PlaceWall.wav
+Wall.tscn::PackedScene::1435166849018031061::1711696698::0::1::::<><>::res://Actors/Wall/Wall.gd<>uid://cv28rj3v3aq46::::res://Resources/Images/TX PropsShadow.png<>uid://3nmv0ik5hhua::::res://Resources/Images/TX Props_.png<>uid://bytdwn3mx5vb4::::res://Resources/Sounds/PlaceWall.wav
 ::res://CustomTypes/::1711689409
 PriorityQueue.gd::GDScript::-1::1711689409::0::1::::PriorityQueue<>RefCounted<>::
 ::res://Resources/::1711689409
@@ -67,11 +67,11 @@ PathWallk.wav::AudioStreamWAV::9220011853252341983::1711689409::1711689409::1:::
 PlaceWald.wav::AudioStreamWAV::397428821502311833::1711689409::1711689409::1::::<><>::
 PlaceWall.wav::AudioStreamWAV::4110398273412460915::1711689409::1711689409::1::::<><>::
 ::res://UI/::1711694208
-::res://UI/Menu/::1711695401
+::res://UI/Menu/::1711696905
 AlgorithmSelector.gd::GDScript::-1::1711689409::0::1::::<>OptionButton<>::
 ControlPanel.gd::GDScript::-1::1711689409::0::1::::<>Control<>::
-ControlPanel.tscn::PackedScene::213021848653827817::1711695401::0::1::::<><>::res://UI/Menu/ControlPanel.gd<>res://UI/Menu/SpeedSliderLabel.gd<>res://UI/Menu/AlgorithmSelector.gd<>res://UI/Menu/HeuristicFunctionSelector.gd
+ControlPanel.tscn::PackedScene::213021848653827817::1711696905::0::1::::<><>::res://UI/Menu/ControlPanel.gd<>res://UI/Menu/SpeedSliderLabel.gd<>res://UI/Menu/AlgorithmSelector.gd<>res://UI/Menu/HeuristicFunctionSelector.gd<>uid://844kbrl6np76::::res://UI/PlaceableObjectPalette/ObjectPalette.tscn
 HeuristicFunctionSelector.gd::GDScript::-1::1711689409::0::1::::<>OptionButton<>::
 SpeedSliderLabel.gd::GDScript::-1::1711689409::0::1::::<>Label<>::
-::res://UI/PlaceableObjectPalette/::1711695900
-ObjectPalette.tscn::PackedScene::2377877524978849299::1711695900::0::1::::<><>::uid://3nmv0ik5hhua::::res://Resources/Images/TX Props_.png<>uid://kni6xeb7ldl3::::res://Resources/Images/icons/remove.png
+::res://UI/PlaceableObjectPalette/::1711696642
+ObjectPalette.tscn::PackedScene::2377877524978849299::1711696642::0::1::::<><>::uid://3nmv0ik5hhua::::res://Resources/Images/TX Props_.png<>uid://c7rwmnxoci7kb::::res://Resources/Images/icons/remove(1).png

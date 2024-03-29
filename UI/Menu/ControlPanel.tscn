@@ -1,22 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbgo6fvjjcbh"]
+[gd_scene load_steps=10 format=3 uid="uid://dbgo6fvjjcbh"]
 
 [ext_resource type="Script" path="res://UI/Menu/ControlPanel.gd" id="1_c5qfs"]
 [ext_resource type="Script" path="res://UI/Menu/SpeedSliderLabel.gd" id="2_1srts"]
 [ext_resource type="Script" path="res://UI/Menu/AlgorithmSelector.gd" id="3_1gov2"]
 [ext_resource type="Script" path="res://UI/Menu/HeuristicFunctionSelector.gd" id="4_lqrvh"]
-[ext_resource type="PackedScene" uid="uid://844kbrl6np76" path="res://UI/PlaceableObjectPalette/ObjectPalette.tscn" id="5_4g63q"]
+[ext_resource type="Texture2D" uid="uid://3nmv0ik5hhua" path="res://Resources/Images/TX Props_.png" id="5_uh3jn"]
+[ext_resource type="Texture2D" uid="uid://c7rwmnxoci7kb" path="res://Resources/Images/icons/remove(1).png" id="6_jfjfi"]
 
 [sub_resource type="Theme" id="Theme_2axw1"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_apo6v"]
+atlas = ExtResource("5_uh3jn")
+region = Rect2(288, 306, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0otps"]
+atlas = ExtResource("5_uh3jn")
+region = Rect2(68, 487, 24, 19)
+
 [node name="ControlPanel" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 1255.0
 grow_vertical = 2
 scale = Vector2(1.00757, 1)
-size_flags_horizontal = 4
+size_flags_horizontal = 8
 size_flags_vertical = 4
 script = ExtResource("1_c5qfs")
 
@@ -120,21 +128,41 @@ text = "0.001
 "
 script = ExtResource("2_1srts")
 
-[node name="Palette" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -407.0
+offset_top = -308.0
+offset_right = -295.0
+offset_bottom = -187.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="ObjectPalette" parent="Palette" instance=ExtResource("5_4g63q")]
+[node name="ObjectPalette" type="ItemList" parent="MarginContainer"]
 layout_mode = 2
+allow_search = false
+auto_height = true
+item_count = 3
+fixed_column_width = 100
+item_0/text = "Стена"
+item_0/icon = SubResource("AtlasTexture_apo6v")
+item_1/text = "Преграда"
+item_1/icon = SubResource("AtlasTexture_0otps")
+item_2/text = "Удаление"
+item_2/icon = ExtResource("6_jfjfi")
 
-[connection signal="pressed" from="Menu/VBoxContainer/StartSearchButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/StartSearchButton" to="." method="_on_start_search_button_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/ClearWallsButton" to="." method="_on_clear_walls_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/StartSearchButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/ClearWallsButton" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/ClearWallsButton" to="." method="_on_clear_walls_button_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/ClearPathButton" to="." method="_on_clear_path_button_pressed"]
-[connection signal="item_selected" from="Menu/VBoxContainer/HAlgorithm/AlgorithmSelector" to="." method="_on_algorithm_selector_item_selected"]
 [connection signal="item_selected" from="Menu/VBoxContainer/HAlgorithm/AlgorithmSelector" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="Menu/VBoxContainer/HAlgorithm/AlgorithmSelector" to="." method="_on_algorithm_selector_item_selected"]
 [connection signal="item_selected" from="Menu/VBoxContainer/HAlgorithm/AlgorithmSelector" to="Menu/VBoxContainer/HEuristicFunction/EuristicFunctionSelector" method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="Menu/VBoxContainer/HEuristicFunction/EuristicFunctionSelector" to="." method="_on_euristic_function_selector_item_selected"]
 [connection signal="value_changed" from="Menu/VBoxContainer/HVisualisationSpeed/HSlider" to="Menu/VBoxContainer/HVisualisationSpeed/Label2" method="_on_h_slider_value_changed"]
+[connection signal="item_selected" from="MarginContainer/ObjectPalette" to="." method="_on_object_palette_item_selected"]

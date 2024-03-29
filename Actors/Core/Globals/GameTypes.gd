@@ -8,24 +8,33 @@ enum CellType
  	CT_START = 2,
  	CT_FINISH = 3
 }
+
 enum CellInteractionType 
 {
 	CIT_FREE = 0,
 	CIT_CONSIDERING = 1,
 	CIT_CONSIDERED = 2, 
-	CIT_CONSIDERING_CURRENT
+	CIT_CONSIDERING_CURRENT = 3
 }
+
 enum HeuristicFunctionType 
 {
-	HCT_Euclidean, 
-	HCT_Manhattan,
-	HCT_Chebyshev
+	HCT_Euclidean = 0, 
+	HCT_Manhattan = 1,
+	HCT_Chebyshev = 2
 }
 
 enum SearchAlgorithmType
 {
-	SAT_A_STAR,
-	SAT_BREADTH_FIRST_SEARCH,
-	SAT_DEEP_FIRST_SEARCH,
-	SAT_DIJKSTRA
+	SAT_A_STAR = 0,
+	SAT_BREADTH_FIRST_SEARCH = 1,
+	SAT_DEEP_FIRST_SEARCH = 2,
+	SAT_DIJKSTRA = 3
+}
+
+enum MapMouseInteractionType 
+{
+	IT_CLEARING = 0, 
+	IT_PLACING_WALL = 1,
+	IT_PLACING_WEIGHT = 2 
 }

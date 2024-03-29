@@ -3,6 +3,7 @@ extends Control
 signal start_search_call(SearchSettings)
 signal path_clear_call()
 signal clear_walls_call()
+signal set_map_interaction_type_call(InteractionType)
 
 #Components
 var search_button : Button
@@ -14,7 +15,7 @@ var speed_slider : HSlider
 var ControlPanelInfo = {"manhattan": false, "visualisation_frequency" : 0.1, "algorithm_type": GameTypes.SearchAlgorithmType.SAT_A_STAR, "heuristic_function_type": GameTypes.HeuristicFunctionType.HCT_Manhattan}
 
 func _ready():
-	search_button = get_node("MarginContainer/VBoxContainer/StartSearchButton")
+	search_button = get_node("Menu/VBoxContainer/StartSearchButton")
 	
 	
 func _on_start_search_button_pressed():
@@ -48,9 +49,5 @@ func _on_clear_path_button_pressed():
 func _on_clear_walls_button_pressed():
 	emit_signal("clear_walls_call")
 
-
-
-
-
-
-
+func _on_object_palette_item_selected(index):
+	emit_signal("set_map_interaction_type_call", GameTypes.MapMouseInteractionType[index])

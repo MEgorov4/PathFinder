@@ -1,6 +1,6 @@
 MarginContainer
-VideoStreamPlayer
 ItemList
+VideoStreamPlayer
 Sprite2D
 OptionButton
 MenuButton
@@ -12,4 +12,3 @@ PointLight2D
 LightOccluder2D
 AudioStreamPlayer2D
 AnimationPlayer
-Line2D

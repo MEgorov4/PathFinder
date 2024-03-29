@@ -4,10 +4,10 @@ extends Node
 #Signals
 signal map_enviroment_changed()
 #Types
-enum MapMouseInteractionType { IT_CLEARING, IT_PLACING }
+
 
 #variables
-var interaction_type : MapMouseInteractionType
+var interaction_type : GameTypes.MapMouseInteractionType
 var can_modify_map : bool = true
 
 func setup_controller(cell_map):
@@ -23,28 +23,29 @@ func _setup_callbacks(cell_map):
 func cell_clicked(cell : Cell):
 	if can_modify_map:
 		if cell.get_cell_type() == GameTypes.CellType.CT_FREE:
-			interaction_type = MapMouseInteractionType.IT_PLACING
+			interaction_type = GameTypes.MapMouseInteractionType.IT_PLACING_WALL
 			cell.set_cell_type(GameTypes.CellType.CT_WALL)
 			emit_signal("map_enviroment_changed")
 		elif cell.get_cell_type() == GameTypes.CellType.CT_WALL:
-			interaction_type = MapMouseInteractionType.IT_CLEARING
+			interaction_type = GameTypes.MapMouseInteractionType.IT_CLEARING
 			cell.set_cell_type(GameTypes.CellType.CT_FREE)
 			emit_signal("map_enviroment_changed")
 
 
 func cell_mouse_entired(cell : Cell):
 	if can_modify_map:
-		if interaction_type == MapMouseInteractionType.IT_CLEARING:
+		if interaction_type == GameTypes.MapMouseInteractionType.IT_CLEARING:
 			if cell.get_cell_type() == GameTypes.CellType.CT_WALL:
 				cell.set_cell_type(GameTypes.CellType.CT_FREE)
 				emit_signal("map_enviroment_changed")
-		elif interaction_type == MapMouseInteractionType.IT_PLACING:
+		elif interaction_type == GameTypes.MapMouseInteractionType.IT_PLACING_WALL:
 			if cell.get_cell_type() == GameTypes.CellType.CT_FREE:
 				cell.set_cell_type(GameTypes.CellType.CT_WALL)
 				emit_signal("map_enviroment_changed")
 
 	
-
+func set_map_interaction_type(map_interaction_type : GameTypes.MapMouseInteractionType):
+	pass
 
 func _on_game_controller_search_completed():
 	can_modify_map = true
