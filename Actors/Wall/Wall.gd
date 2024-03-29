@@ -1,5 +1,5 @@
+class_name Wall
 extends Node2D
-
 #Components
 var animation_player : AnimationPlayer
 var sound_player : AudioStreamPlayer2D

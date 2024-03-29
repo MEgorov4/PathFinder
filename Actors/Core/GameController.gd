@@ -37,6 +37,13 @@ func _on_control_panel_start_search_call(SearchSettings):
 func _on_control_panel_clear_walls():
 	map_generator.clear_walls()
 
+func _compare_search(SearchSettings):
+	emit_signal("search_started")
+	
+	
+	
+	emit_signal("search_complited")
+
 func _search(SearchSettings):
 	emit_signal("search_started")
 	
@@ -50,7 +57,7 @@ func _search(SearchSettings):
 		await path_search_visualiser.clear_visualizer()
 		await get_tree().create_timer(0.4).timeout
 	
-		await path_drawer.draw_path(find_path_result["path"], Vector2(8, 8))
+		await path_drawer.draw_path(find_path_result["path"], Color.AQUA, Vector2(8, 8))
 	
 	emit_signal("search_completed")
 	

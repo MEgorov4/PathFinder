@@ -1,17 +1,17 @@
 [gd_scene load_steps=27 format=3 uid="uid://iui5nmu031cl"]
 
-[ext_resource type="PackedScene" uid="uid://dbgo6fvjjcbh" path="res://UI/ControlPanel.tscn" id="1_amsdb"]
-[ext_resource type="PackedScene" uid="uid://c5dgetyrdbjq3" path="res://Actors/Grid/MapSpawner.tscn" id="1_qrvd8"]
-[ext_resource type="Script" path="res://Actors/Core/GameController.gd" id="1_rl6j8"]
-[ext_resource type="Script" path="res://Actors/Core/MapInteractionController.gd" id="2_pa3sf"]
-[ext_resource type="Texture2D" uid="uid://3c7qes1fh825" path="res://Resources/Images/TX Plant.png" id="3_6ygg0"]
-[ext_resource type="PackedScene" uid="uid://dbv6r3u2k5hvo" path="res://Actors/Utils/PathSearchVisaliser.tscn" id="3_8ou6y"]
-[ext_resource type="Texture2D" uid="uid://rfa0x18m62sy" path="res://Resources/Images/TX Tileset Wall.png" id="3_dnrqd"]
-[ext_resource type="Texture2D" uid="uid://berp5hrfd0vva" path="res://Resources/Images/TX Shadow Plant.png" id="3_f16hp"]
-[ext_resource type="Texture2D" uid="uid://b7me6kiynnn8y" path="res://Resources/Images/TX Tileset Grass.png" id="3_fmqpx"]
-[ext_resource type="Texture2D" uid="uid://cv28rj3v3aq46" path="res://Resources/Images/TX PropsShadow.png" id="6_s8s2f"]
-[ext_resource type="Texture2D" uid="uid://3nmv0ik5hhua" path="res://Resources/Images/TX Props_.png" id="7_lls2d"]
-[ext_resource type="PackedScene" uid="uid://cd2312tbu2bxs" path="res://Actors/Utils/path_drawer.tscn" id="9_o83y4"]
+[ext_resource type="Script" path="res://Actors/Core/GameController.gd" id="1_x5oa7"]
+[ext_resource type="Script" path="res://Actors/Core/MapInteractionController.gd" id="2_objbx"]
+[ext_resource type="Texture2D" uid="uid://b7me6kiynnn8y" path="res://Resources/Images/TX Tileset Grass.png" id="3_k4dad"]
+[ext_resource type="Texture2D" uid="uid://rfa0x18m62sy" path="res://Resources/Images/TX Tileset Wall.png" id="4_o428d"]
+[ext_resource type="Texture2D" uid="uid://berp5hrfd0vva" path="res://Resources/Images/TX Shadow Plant.png" id="5_qlvct"]
+[ext_resource type="Texture2D" uid="uid://3c7qes1fh825" path="res://Resources/Images/TX Plant.png" id="6_l7tm3"]
+[ext_resource type="Texture2D" uid="uid://cv28rj3v3aq46" path="res://Resources/Images/TX PropsShadow.png" id="7_mvst8"]
+[ext_resource type="Texture2D" uid="uid://3nmv0ik5hhua" path="res://Resources/Images/TX Props_.png" id="8_1pvx4"]
+[ext_resource type="PackedScene" uid="uid://c5dgetyrdbjq3" path="res://Actors/Grid/MapSpawner.tscn" id="9_vxsvr"]
+[ext_resource type="PackedScene" uid="uid://dbv6r3u2k5hvo" path="res://Actors/Utils/PathSearchVisaliser.tscn" id="10_l7pfg"]
+[ext_resource type="PackedScene" uid="uid://dbgo6fvjjcbh" path="res://UI/Menu/ControlPanel.tscn" id="11_3oh3x"]
+[ext_resource type="PackedScene" uid="uid://cd2312tbu2bxs" path="res://Actors/Utils/path_drawer.tscn" id="12_178b3"]
 
 [sub_resource type="Shader" id="Shader_dq5rs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's CanvasItemMaterial.
@@ -24,7 +24,7 @@ render_mode blend_mix;
 shader = SubResource("Shader_dq5rs")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epibg"]
-texture = ExtResource("3_fmqpx")
+texture = ExtResource("3_k4dad")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:1/0 = 0
@@ -95,7 +95,7 @@ texture_region_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_epibg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_di5ue"]
-texture = ExtResource("3_dnrqd")
+texture = ExtResource("4_o428d")
 2:2/0 = 0
 3:2/0 = 0
 4:2/0 = 0
@@ -319,7 +319,7 @@ sources/0 = SubResource("TileSetAtlasSource_di5ue")
 polygon = PackedVector2Array(477, 347, 475, 347, 475, 350, 473, 350, 473, 353, 471, 353, 471, 355, 470, 355, 471.328, 80.5078, 472.508, 80.5, 472.508, 78.5, 473.5, 78.5, 473.5, 79.5078, 476.516, 79.497)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhrpl"]
-texture = ExtResource("3_dnrqd")
+texture = ExtResource("4_o428d")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 2:1/0 = 0
@@ -446,7 +446,7 @@ texture_region_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_hhrpl")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cx85o"]
-texture = ExtResource("3_dnrqd")
+texture = ExtResource("4_o428d")
 margins = Vector2i(0, 4)
 texture_region_size = Vector2i(32, 29)
 use_texture_padding = false
@@ -490,7 +490,7 @@ use_texture_padding = false
 sources/0 = SubResource("TileSetAtlasSource_cx85o")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_md0sa"]
-texture = ExtResource("3_dnrqd")
+texture = ExtResource("4_o428d")
 texture_region_size = Vector2i(32, 8)
 2:12/0 = 0
 3:12/0 = 0
@@ -626,10 +626,10 @@ material = SubResource("ShaderMaterial_xq5da")
 position = Vector2(64, 64)
 
 [node name="GameController" type="Node2D" parent="."]
-script = ExtResource("1_rl6j8")
+script = ExtResource("1_x5oa7")
 
 [node name="MapInteractionController" type="Node2D" parent="GameController"]
-script = ExtResource("2_pa3sf")
+script = ExtResource("2_objbx")
 
 [node name="Base" type="Node2D" parent="GameController"]
 position = Vector2(-8, 0)
@@ -664,7 +664,7 @@ modulate = Color(1, 1, 1, 0.313726)
 z_index = 4
 y_sort_enabled = true
 texture_filter = 1
-texture = ExtResource("3_f16hp")
+texture = ExtResource("5_qlvct")
 region_enabled = true
 region_rect = Rect2(23, 14, 117, 145)
 
@@ -672,7 +672,7 @@ region_rect = Rect2(23, 14, 117, 145)
 z_index = 4
 y_sort_enabled = true
 texture_filter = 1
-texture = ExtResource("3_6ygg0")
+texture = ExtResource("6_l7tm3")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(23, 14, 117, 145)
@@ -686,7 +686,7 @@ z_index = 1
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(88, 8)
-texture = ExtResource("3_f16hp")
+texture = ExtResource("5_qlvct")
 region_enabled = true
 region_rect = Rect2(23, 14, 117, 145)
 
@@ -695,7 +695,7 @@ z_index = 1
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(88, 8)
-texture = ExtResource("3_6ygg0")
+texture = ExtResource("6_l7tm3")
 region_enabled = true
 region_rect = Rect2(23, 14, 117, 145)
 
@@ -736,23 +736,23 @@ position = Vector2(267, 398)
 [node name="TxPropsShadow" type="Sprite2D" parent="GameController/Base/State"]
 modulate = Color(1, 1, 1, 0.478431)
 texture_filter = 1
-texture = ExtResource("6_s8s2f")
+texture = ExtResource("7_mvst8")
 region_enabled = true
 region_rect = Rect2(446, 0, 38, 93)
 
 [node name="TxProps" type="Sprite2D" parent="GameController/Base/State"]
 texture_filter = 1
 position = Vector2(-2, 11)
-texture = ExtResource("7_lls2d")
+texture = ExtResource("8_1pvx4")
 region_enabled = true
 region_rect = Rect2(445, 21, 37, 73)
 
-[node name="MapSpawner" parent="GameController/Base" instance=ExtResource("1_qrvd8")]
+[node name="MapSpawner" parent="GameController/Base" instance=ExtResource("9_vxsvr")]
 z_index = 3
 y_sort_enabled = true
 position = Vector2(64, 64)
 
-[node name="PathSearchVisaliser" parent="GameController" instance=ExtResource("3_8ou6y")]
+[node name="PathSearchVisaliser" parent="GameController" instance=ExtResource("10_l7pfg")]
 z_index = 5
 y_sort_enabled = true
 position = Vector2(64, 72)
@@ -761,7 +761,7 @@ position = Vector2(64, 72)
 position = Vector2(-64, -64)
 anchor_mode = 0
 
-[node name="ControlPanel" parent="GameController" instance=ExtResource("1_amsdb")]
+[node name="ControlPanel" parent="GameController" instance=ExtResource("11_3oh3x")]
 clip_contents = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -776,7 +776,7 @@ size_flags_horizontal = 0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GameController"]
 environment = SubResource("Environment_dkspa")
 
-[node name="PathDrawer" parent="GameController" instance=ExtResource("9_o83y4")]
+[node name="PathDrawer" parent="GameController" instance=ExtResource("12_178b3")]
 position = Vector2(56, 64)
 
 [connection signal="search_completed" from="GameController" to="GameController/MapInteractionController" method="_on_game_controller_search_completed"]

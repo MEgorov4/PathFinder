@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2cwntydlwdew"]
+
+[ext_resource type="Texture2D" uid="uid://ca01oegg3rhao" path="res://Resources/Images/TX Player.png" id="1_hajro"]
+[ext_resource type="Script" path="res://Actors/Agent/PathFollowerAgent.gd" id="1_r223x"]
+
+[node name="PathFollowerAgent" type="Node2D"]
+script = ExtResource("1_r223x")
+
+[node name="AgentSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -16)
+texture = ExtResource("1_hajro")
+region_enabled = true
+region_rect = Rect2(6, 14, 21, 44)

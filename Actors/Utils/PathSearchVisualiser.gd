@@ -19,6 +19,7 @@ func setup_cells(cell_map):
 	
 	
 func visualise_search(search_sequence):
+	
 	for search_point in search_sequence:
 		for search_key : Cell in search_point.keys():
 			if search_key.get_cell_pos() in icons_instances:

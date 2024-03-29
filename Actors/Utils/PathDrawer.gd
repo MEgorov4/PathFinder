@@ -20,15 +20,16 @@ func _ready():
 	path_line = get_node("PathLine")
 	path_audio_player = get_node("Audio")
 	path_particles = get_node("SparkExplosue")
-	path_line.gradient = path_gradient_start_color
 	path_line.width = path_width
 
 func _process(delta):
 	pass
 
 # Метод для плавного построения пути 
-func draw_path(Cells, offset = Vector2(0, 0)):
+func draw_path(Cells, draw_color : Color, offset = Vector2(0, 0),):
 	_reset_all_components()
+	
+	path_line.default_color = draw_color
 	
 	path_particles.emitting = true
 	
