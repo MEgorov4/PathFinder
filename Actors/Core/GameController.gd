@@ -4,6 +4,7 @@ extends Node2D
 #Signals
 signal search_completed()
 signal search_started()
+signal maze_generation_completed_call()
 
 #Components
 var map_generator : MapGenerator
@@ -18,7 +19,7 @@ var cell_map
 func _ready():
 	map_generator = get_node("Base/MapSpawner")
 	cell_map = map_generator.get_map_cells()
-		
+	
 	map_interaction_controller = get_node("MapInteractionController")
 	map_interaction_controller.setup_controller(map_generator.get_map_cells())
 	
@@ -29,7 +30,6 @@ func _ready():
 	
 	path_search_visualiser.setup_cells(map_generator.get_map_cells())
 	
-	
 func _on_control_panel_start_search_call(SearchSettings):
 	_clear_components()
 	_search(SearchSettings)
@@ -39,7 +39,6 @@ func _on_control_panel_clear_walls():
 
 func _compare_search(SearchSettings):
 	emit_signal("search_started")
-	
 	
 	
 	emit_signal("search_complited")
@@ -75,3 +74,9 @@ func _on_control_panel_clear_walls_call():
 
 func _on_control_panel_path_clear_call():
 	_clear_components()
+
+
+func _on_control_panel_generate_maze_call():
+	MazeGenerator.generate_maze_on_map(cell_map)
+	await get_tree().create_timer(0.5).timeout
+	emit_signal("maze_generation_completed_call")

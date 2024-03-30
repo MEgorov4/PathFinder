@@ -5,11 +5,13 @@ signal start_search_call(SearchSettings)
 signal path_clear_call()
 signal clear_walls_call()
 signal set_map_interaction_type_call(InteractionType)
+signal generate_maze_call()
 
 #Components
 var search_button : Button
 var clear_walls_button : Button
 var clear_path : Button
+var generate_maze_button : Button
 var speed_slider : HSlider
 
 #Variables
@@ -17,7 +19,9 @@ var ControlPanelInfo = {"manhattan": false, "visualisation_frequency" : 0.1, "al
 
 func _ready():
 	search_button = get_node("Menu/VBoxContainer/StartSearchButton")
-	
+	clear_walls_button = get_node("Menu/VBoxContainer/ClearWallsButton")
+	clear_path = get_node("Menu/VBoxContainer/ClearPathButton")
+	generate_maze_button = get_node("Menu/VBoxContainer/GenerateMazeButton")
 	
 func _on_start_search_button_pressed():
 	emit_signal("start_search_call",  ControlPanelInfo)
@@ -61,3 +65,17 @@ func _on_object_palette_item_selected(index):
 		mouse_interaction_type = GameTypes.MapMouseInteractionType.IT_CLEARING
 	
 	emit_signal("set_map_interaction_type_call", mouse_interaction_type)
+
+func _on_generate_maze_button_pressed():
+	emit_signal("generate_maze_call")
+	
+	search_button.disabled = true
+	clear_walls_button.disabled = true
+	clear_path.disabled = true
+	generate_maze_button.disabled = true
+
+func _on_game_controller_maze_generation_completed_call():
+	search_button.disabled = false
+	clear_walls_button.disabled = false
+	clear_path.disabled = false
+	generate_maze_button.disabled = false

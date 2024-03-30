@@ -784,11 +784,13 @@ environment = SubResource("Environment_dkspa")
 position = Vector2(56, 64)
 
 [connection signal="clear_walls_call" from="ControlPanel" to="GameController" method="_on_control_panel_clear_walls_call"]
+[connection signal="generate_maze_call" from="ControlPanel" to="GameController" method="_on_control_panel_generate_maze_call"]
 [connection signal="path_clear_call" from="ControlPanel" to="GameController" method="_on_control_panel_path_clear_call"]
 [connection signal="set_map_interaction_type_call" from="ControlPanel" to="GameController/MapInteractionController" method="_on_control_panel_set_map_interaction_type_call"]
 [connection signal="start_search_call" from="ControlPanel" to="GameController" method="_on_control_panel_start_search_call"]
 [connection signal="start_search_call" from="ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
 [connection signal="start_search_call" from="ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_start_search_call"]
+[connection signal="maze_generation_completed_call" from="GameController" to="ControlPanel" method="_on_game_controller_maze_generation_completed_call"]
 [connection signal="search_completed" from="GameController" to="ControlPanel" method="_on_game_controller_search_completed"]
 [connection signal="search_completed" from="GameController" to="GameController/MapInteractionController" method="_on_game_controller_search_completed"]
 [connection signal="search_started" from="GameController" to="GameController/MapInteractionController" method="_on_game_controller_search_started"]

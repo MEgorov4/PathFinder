@@ -25,11 +25,9 @@ func _ready():
 	cell_sprite = get_node("CellSprite");
 	cell_border_animator = get_node("AnimationPlayer")
 	
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
 
 func set_cell_interaction_type(cell_interaction_type : GameTypes.CellInteractionType):
 	if cell_type != GameTypes.CellType.CT_START and cell_type != GameTypes.CellType.CT_FINISH:
