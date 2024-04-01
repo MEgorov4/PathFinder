@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://iui5nmu031cl"]
+[gd_scene load_steps=30 format=3 uid="uid://iui5nmu031cl"]
 
 [ext_resource type="Script" path="res://Actors/Core/GameController.gd" id="1_x5oa7"]
 [ext_resource type="Script" path="res://Actors/Core/MapInteractionController.gd" id="2_objbx"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dbv6r3u2k5hvo" path="res://Actors/Utils/PathSearchVisaliser.tscn" id="10_l7pfg"]
 [ext_resource type="PackedScene" uid="uid://dbgo6fvjjcbh" path="res://UI/Menu/ControlPanel.tscn" id="11_3oh3x"]
 [ext_resource type="PackedScene" uid="uid://cd2312tbu2bxs" path="res://Actors/Utils/path_drawer.tscn" id="12_178b3"]
+[ext_resource type="Shader" path="res://Actors/Grid/Levels/FogShader.gdshader" id="13_njx1c"]
+[ext_resource type="VideoStream" path="res://Resources/Fog.ogv" id="13_rya4j"]
 
 [sub_resource type="Shader" id="Shader_dq5rs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's CanvasItemMaterial.
@@ -621,6 +623,9 @@ adjustment_enabled = true
 adjustment_brightness = 1.17
 adjustment_contrast = 1.51
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcjtn"]
+shader = ExtResource("13_njx1c")
+
 [node name="MainLevel" type="Node2D"]
 material = SubResource("ShaderMaterial_xq5da")
 position = Vector2(64, 64)
@@ -783,13 +788,25 @@ environment = SubResource("Environment_dkspa")
 [node name="PathDrawer" parent="GameController" instance=ExtResource("12_178b3")]
 position = Vector2(56, 64)
 
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+z_index = 5
+texture_filter = 4
+material = SubResource("ShaderMaterial_tcjtn")
+offset_left = 56.0
+offset_top = 64.0
+offset_right = 456.0
+offset_bottom = 336.0
+stream = ExtResource("13_rya4j")
+autoplay = true
+loop = true
+
 [connection signal="clear_walls_call" from="ControlPanel" to="GameController" method="_on_control_panel_clear_walls_call"]
 [connection signal="generate_maze_call" from="ControlPanel" to="GameController" method="_on_control_panel_generate_maze_call"]
 [connection signal="path_clear_call" from="ControlPanel" to="GameController" method="_on_control_panel_path_clear_call"]
 [connection signal="set_map_interaction_type_call" from="ControlPanel" to="GameController/MapInteractionController" method="_on_control_panel_set_map_interaction_type_call"]
 [connection signal="start_search_call" from="ControlPanel" to="GameController" method="_on_control_panel_start_search_call"]
-[connection signal="start_search_call" from="ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
 [connection signal="start_search_call" from="ControlPanel" to="GameController/Base/MapSpawner" method="_on_control_panel_start_search_call"]
+[connection signal="start_search_call" from="ControlPanel" to="GameController/Base/MapSpawner" method="_on_start_search_call"]
 [connection signal="maze_generation_completed_call" from="GameController" to="ControlPanel" method="_on_game_controller_maze_generation_completed_call"]
 [connection signal="search_completed" from="GameController" to="ControlPanel" method="_on_game_controller_search_completed"]
 [connection signal="search_completed" from="GameController" to="GameController/MapInteractionController" method="_on_game_controller_search_completed"]

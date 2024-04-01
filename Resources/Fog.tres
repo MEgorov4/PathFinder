@@ -1,0 +1,39 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://be8fltt445yro"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_8i7lm"]
+default_input_values = [0, 255.0, 1, 0.0, 2, 0.0]
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_7iw8u"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void fragment() {
+// VectorCompose:2
+	float n_in2p0 = 255.00000;
+	float n_in2p1 = 0.00000;
+	float n_in2p2 = 0.00000;
+	vec3 n_out2p0 = vec3(n_in2p0, n_in2p1, n_in2p2);
+
+
+// FloatConstant:3
+	float n_out3p0 = 0.000000;
+
+
+// Output:0
+	ALBEDO = n_out2p0;
+	ALPHA = n_out3p0;
+
+
+}
+"
+graph_offset = Vector2(-32.093, 65.2436)
+nodes/fragment/2/node = SubResource("VisualShaderNodeVectorCompose_8i7lm")
+nodes/fragment/2/position = Vector2(0, 180)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatConstant_7iw8u")
+nodes/fragment/3/position = Vector2(80, 360)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 2, 0, 0, 0)
