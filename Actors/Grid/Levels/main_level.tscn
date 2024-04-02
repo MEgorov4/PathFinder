@@ -789,6 +789,7 @@ environment = SubResource("Environment_dkspa")
 position = Vector2(56, 64)
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
 z_index = 5
 texture_filter = 4
 material = SubResource("ShaderMaterial_tcjtn")
@@ -796,6 +797,7 @@ offset_left = 56.0
 offset_top = 64.0
 offset_right = 456.0
 offset_bottom = 336.0
+mouse_filter = 2
 stream = ExtResource("13_rya4j")
 autoplay = true
 loop = true
