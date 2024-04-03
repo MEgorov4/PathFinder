@@ -5,8 +5,9 @@ extends OptionButton
 func _ready():
 	add_item("AStar")
 	add_item("Deijstra")
-	add_item("Breadth")
-	add_item("Deep")
+	add_item("Breadth-First-Search")
+	add_item("Deep-First-Search")
+	add_item("Best-First-Search")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

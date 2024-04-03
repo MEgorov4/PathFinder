@@ -17,7 +17,7 @@ func _process(delta):
 
 
 func _on_option_button_item_selected(index):
-	if index == 0:
+	if index == 0 || index == 4:
 		horizontal_box.visible = true
 	else:
 		horizontal_box.visible = false

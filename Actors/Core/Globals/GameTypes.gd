@@ -30,7 +30,8 @@ enum SearchAlgorithmType
 	SAT_A_STAR = 0,
 	SAT_BREADTH_FIRST_SEARCH = 1,
 	SAT_DEEP_FIRST_SEARCH = 2,
-	SAT_DIJKSTRA = 3
+	SAT_DIJKSTRA = 3,
+	SAT_BEST_FIRST_SEARCH = 4
 }
 
 enum MapMouseInteractionType 

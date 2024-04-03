@@ -39,6 +39,8 @@ func _on_algorithm_selector_item_selected(index):
 		ControlPanelInfo["algorithm_type"] = GameTypes.SearchAlgorithmType.SAT_BREADTH_FIRST_SEARCH
 	elif index == 3: 
 		ControlPanelInfo["algorithm_type"] = GameTypes.SearchAlgorithmType.SAT_DEEP_FIRST_SEARCH
+	elif index == 4:
+		ControlPanelInfo["algorithm_type"] = GameTypes.SearchAlgorithmType.SAT_BEST_FIRST_SEARCH
 		
 func _on_euristic_function_selector_item_selected(index):
 	if index == 0:
