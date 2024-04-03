@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="PathFinder"
+config/name="Pathy"
 run/main_scene="res://Actors/Grid/Levels/main_level.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 

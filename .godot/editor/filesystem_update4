@@ -1,13 +1,3 @@
-res://Actors/Grid/Levels/main_level.tscn
+res://UI/Menu/ControlPanel.tscn
 res://Resources/Images/icons/SearchedPoint.tres
 res://Actors/Grid/Levels/FogShader.gdshader
-res://Resources/Fog.tres
-res://Actors/Core/PathFinder.gd
-res://Actors/Core/Globals/GameTypes.gd
-res://UI/Menu/ControlPanel.gd
-res://UI/Menu/ControlPanel.tscn
-res://UI/Menu/AlgorithmSelector.gd
-res://Actors/FindingStateIcon/SearchStateIcon.tscn
-res://Actors/Placeable/Wall/Wall.tscn
-res://Actors/Placeable/Weight/Weight.tscn
-res://UI/Menu/HeuristicFunctionSelector.gd
