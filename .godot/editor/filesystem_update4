@@ -1,3 +1,7 @@
-res://UI/Menu/ControlPanel.tscn
+res://Actors/Grid/Levels/main_level.tscn
 res://Resources/Images/icons/SearchedPoint.tres
 res://Actors/Grid/Levels/FogShader.gdshader
+res://Resources/Fog.tres
+res://Actors/Core/Globals/GameTypes.gd
+res://Actors/Core/GameController.gd
+res://Actors/Core/PathFinder.gd

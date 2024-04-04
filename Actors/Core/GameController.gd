@@ -67,14 +67,11 @@ func _clear_components():
 	path_search_visualiser.clear_visualizer()
 	path_drawer.clear_path()
 
-
-
 func _on_control_panel_clear_walls_call():
 	map_generator.clear_walls()
 
 func _on_control_panel_path_clear_call():
 	_clear_components()
-
 
 func _on_control_panel_generate_maze_call():
 	MazeGenerator.generate_maze_on_map(cell_map)

@@ -40,7 +40,20 @@ static func _get_count_steps_before(start_point, current_point, point_link_map):
 	print(counter)
 	return counter
 	
+
+static func _jump_first_search(cell_map, start_point : Vector2i, end_point : Vector2i, heuristic_function_type : GameTypes.HeuristicFunctionType):
+	###########################################
+	var find_path_data_result = {"is_success": false, "path" : [], "search_sequence" : [{}]}
+	var search_sequence = []
+	###########################################
 	
+	var visited = []
+	var visit_priority_queue = PriorityQueue.new()
+	var visitors_dict = {}
+	
+	
+	pass
+
 static func _a_star_search(cell_map, start_point : Vector2i, end_point : Vector2i, heuristic_function_type : GameTypes.HeuristicFunctionType):
 	###########################################
 	var find_path_data_result = {"is_success": false, "path" : [], "search_sequence" : [{}]}
@@ -320,3 +333,4 @@ static func _deep_fist_search(cell_map, start_point : Vector2, end_point : Vecto
 								VisitedPoints.push_back(next_point)
 		search_sequence.push_back(search_point_dict)
 	return find_path_data_result
+
