@@ -603,6 +603,9 @@ texture_region_size = Vector2i(32, 8)
 [sub_resource type="TileSet" id="TileSet_gjhvf"]
 sources/1 = SubResource("TileSetAtlasSource_md0sa")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcjtn"]
+shader = ExtResource("13_njx1c")
+
 [sub_resource type="Environment" id="Environment_dkspa"]
 background_mode = 3
 ambient_light_energy = 3.9
@@ -622,9 +625,6 @@ fog_height_density = -3.3684
 adjustment_enabled = true
 adjustment_brightness = 1.17
 adjustment_contrast = 1.51
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcjtn"]
-shader = ExtResource("13_njx1c")
 
 [node name="MainLevel" type="Node2D"]
 material = SubResource("ShaderMaterial_xq5da")
@@ -773,6 +773,19 @@ z_index = 3
 y_sort_enabled = true
 position = Vector2(64, 64)
 
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="GameController/Base"]
+z_index = 5
+texture_filter = 4
+material = SubResource("ShaderMaterial_tcjtn")
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 464.0
+offset_bottom = 336.0
+mouse_filter = 2
+stream = ExtResource("13_rya4j")
+autoplay = true
+loop = true
+
 [node name="PathSearchVisaliser" parent="GameController" instance=ExtResource("10_l7pfg")]
 z_index = 5
 y_sort_enabled = true
@@ -787,20 +800,6 @@ environment = SubResource("Environment_dkspa")
 
 [node name="PathDrawer" parent="GameController" instance=ExtResource("12_178b3")]
 position = Vector2(56, 64)
-
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
-visible = false
-z_index = 5
-texture_filter = 4
-material = SubResource("ShaderMaterial_tcjtn")
-offset_left = 56.0
-offset_top = 64.0
-offset_right = 456.0
-offset_bottom = 336.0
-mouse_filter = 2
-stream = ExtResource("13_rya4j")
-autoplay = true
-loop = true
 
 [connection signal="clear_walls_call" from="ControlPanel" to="GameController" method="_on_control_panel_clear_walls_call"]
 [connection signal="generate_maze_call" from="ControlPanel" to="GameController" method="_on_control_panel_generate_maze_call"]
